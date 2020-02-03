@@ -1,4 +1,4 @@
-package administracion_datos;
+package model.domain.controler_domain.datos;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

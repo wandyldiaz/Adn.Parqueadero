@@ -1,4 +1,4 @@
-package administracion_datos;
+package model.domain.controler_domain.datos;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -15,6 +15,9 @@ public interface DiaSemanadDao {
 
     @Insert
     void insertAll(DiaSemana... diasemana);
+
+    @Insert
+    void insert(DiaSemana diasemana);
 
     @Delete
     void delete(DiaSemana diasemana);
