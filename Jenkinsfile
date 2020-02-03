@@ -1,8 +1,8 @@
 pipeline {
   //Donde se va a ejecutar el Pipeline
   agent {
-    //label 'Slave4_Mac'
-    label 'Slave_Induccion'
+    label 'Slave4_Mac'
+   // label 'Slave_Induccion'
   }
 
   //Opciones específicas de Pipeline dentro del Pipeline
