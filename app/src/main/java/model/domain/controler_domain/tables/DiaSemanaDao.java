@@ -1,4 +1,4 @@
-package model.domain.controler_domain.datos;
+package model.domain.controler_domain.tables;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -8,7 +8,7 @@ import androidx.room.Query;
 import java.util.List;
 
 @Dao
-public interface DiaSemanadDao {
+public interface DiaSemanaDao {
 
     @Query("SELECT * FROM DiaSemana")
     List<DiaSemana> getSelect();

@@ -1,4 +1,4 @@
-package model.domain.controler_domain.datos;
+package model.domain.controler_domain.tables;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -32,18 +32,20 @@ public class VehiculoHistorial {
     private int valorCobrado;
 
     public VehiculoHistorial(int idVehiculoHistorial, String placa, String fechaEntrada,
-                             String horaEntrada) {
+                             String horaEntrada, String fechaSalida, String horaSalida,
+                             int horasEstacionado, int valorCobrado) {
         this.idVehiculoHistorial = idVehiculoHistorial;
         this.placa = placa;
         this.fechaEntrada = fechaEntrada;
         this.horaEntrada = horaEntrada;
-        this.fechaSalida = "";
-        this.horaSalida = "";
-        this.horasEstacionado = 0;
-        this.valorCobrado = 0;
+        this.fechaSalida = fechaSalida;
+        this.horaSalida = horaSalida;
+        this.horasEstacionado = horasEstacionado;
+        this.valorCobrado = valorCobrado;
+        salida("","",0,0);
     }
 
-    public void Salida( String fechaSalida, String horaSalida, int horasEstacionado,
+    public void salida( String fechaSalida, String horaSalida, int horasEstacionado,
                         int valorCobrado){
         this.fechaSalida = fechaSalida;
         this.horaSalida = horaSalida;
@@ -51,10 +53,9 @@ public class VehiculoHistorial {
         this.valorCobrado = valorCobrado;
     }
 
-    public int getidVehiculoHistorial() {
+    public int getIdVehiculoHistorial() {
         return idVehiculoHistorial;
     }
-
 
     public String getPlaca() {
         return placa;

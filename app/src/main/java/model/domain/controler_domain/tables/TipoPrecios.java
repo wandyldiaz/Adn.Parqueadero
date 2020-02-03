@@ -1,11 +1,13 @@
-package model.domain.controler_domain.datos;
+package model.domain.controler_domain.tables;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "TipoPrecios")
 public class TipoPrecios {
-    @PrimaryKey
+    @PrimaryKey()
+    @NonNull
     private String tipoPrecio;
 
     public TipoPrecios(String tipoPrecio) {

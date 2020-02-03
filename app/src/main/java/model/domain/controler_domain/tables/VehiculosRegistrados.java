@@ -1,12 +1,14 @@
-package model.domain.controler_domain.datos;
+package model.domain.controler_domain.tables;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "VehiculosRegistrados")
 public class VehiculosRegistrados {
-    @PrimaryKey
+    @PrimaryKey()
+    @NonNull
     private String placa;
 
     @ColumnInfo(name = "tipoVehiculo")
