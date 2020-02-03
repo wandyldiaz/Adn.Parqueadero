@@ -14,6 +14,7 @@ pipeline {
   tools {
     jdk 'JDK8' //Preinstalada en la Configuración del Master
     gradle 'Gradle4.5' //Preinstalada en la Configuración del Master
+    
   }
 
   //Aquí comienzan los “items” del Pipeline
