@@ -16,6 +16,9 @@ pipeline {
   //  jdk 'JDK8_Centos' //Preinstalada en la Configuración del Master
   //  gradle 'Gradle5.6_Centos' //Preinstalada en la Configuración del Master
   //}
+  tools {
+    jdk 'JDK8_Mac'
+  }
 
   //Aquí comienzan los “items” del Pipeline
   stages{
@@ -58,7 +61,9 @@ pipeline {
       steps {
         echo "------------>Build<------------"
         //Construir sin tarea test que se ejecutó previamente
-        sh 'gradle --b ./build.gradle build -x test'
+       // sh 'gradle --b ./build.gradle build -x test'
+        sh 'chmod u+x gradlew'
+        sh './gradlew clean'
 
       }
     }
