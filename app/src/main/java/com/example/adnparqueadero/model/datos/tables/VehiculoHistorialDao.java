@@ -1,4 +1,4 @@
-package model.domain.controler_domain.tables;
+package com.example.adnparqueadero.model.datos.tables;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -10,7 +10,7 @@ import java.util.List;
 public interface VehiculoHistorialDao {
 
     @Query("SELECT * FROM VehiculoHistorial")
-    List<VehiculoHistorial> getSelect();
+    List<VehiculoHistorial> getSelectAll();
 
     @Insert
     void insertAll(VehiculoHistorial... vehiculoHistorial);

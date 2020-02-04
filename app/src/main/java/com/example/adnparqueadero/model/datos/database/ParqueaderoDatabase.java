@@ -1,4 +1,4 @@
-package model.domain.controler_domain.database;
+package com.example.adnparqueadero.model.datos.database;
 
 
 import android.content.Context;
@@ -7,24 +7,24 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import model.domain.controler_domain.tables.DiaSemana;
-import model.domain.controler_domain.tables.DiaSemanaDao;
-import model.domain.controler_domain.tables.LetraCondicion;
-import model.domain.controler_domain.tables.LetraCondicionDao;
-import model.domain.controler_domain.tables.LimiteVehiculos;
-import model.domain.controler_domain.tables.LimiteVehiculosDao;
-import model.domain.controler_domain.tables.Precios;
-import model.domain.controler_domain.tables.PreciosDao;
-import model.domain.controler_domain.tables.TipoCondicion;
-import model.domain.controler_domain.tables.TipoCondicionDao;
-import model.domain.controler_domain.tables.TipoPrecios;
-import model.domain.controler_domain.tables.TipoPreciosDao;
-import model.domain.controler_domain.tables.TipoVehiculo;
-import model.domain.controler_domain.tables.TipoVehiculoDao;
-import model.domain.controler_domain.tables.VehiculoHistorial;
-import model.domain.controler_domain.tables.VehiculoHistorialDao;
-import model.domain.controler_domain.tables.VehiculosRegistrados;
-import model.domain.controler_domain.tables.VehiculosRegistradosDao;
+import com.example.adnparqueadero.model.datos.tables.DiaSemana;
+import com.example.adnparqueadero.model.datos.tables.DiaSemanaDao;
+import com.example.adnparqueadero.model.datos.tables.LetraCondicion;
+import com.example.adnparqueadero.model.datos.tables.LetraCondicionDao;
+import com.example.adnparqueadero.model.datos.tables.LimiteVehiculos;
+import com.example.adnparqueadero.model.datos.tables.LimiteVehiculosDao;
+import com.example.adnparqueadero.model.datos.tables.Precios;
+import com.example.adnparqueadero.model.datos.tables.PreciosDao;
+import com.example.adnparqueadero.model.datos.tables.TipoCondicion;
+import com.example.adnparqueadero.model.datos.tables.TipoCondicionDao;
+import com.example.adnparqueadero.model.datos.tables.TipoPrecios;
+import com.example.adnparqueadero.model.datos.tables.TipoPreciosDao;
+import com.example.adnparqueadero.model.datos.tables.TipoVehiculo;
+import com.example.adnparqueadero.model.datos.tables.TipoVehiculoDao;
+import com.example.adnparqueadero.model.datos.tables.VehiculoHistorial;
+import com.example.adnparqueadero.model.datos.tables.VehiculoHistorialDao;
+import com.example.adnparqueadero.model.datos.tables.VehiculosRegistrados;
+import com.example.adnparqueadero.model.datos.tables.VehiculosRegistradosDao;
 
 @Database(entities ={DiaSemana.class, LetraCondicion.class, LimiteVehiculos.class,
         Precios.class, TipoCondicion.class, TipoPrecios.class, TipoVehiculo.class,
@@ -44,7 +44,6 @@ public abstract class ParqueaderoDatabase extends RoomDatabase {
             }
 
         }
-
         return instance;
     }
    public abstract DiaSemanaDao diaSemanaDao();

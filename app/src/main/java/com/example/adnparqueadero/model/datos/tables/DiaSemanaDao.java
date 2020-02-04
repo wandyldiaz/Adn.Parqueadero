@@ -1,8 +1,9 @@
-package model.domain.controler_domain.tables;
+package com.example.adnparqueadero.model.datos.tables;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -11,12 +12,12 @@ import java.util.List;
 public interface DiaSemanaDao {
 
     @Query("SELECT * FROM DiaSemana")
-    List<DiaSemana> getSelect();
+    List<DiaSemana> getSelectAll();
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(DiaSemana... diasemana);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(DiaSemana diasemana);
 
     @Delete

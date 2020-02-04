@@ -1,20 +1,21 @@
-package model.domain.controler_domain.tables;
+package com.example.adnparqueadero.model.datos.tables;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
 @Dao
 public interface LetraCondicionDao {
     @Query("SELECT * FROM LetraCondicion")
-    List<LetraCondicion> getSelect();
+    List<LetraCondicion> getSelectAll();
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(LetraCondicion... letraCondicion);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(LetraCondicion letraCondicion);
 
     @Delete

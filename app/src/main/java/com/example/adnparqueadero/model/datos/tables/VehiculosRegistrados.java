@@ -1,4 +1,4 @@
-package model.domain.controler_domain.tables;
+package com.example.adnparqueadero.model.datos.tables;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
