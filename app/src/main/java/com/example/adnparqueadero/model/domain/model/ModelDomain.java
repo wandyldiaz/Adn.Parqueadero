@@ -32,7 +32,7 @@ public class ModelDomain implements InterfaceModelDomain{
 
     @Override
     public void getSelectAllTipoVehiculo(final CallbackHandlerRspArray callback) {
-        controlerDomain.getSelectAllDiaSemana(new InterfaceModelDomain.CallbackHandlerRspArray() {
+        controlerDomain.getSelectAllTipoVehiculo(new InterfaceModelDomain.CallbackHandlerRspArray() {
             @Override
             public void RspArray(String[] Respuesta) {
                 callback.RspArray(Respuesta);
