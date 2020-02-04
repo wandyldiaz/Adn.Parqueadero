@@ -2,11 +2,16 @@ package com.example.adnparqueadero.model.domain.model;
 
 public interface InterfaceModelDomain {
 
-    void getSelectAllDiaSemana(final CallbackHandlerRspArray callback);
-    void getSelectAllTipoVehiculo(final CallbackHandlerRspArray callback);
+    void getSelectAllDiaSemana(CallbackHandlerRspArray callback);
+    void getSelectAllTipoVehiculo(CallbackHandlerRspArray callback);
+    void getSelectTipoCondicion(CallbackHandlerRspArray callback);
+    void getSelectAllLimiteVehiculos(CallbackHandlerRspMatriz callback);
 
     interface CallbackHandlerRspArray {
-        void RspArray(String[] Respuesta);
+        void respuestaArray(String[] respuesta);
+    }
+    interface CallbackHandlerRspMatriz {
+        void respuestaMatriz(String[][] respuesta);
     }
 }
 

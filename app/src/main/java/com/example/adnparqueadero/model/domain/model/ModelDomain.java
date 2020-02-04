@@ -7,7 +7,6 @@ import com.example.adnparqueadero.model.domain.controler_domain.ControlerDomainD
 
 public class ModelDomain implements InterfaceModelDomain{
     private static ModelDomain instance;
-    private Context context;
     private InterfaceModelDomain controlerDomain;
 
     public static ModelDomain getInstance(Context context){
@@ -15,7 +14,6 @@ public class ModelDomain implements InterfaceModelDomain{
         {
             instance= new ModelDomain();
         }
-        instance.context=context;
         instance.controlerDomain= ControlerDomainDatos.getInstance(context);
         return  instance;
     }
@@ -24,8 +22,8 @@ public class ModelDomain implements InterfaceModelDomain{
     public void getSelectAllDiaSemana(final CallbackHandlerRspArray callback) {
         controlerDomain.getSelectAllDiaSemana(new InterfaceModelDomain.CallbackHandlerRspArray() {
             @Override
-            public void RspArray(String[] Respuesta) {
-                callback.RspArray(Respuesta);
+            public void respuestaArray(String[] respuesta) {
+                callback.respuestaArray(respuesta);
             }
         });
     }
@@ -34,8 +32,28 @@ public class ModelDomain implements InterfaceModelDomain{
     public void getSelectAllTipoVehiculo(final CallbackHandlerRspArray callback) {
         controlerDomain.getSelectAllTipoVehiculo(new InterfaceModelDomain.CallbackHandlerRspArray() {
             @Override
-            public void RspArray(String[] Respuesta) {
-                callback.RspArray(Respuesta);
+            public void respuestaArray(String[] respuesta) {
+                callback.respuestaArray(respuesta);
+            }
+        });
+    }
+
+    @Override
+    public void getSelectTipoCondicion(final CallbackHandlerRspArray callback) {
+        controlerDomain.getSelectTipoCondicion(new InterfaceModelDomain.CallbackHandlerRspArray() {
+            @Override
+            public void respuestaArray(String[] respuesta) {
+                callback.respuestaArray(respuesta);
+            }
+        });
+    }
+
+    @Override
+    public void getSelectAllLimiteVehiculos(final CallbackHandlerRspMatriz callback) {
+        controlerDomain.getSelectAllLimiteVehiculos(new InterfaceModelDomain.CallbackHandlerRspMatriz() {
+            @Override
+            public void respuestaMatriz(String[][] respuesta) {
+                callback.respuestaMatriz(respuesta);
             }
         });
     }
