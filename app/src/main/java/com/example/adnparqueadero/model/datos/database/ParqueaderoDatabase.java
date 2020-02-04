@@ -2,6 +2,7 @@ package com.example.adnparqueadero.model.datos.database;
 
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.room.Database;
 import androidx.room.Room;
@@ -39,7 +40,7 @@ public abstract class ParqueaderoDatabase extends RoomDatabase {
                 instance = Room.databaseBuilder(context, ParqueaderoDatabase.class, DB_NAME).fallbackToDestructiveMigration()
                         .build();
             }catch(Exception e){
-                e.printStackTrace();
+                Log.e("ERROR DATABASE",e.toString());
                 return null;
             }
 
