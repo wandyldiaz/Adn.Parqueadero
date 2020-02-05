@@ -29,7 +29,7 @@ public class VigilanteParqueaderoIngresoUniTest {
         //Arrangue
         String [] diasBloqueados=new String[]{"Martes","Domingo","Jueves","Viernes"};
         VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333");
-
+        //Ack y assert
         assertTrue(vigilanteIngreso.validarDiaIngreso("2020/02/01"));
         assertFalse(vigilanteIngreso.validarDiaIngreso("2020/03/01"));
         assertTrue(vigilanteIngreso.validarDiaIngreso("2020/02/17"));
@@ -38,8 +38,30 @@ public class VigilanteParqueaderoIngresoUniTest {
         assertFalse(vigilanteIngreso.validarDiaIngreso("2020/04/30"));
         assertFalse(vigilanteIngreso.validarDiaIngreso("2020/05/01"));
 
+
+    }
+    @Test
+    public void validacionIngresoDatosVacios()
+    {
+        //Arrangue
+        String [] diasBloqueados=new String[]{""};
+        VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333");
+        //Ack y assert
         assertFalse(vigilanteIngreso.validarIngreso(Arrays.asList(new VehiculoHistorial[0]),
                 Arrays.asList(new LimiteVehiculos[0]), "Moto"));
 
     }
+
+    @Test
+    public void validacionIngresoTrue()
+    {
+        //Arrangue
+        String [] diasBloqueados=new String[]{""};
+        VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333");
+        //Ack y assert
+        assertFalse(vigilanteIngreso.validarIngreso(Arrays.asList(new VehiculoHistorial[0]),
+                Arrays.asList(new LimiteVehiculos[0]), "Moto"));
+
+    }
+
 }
