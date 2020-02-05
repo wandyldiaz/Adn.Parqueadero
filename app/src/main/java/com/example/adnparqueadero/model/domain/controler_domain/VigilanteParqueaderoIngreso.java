@@ -2,7 +2,6 @@ package com.example.adnparqueadero.model.domain.controler_domain;
 
 import com.example.adnparqueadero.model.datos.tables.LimiteVehiculos;
 import com.example.adnparqueadero.model.datos.tables.VehiculoHistorial;
-import com.example.adnparqueadero.model.datos.tables.VehiculosRegistrados;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -20,7 +19,7 @@ public class VigilanteParqueaderoIngreso extends VigilanteParqueadero {
         this.placa = placa;
     }
 
-    private String diaSemana (String fecha)
+    private static String diaSemana (String fecha)
     {
         int dia= Integer.parseInt(fecha.split("/")[2]);
         int mes= Integer.parseInt(fecha.split("/")[1]);
@@ -60,12 +59,12 @@ public class VigilanteParqueaderoIngreso extends VigilanteParqueadero {
         return true;
     }
 
-    public boolean validarIngreso(List<VehiculoHistorial> vehiculos_Ingresados,
+    public boolean validarIngreso(List<VehiculoHistorial> vehiculosIngresados,
                                   List<LimiteVehiculos> limiteVehiculos, String tipoVehiculo ){
         fechaActual=getDate();
         horaActual=getTime();
         int limiteVehiculo=0;
-        if(!validarDiaIngreso(fechaActual)){
+        if(!validarDiaIngreso(fechaActual) && limiteVehiculos.isEmpty()){
             return false;
         }
         for(int i=0; i<limiteVehiculos.size();i++){
@@ -74,9 +73,14 @@ public class VigilanteParqueaderoIngreso extends VigilanteParqueadero {
                 break;
             }
         }
-        if(vehiculos_Ingresados.size()>limiteVehiculo)
-            return  false;
-        return true;
+        if(!vehiculosIngresados.isEmpty())
+        {
+            return vehiculosIngresados.size() < limiteVehiculo;
+        }
+        else
+        {
+            return  limiteVehiculo>0;
+        }
     }
 
 
