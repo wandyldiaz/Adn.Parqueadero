@@ -1,8 +1,19 @@
 package com.example.adnparqueadero;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.example.adnparqueadero.model.datos.tables.LimiteVehiculos;
+import com.example.adnparqueadero.model.datos.tables.VehiculoHistorial;
 import com.example.adnparqueadero.model.domain.controler_domain.VigilanteParqueaderoIngreso;
 
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 import static org.junit.Assert.*;
 
@@ -26,6 +37,9 @@ public class VigilanteParqueaderoIngresoUniTest {
         assertTrue(vigilanteIngreso.validarDiaIngreso("2020/04/22"));
         assertFalse(vigilanteIngreso.validarDiaIngreso("2020/04/30"));
         assertFalse(vigilanteIngreso.validarDiaIngreso("2020/05/01"));
+
+        assertFalse(vigilanteIngreso.validarIngreso(Arrays.asList(new VehiculoHistorial[0]),
+                Arrays.asList(new LimiteVehiculos[0]), "Moto"));
 
     }
 }
