@@ -39,8 +39,18 @@ public class ModelDomain implements InterfaceModelDomain{
     }
 
     @Override
-    public void getSelectTipoCondicion(final CallbackHandlerRspArray callback) {
-        controlerDomain.getSelectTipoCondicion(new InterfaceModelDomain.CallbackHandlerRspArray() {
+    public void getSelectAllTipoCondicion(final CallbackHandlerRspArray callback) {
+        controlerDomain.getSelectAllTipoCondicion(new InterfaceModelDomain.CallbackHandlerRspArray() {
+            @Override
+            public void respuestaArray(String[] respuesta) {
+                callback.respuestaArray(respuesta);
+            }
+        });
+    }
+
+    @Override
+    public void getSelectAllTipoPrecios(final CallbackHandlerRspArray callback) {
+        controlerDomain.getSelectAllTipoPrecios(new InterfaceModelDomain.CallbackHandlerRspArray() {
             @Override
             public void respuestaArray(String[] respuesta) {
                 callback.respuestaArray(respuesta);
@@ -51,6 +61,36 @@ public class ModelDomain implements InterfaceModelDomain{
     @Override
     public void getSelectAllLimiteVehiculos(final CallbackHandlerRspMatriz callback) {
         controlerDomain.getSelectAllLimiteVehiculos(new InterfaceModelDomain.CallbackHandlerRspMatriz() {
+            @Override
+            public void respuestaMatriz(String[][] respuesta) {
+                callback.respuestaMatriz(respuesta);
+            }
+        });
+    }
+
+    @Override
+    public void getSelectAllLetraCondicion(final CallbackHandlerRspMatriz callback) {
+        controlerDomain.getSelectAllLetraCondicion(new InterfaceModelDomain.CallbackHandlerRspMatriz() {
+            @Override
+            public void respuestaMatriz(String[][] respuesta) {
+                callback.respuestaMatriz(respuesta);
+            }
+        });
+    }
+
+    @Override
+    public void getSelectAllPrecios(final CallbackHandlerRspMatriz callback) {
+        controlerDomain.getSelectAllPrecios(new InterfaceModelDomain.CallbackHandlerRspMatriz() {
+            @Override
+            public void respuestaMatriz(String[][] respuesta) {
+                callback.respuestaMatriz(respuesta);
+            }
+        });
+    }
+
+    @Override
+    public void getSelectAllPreciosCcMayor(final CallbackHandlerRspMatriz callback) {
+        controlerDomain.getSelectAllPreciosCcMayor(new InterfaceModelDomain.CallbackHandlerRspMatriz() {
             @Override
             public void respuestaMatriz(String[][] respuesta) {
                 callback.respuestaMatriz(respuesta);

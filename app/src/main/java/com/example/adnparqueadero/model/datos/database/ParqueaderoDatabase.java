@@ -15,6 +15,8 @@ import com.example.adnparqueadero.model.datos.tables.LetraCondicionDao;
 import com.example.adnparqueadero.model.datos.tables.LimiteVehiculos;
 import com.example.adnparqueadero.model.datos.tables.LimiteVehiculosDao;
 import com.example.adnparqueadero.model.datos.tables.Precios;
+import com.example.adnparqueadero.model.datos.tables.PreciosCcMayor;
+import com.example.adnparqueadero.model.datos.tables.PreciosCcMayorDao;
 import com.example.adnparqueadero.model.datos.tables.PreciosDao;
 import com.example.adnparqueadero.model.datos.tables.TipoCondicion;
 import com.example.adnparqueadero.model.datos.tables.TipoCondicionDao;
@@ -28,7 +30,7 @@ import com.example.adnparqueadero.model.datos.tables.VehiculosRegistrados;
 import com.example.adnparqueadero.model.datos.tables.VehiculosRegistradosDao;
 
 @Database(entities ={DiaSemana.class, LetraCondicion.class, LimiteVehiculos.class,
-        Precios.class, TipoCondicion.class, TipoPrecios.class, TipoVehiculo.class,
+        Precios.class, PreciosCcMayor.class, TipoCondicion.class, TipoPrecios.class, TipoVehiculo.class,
         VehiculoHistorial.class, VehiculosRegistrados.class},exportSchema = false, version =1)
 public abstract class ParqueaderoDatabase extends RoomDatabase {
     private  static final String DB_NAME="parqueadero_db";
@@ -51,6 +53,7 @@ public abstract class ParqueaderoDatabase extends RoomDatabase {
    public abstract LetraCondicionDao letraCondicionDao();
    public abstract LimiteVehiculosDao limiteVehiculosDao();
    public abstract PreciosDao preciosDao();
+   public abstract PreciosCcMayorDao preciosCcMayorDao();
    public abstract TipoCondicionDao tipoCondicionDao();
    public abstract TipoPreciosDao tipoPreciosDao();
    public abstract TipoVehiculoDao tipoVehiculoDao();

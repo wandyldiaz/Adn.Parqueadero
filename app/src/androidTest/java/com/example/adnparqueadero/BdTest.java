@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class bdTest {
+public class BdTest {
     String[] datos;
     String[][] datosMatriz;
     @Test
@@ -65,7 +65,7 @@ public class bdTest {
         Thread.sleep(200);
         assertEquals(2, datosMatriz.length);
 
-        cont.getSelectTipoCondicion(new InterfaceModelDomain.CallbackHandlerRspArray() {
+        cont.getSelectAllTipoCondicion(new InterfaceModelDomain.CallbackHandlerRspArray() {
             @Override
             public void respuestaArray(String[] Respuesta) {
                 datos=Respuesta;
@@ -73,6 +73,44 @@ public class bdTest {
         });
         Thread.sleep(200);
         assertEquals(1, datos.length);
+
+
+        cont.getSelectAllLetraCondicion(new InterfaceModelDomain.CallbackHandlerRspMatriz() {
+            @Override
+            public void respuestaMatriz(String[][] respuesta) {
+                datosMatriz=respuesta;
+            }
+        });
+        Thread.sleep(200);
+        assertEquals(1, datosMatriz.length);
+
+
+        cont.getSelectAllTipoPrecios(new InterfaceModelDomain.CallbackHandlerRspArray() {
+            @Override
+            public void respuestaArray(String[] Respuesta) {
+                datos=Respuesta;
+            }
+        });
+        Thread.sleep(200);
+        assertEquals(2, datos.length);
+
+        cont.getSelectAllPrecios(new InterfaceModelDomain.CallbackHandlerRspMatriz() {
+            @Override
+            public void respuestaMatriz(String[][] respuesta) {
+                datosMatriz=respuesta;
+            }
+        });
+        Thread.sleep(200);
+        assertEquals(4, datosMatriz.length);
+
+        cont.getSelectAllPreciosCcMayor(new InterfaceModelDomain.CallbackHandlerRspMatriz() {
+            @Override
+            public void respuestaMatriz(String[][] respuesta) {
+                datosMatriz=respuesta;
+            }
+        });
+        Thread.sleep(200);
+        assertEquals(1, datosMatriz.length);
 
     }
 }

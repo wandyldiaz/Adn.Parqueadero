@@ -4,8 +4,12 @@ public interface InterfaceModelDomain {
 
     void getSelectAllDiaSemana(CallbackHandlerRspArray callback);
     void getSelectAllTipoVehiculo(CallbackHandlerRspArray callback);
-    void getSelectTipoCondicion(CallbackHandlerRspArray callback);
+    void getSelectAllTipoCondicion(CallbackHandlerRspArray callback);
+    void getSelectAllTipoPrecios(CallbackHandlerRspArray callback);
     void getSelectAllLimiteVehiculos(CallbackHandlerRspMatriz callback);
+    void getSelectAllLetraCondicion(CallbackHandlerRspMatriz callback);
+    void getSelectAllPrecios(CallbackHandlerRspMatriz callback);
+    void getSelectAllPreciosCcMayor(CallbackHandlerRspMatriz callback);
 
     interface CallbackHandlerRspArray {
         void respuestaArray(String[] respuesta);
