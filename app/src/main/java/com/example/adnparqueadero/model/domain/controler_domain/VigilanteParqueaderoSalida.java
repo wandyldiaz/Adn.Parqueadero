@@ -15,6 +15,6 @@ public class VigilanteParqueaderoSalida extends VigilanteParqueadero {
         int minutes = (int) ((milliseconds / (1000 * 60)) % 60);
         int hours =(int) milliseconds / (1000 * 60 * 60);
 
-        return minutes+(hours*60);
+        return (minutes+(hours*60));
     }
 }
