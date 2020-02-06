@@ -12,11 +12,11 @@ import com.example.adnparqueadero.model.datos.tables.PreciosCcMayor;
 import com.example.adnparqueadero.model.datos.tables.TipoCondicion;
 import com.example.adnparqueadero.model.datos.tables.TipoPrecios;
 import com.example.adnparqueadero.model.datos.tables.TipoVehiculo;
-import com.example.adnparqueadero.model.domain.model.InterfaceModelDomain;
+import com.example.adnparqueadero.model.domain.model.InterfaceDomain;
 
 import java.util.List;
 
-public class ControlerDomainDatos implements InterfaceModelDomain {
+public class ControlerDomainDatos implements InterfaceDomain {
     private static ControlerDomainDatos instance;
     private ParqueaderoDatabase parqueadero;
     private List<DiaSemana> dias;
@@ -33,11 +33,12 @@ public class ControlerDomainDatos implements InterfaceModelDomain {
         {
             instance= new ControlerDomainDatos();
         }
-
-        instance.parqueadero = ParqueaderoDatabase.getInstance(context);
+        instance.setParqueadero(ParqueaderoDatabase.getInstance(context));
         return  instance;
     }
-
+    public void setParqueadero (ParqueaderoDatabase parqueadero){
+        this.parqueadero =parqueadero;
+    }
 
     @Override
     public void getSelectAllDiaSemana(final CallbackHandlerRspArray callback) {
@@ -159,7 +160,7 @@ public class ControlerDomainDatos implements InterfaceModelDomain {
     public void getSelectAllLimiteVehiculos(final CallbackHandlerRspMatriz callback) {
         limiteVehiculos=null;
         try {
-            getSelectAllTipoVehiculo(new InterfaceModelDomain.CallbackHandlerRspArray() {
+            getSelectAllTipoVehiculo(new InterfaceDomain.CallbackHandlerRspArray() {
                 @Override
                 public void respuestaArray(final String[] respuesta) {
                     new Thread(new Runnable() {
@@ -198,10 +199,10 @@ public class ControlerDomainDatos implements InterfaceModelDomain {
     public void getSelectAllLetraCondicion(final CallbackHandlerRspMatriz callback) {
         letraCondicion=null;
         try {
-            getSelectAllTipoCondicion(new InterfaceModelDomain.CallbackHandlerRspArray() {
+            getSelectAllTipoCondicion(new InterfaceDomain.CallbackHandlerRspArray() {
                 @Override
                 public void respuestaArray(final String[] respuesta) {
-                    getSelectAllDiaSemana(new InterfaceModelDomain.CallbackHandlerRspArray() {
+                    getSelectAllDiaSemana(new InterfaceDomain.CallbackHandlerRspArray() {
                         @Override
                         public void respuestaArray(final String[] respuesta2) {
                             new Thread(new Runnable() {
@@ -252,10 +253,10 @@ public class ControlerDomainDatos implements InterfaceModelDomain {
     public void getSelectAllPrecios(final CallbackHandlerRspMatriz callback) {
         precios=null;
         try {
-            getSelectAllTipoPrecios(new InterfaceModelDomain.CallbackHandlerRspArray() {
+            getSelectAllTipoPrecios(new InterfaceDomain.CallbackHandlerRspArray() {
                 @Override
                 public void respuestaArray(final String[] respuestaTipoPrecios) {
-                    getSelectAllTipoVehiculo(new InterfaceModelDomain.CallbackHandlerRspArray() {
+                    getSelectAllTipoVehiculo(new InterfaceDomain.CallbackHandlerRspArray() {
                         @Override
                         public void respuestaArray(final String[] respuestaTipoVehiculo) {
                             new Thread(new Runnable() {
@@ -330,7 +331,7 @@ public class ControlerDomainDatos implements InterfaceModelDomain {
     @Override
     public void getSelectAllPreciosCcMayor(final CallbackHandlerRspMatriz callback) {
         preciosCcMayor=null;
-        getSelectAllTipoVehiculo(new InterfaceModelDomain.CallbackHandlerRspArray() {
+        getSelectAllTipoVehiculo(new InterfaceDomain.CallbackHandlerRspArray() {
             @Override
             public void respuestaArray(final String[] respuesta) {
                 new Thread(new Runnable() {
@@ -349,7 +350,7 @@ public class ControlerDomainDatos implements InterfaceModelDomain {
                                     moto=true;
                             }
                             if(moto) {
-                                preciosInsertar = new PreciosCcMayor(500, 4000, "Moto");
+                                preciosInsertar = new PreciosCcMayor(500, 2000, "Moto");
                                 parqueadero.preciosCcMayorDao().insert(preciosInsertar);
                             }
                             preciosCcMayor = parqueadero.preciosCcMayorDao().getSelectAll();

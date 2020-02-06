@@ -46,9 +46,30 @@ public class VigilanteParqueaderoIngresoUniTest {
         //Arrangue
         String [] diasBloqueados=new String[]{""};
         VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333");
-        //Ack y assert
-        assertFalse(vigilanteIngreso.validarIngreso(Arrays.asList(new VehiculoHistorial[0]),
-                Arrays.asList(new LimiteVehiculos[0]), "Moto"));
+        ///Ack
+        boolean validacion=vigilanteIngreso.validarIngreso(0,0);
+        // assert
+        assertFalse(validacion);
+
+    }
+
+    @Test
+    public void validacionIngresoFalse()
+    {
+        //Arrangue
+        String [] diasBloqueados=new String[]{"Domingo"};
+        VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333");
+        //Ack
+        boolean validacion=vigilanteIngreso.validarIngreso(6,
+                6);
+        // assert
+        assertFalse(validacion);
+
+        //Ack
+        validacion=vigilanteIngreso.validarIngreso(7,
+                6);
+        // assert
+        assertFalse(validacion);
 
     }
 
@@ -56,12 +77,33 @@ public class VigilanteParqueaderoIngresoUniTest {
     public void validacionIngresoTrue()
     {
         //Arrangue
-        String [] diasBloqueados=new String[]{""};
+        String [] diasBloqueados=new String[]{"Domingo"};
         VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333");
-        //Ack y assert
-        assertFalse(vigilanteIngreso.validarIngreso(Arrays.asList(new VehiculoHistorial[0]),
-                Arrays.asList(new LimiteVehiculos[0]), "Moto"));
-
+        //Ack
+        boolean validacion=vigilanteIngreso.validarIngreso(5,
+                6);
+        // assert
+        assertTrue(validacion);
+        //Ack
+        validacion=vigilanteIngreso.validarIngreso(4,
+                6);
+        // assert
+        assertTrue(validacion);
+        //Ack
+        validacion=vigilanteIngreso.validarIngreso(3,
+                4);
+        // assert
+        assertTrue(validacion);
+        //Ack
+        validacion=vigilanteIngreso.validarIngreso(2,
+                4);
+        // assert
+        assertTrue(validacion);
+        //Ack
+        validacion=vigilanteIngreso.validarIngreso(1,
+                4);
+        // assert
+        assertTrue(validacion);
     }
 
 }

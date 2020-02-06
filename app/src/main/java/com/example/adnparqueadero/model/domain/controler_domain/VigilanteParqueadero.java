@@ -7,8 +7,17 @@ import java.util.TimeZone;
 public class VigilanteParqueadero {
     protected static final String GMT="GMT-5";
     protected static final SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+    protected String placa;
+    protected String fechaActual;
+    protected String horaActual;
 
+    public void setFechaActual(String fechaActual) {
+        this.fechaActual = fechaActual;
+    }
 
+    public void setHoraActual(String horaActual) {
+        this.horaActual = horaActual;
+    }
 
     public String getTime(){
 

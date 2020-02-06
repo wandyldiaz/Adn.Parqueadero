@@ -5,22 +5,27 @@ import android.content.Context;
 import com.example.adnparqueadero.model.domain.controler_domain.ControlerDomainDatos;
 
 
-public class ModelDomain implements InterfaceModelDomain{
+public class ModelDomain implements InterfaceDomain {
     private static ModelDomain instance;
-    private InterfaceModelDomain controlerDomain;
+    private InterfaceDomain controlerDomain;
+    private Context context;
 
     public static ModelDomain getInstance(Context context){
         if(instance==null)
         {
             instance= new ModelDomain();
         }
-        instance.controlerDomain= ControlerDomainDatos.getInstance(context);
+        instance.setControlerDomain(ControlerDomainDatos.getInstance(context));
         return  instance;
+    }
+
+    public void setControlerDomain( ControlerDomainDatos controlerDomain){
+        instance.controlerDomain=controlerDomain;
     }
 
     @Override
     public void getSelectAllDiaSemana(final CallbackHandlerRspArray callback) {
-        controlerDomain.getSelectAllDiaSemana(new InterfaceModelDomain.CallbackHandlerRspArray() {
+        controlerDomain.getSelectAllDiaSemana(new InterfaceDomain.CallbackHandlerRspArray() {
             @Override
             public void respuestaArray(String[] respuesta) {
                 callback.respuestaArray(respuesta);
@@ -30,7 +35,7 @@ public class ModelDomain implements InterfaceModelDomain{
 
     @Override
     public void getSelectAllTipoVehiculo(final CallbackHandlerRspArray callback) {
-        controlerDomain.getSelectAllTipoVehiculo(new InterfaceModelDomain.CallbackHandlerRspArray() {
+        controlerDomain.getSelectAllTipoVehiculo(new InterfaceDomain.CallbackHandlerRspArray() {
             @Override
             public void respuestaArray(String[] respuesta) {
                 callback.respuestaArray(respuesta);
@@ -40,7 +45,7 @@ public class ModelDomain implements InterfaceModelDomain{
 
     @Override
     public void getSelectAllTipoCondicion(final CallbackHandlerRspArray callback) {
-        controlerDomain.getSelectAllTipoCondicion(new InterfaceModelDomain.CallbackHandlerRspArray() {
+        controlerDomain.getSelectAllTipoCondicion(new InterfaceDomain.CallbackHandlerRspArray() {
             @Override
             public void respuestaArray(String[] respuesta) {
                 callback.respuestaArray(respuesta);
@@ -50,7 +55,7 @@ public class ModelDomain implements InterfaceModelDomain{
 
     @Override
     public void getSelectAllTipoPrecios(final CallbackHandlerRspArray callback) {
-        controlerDomain.getSelectAllTipoPrecios(new InterfaceModelDomain.CallbackHandlerRspArray() {
+        controlerDomain.getSelectAllTipoPrecios(new InterfaceDomain.CallbackHandlerRspArray() {
             @Override
             public void respuestaArray(String[] respuesta) {
                 callback.respuestaArray(respuesta);
@@ -60,7 +65,7 @@ public class ModelDomain implements InterfaceModelDomain{
 
     @Override
     public void getSelectAllLimiteVehiculos(final CallbackHandlerRspMatriz callback) {
-        controlerDomain.getSelectAllLimiteVehiculos(new InterfaceModelDomain.CallbackHandlerRspMatriz() {
+        controlerDomain.getSelectAllLimiteVehiculos(new InterfaceDomain.CallbackHandlerRspMatriz() {
             @Override
             public void respuestaMatriz(String[][] respuesta) {
                 callback.respuestaMatriz(respuesta);
@@ -70,7 +75,7 @@ public class ModelDomain implements InterfaceModelDomain{
 
     @Override
     public void getSelectAllLetraCondicion(final CallbackHandlerRspMatriz callback) {
-        controlerDomain.getSelectAllLetraCondicion(new InterfaceModelDomain.CallbackHandlerRspMatriz() {
+        controlerDomain.getSelectAllLetraCondicion(new InterfaceDomain.CallbackHandlerRspMatriz() {
             @Override
             public void respuestaMatriz(String[][] respuesta) {
                 callback.respuestaMatriz(respuesta);
@@ -80,7 +85,7 @@ public class ModelDomain implements InterfaceModelDomain{
 
     @Override
     public void getSelectAllPrecios(final CallbackHandlerRspMatriz callback) {
-        controlerDomain.getSelectAllPrecios(new InterfaceModelDomain.CallbackHandlerRspMatriz() {
+        controlerDomain.getSelectAllPrecios(new InterfaceDomain.CallbackHandlerRspMatriz() {
             @Override
             public void respuestaMatriz(String[][] respuesta) {
                 callback.respuestaMatriz(respuesta);
@@ -90,7 +95,7 @@ public class ModelDomain implements InterfaceModelDomain{
 
     @Override
     public void getSelectAllPreciosCcMayor(final CallbackHandlerRspMatriz callback) {
-        controlerDomain.getSelectAllPreciosCcMayor(new InterfaceModelDomain.CallbackHandlerRspMatriz() {
+        controlerDomain.getSelectAllPreciosCcMayor(new InterfaceDomain.CallbackHandlerRspMatriz() {
             @Override
             public void respuestaMatriz(String[][] respuesta) {
                 callback.respuestaMatriz(respuesta);

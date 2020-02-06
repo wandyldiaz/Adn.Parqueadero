@@ -1,6 +1,6 @@
 package com.example.adnparqueadero.model.domain.model;
 
-public interface InterfaceModelDomain {
+public interface InterfaceDomain {
 
     void getSelectAllDiaSemana(CallbackHandlerRspArray callback);
     void getSelectAllTipoVehiculo(CallbackHandlerRspArray callback);
@@ -16,6 +16,9 @@ public interface InterfaceModelDomain {
     }
     interface CallbackHandlerRspMatriz {
         void respuestaMatriz(String[][] respuesta);
+    }
+    interface CallbackHandlerRspString {
+        void respuestaMatriz(String respuesta);
     }
 }
 

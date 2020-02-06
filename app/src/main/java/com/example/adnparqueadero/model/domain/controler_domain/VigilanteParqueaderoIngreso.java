@@ -10,9 +10,6 @@ import java.util.TimeZone;
 
 public class VigilanteParqueaderoIngreso extends VigilanteParqueadero {
     private String[] diasBloqueados;
-    private String placa;
-    private String fechaActual;
-    private String horaActual;
 
     public VigilanteParqueaderoIngreso(String[] diasBloqueados, String placa) {
         this.diasBloqueados = diasBloqueados;
@@ -59,28 +56,14 @@ public class VigilanteParqueaderoIngreso extends VigilanteParqueadero {
         return true;
     }
 
-    public boolean validarIngreso(List<VehiculoHistorial> vehiculosIngresados,
-                                  List<LimiteVehiculos> limiteVehiculos, String tipoVehiculo ){
+    public boolean validarIngreso(int vehiculosIngresadosXTipo,
+                                  int limiteVehiculosXTipo){
         fechaActual=getDate();
         horaActual=getTime();
-        int limiteVehiculo=0;
-        if(!validarDiaIngreso(fechaActual) && limiteVehiculos.isEmpty()){
+        if(!validarDiaIngreso(fechaActual) && limiteVehiculosXTipo>0){
             return false;
         }
-        for(int i=0; i<limiteVehiculos.size();i++){
-            if(limiteVehiculos.get(i).getTipoVehiculo().equals(tipoVehiculo)){
-                limiteVehiculo=limiteVehiculos.get(i).getCantidad();
-                break;
-            }
-        }
-        if(!vehiculosIngresados.isEmpty())
-        {
-            return vehiculosIngresados.size() < limiteVehiculo;
-        }
-        else
-        {
-            return  limiteVehiculo>0;
-        }
+            return vehiculosIngresadosXTipo < limiteVehiculosXTipo;
     }
 
 
