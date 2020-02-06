@@ -30,7 +30,6 @@ public class VigilanteParqueaderoSalidaUniTest {
 
         assertEquals(10,vehiculoHistorial.getHorasEstacionado());
         assertEquals(6000,vehiculoHistorial.getValorCobrado());
-
     }
     @Test
     public void validacionIngresoCarro()
@@ -46,7 +45,6 @@ public class VigilanteParqueaderoSalidaUniTest {
 
         assertEquals(27,vehiculoHistorial.getHorasEstacionado());
         assertEquals(11000,vehiculoHistorial.getValorCobrado());
-
     }
 
 

@@ -1,0 +1,20 @@
+
+j
+squid:S134á"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(·ô÷İøÿÿÿÿ
+† squid:MethodCyclomaticComplexity‡"YThe Cyclomatic Complexity of this method "run" is 19 which is greater than 10 authorized.(“–ış
+j
+squid:S134—"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ìÌ²ãşÿÿÿÿ
+j
+squid:S134›"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ÿÒ¶’şÿÿÿÿ
+bsquid:HiddenFieldCheckŒ"?Rename "tipoPrecios" which hides the field declared at line 27.(ëÔ’“
+osquid:S3776Ç"RRefactor this method to reduce its Cognitive Complexity from 37 to the 15 allowed.(µÀµ™øÿÿÿÿ
+~
+squid:S138ı"gThis method has 76 lines, which is greater than the 75 lines authorized. Split it into smaller methods.(±íÂÂ
+9squid:S1643İ"Use a StringBuilder instead.(ß‰–„ıÿÿÿÿ
+j
+squid:S134•"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(µ¢Ÿ‹ıÿÿÿÿ
+e
+squid:S134"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(¦öä•
+bsquid:S1192V"FDefine a constant instead of duplicating this literal "Carro" 4 times.(èòÔ§ÿÿÿÿÿ
+osquid:S3776Ì"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(Œ”ƒšùÿÿÿÿ
+jsquid:S3776ı"RRefactor this method to reduce its Cognitive Complexity from 72 to the 15 allowed.(±íÂÂ

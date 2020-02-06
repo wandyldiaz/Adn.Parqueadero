@@ -1,11 +1,8 @@
 package com.example.adnparqueadero.model.domain.controler_domain;
 
-import com.example.adnparqueadero.model.datos.tables.LimiteVehiculos;
 import com.example.adnparqueadero.model.datos.tables.VehiculoHistorial;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.TimeZone;
 
 public class VigilanteParqueaderoIngreso extends VigilanteParqueadero {
@@ -40,8 +37,7 @@ public class VigilanteParqueaderoIngreso extends VigilanteParqueadero {
             letraDia = "Sabado";
         } else if (nD == 1) {
             letraDia = "Domingo";
-        }
-        else{
+        } else{
             letraDia="";
         }
             return letraDia;
