@@ -30,7 +30,7 @@ public class BdTest {
     @Before
     public void iniciarDatos(){
         appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        controler = ControlerDomainDatos.getInstance(appContext);
+        controler = ControlerDomainDatos.getInstance(ParqueaderoDatabase.getInstance(appContext));
     }
 
     @Test
