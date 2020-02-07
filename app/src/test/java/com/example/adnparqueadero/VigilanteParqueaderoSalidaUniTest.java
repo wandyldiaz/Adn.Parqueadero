@@ -1,6 +1,7 @@
 package com.example.adnparqueadero;
 
 import com.example.adnparqueadero.model.datos.tables.VehiculoHistorial;
+import com.example.adnparqueadero.model.domain.controler_domain.DateTimeParking;
 import com.example.adnparqueadero.model.domain.controler_domain.VigilanteParqueaderoIngreso;
 import com.example.adnparqueadero.model.domain.controler_domain.VigilanteParqueaderoSalida;
 
@@ -19,12 +20,11 @@ public class VigilanteParqueaderoSalidaUniTest {
     @Test
     public void validacionIngresoMoto()
     {
+        DateTimeParking dateTimeParking=new DateTimeParking();
         VehiculoHistorial vehiculoHistorial=new VehiculoHistorial(0,"HG323","2020/02/06",
                 "06:43","","",0,0);
         VigilanteParqueaderoSalida vigilanteParqueaderoSalida=new VigilanteParqueaderoSalida(vehiculoHistorial,2000,
-                500,4000 );
-        vigilanteParqueaderoSalida.setFechaActual("2020/02/06");
-        vigilanteParqueaderoSalida.setHoraActual("17:15");
+                500,4000,dateTimeParking, "2020/02/06","17:15");
         assertTrue(vigilanteParqueaderoSalida.validarSalida());
         vehiculoHistorial=vigilanteParqueaderoSalida.getVehiculoIngresado();
 
@@ -34,12 +34,11 @@ public class VigilanteParqueaderoSalidaUniTest {
     @Test
     public void validacionIngresoCarro()
     {
+        DateTimeParking dateTimeParking=new DateTimeParking();
         VehiculoHistorial vehiculoHistorial=new VehiculoHistorial(0,"HG323","2020/02/06",
                 "06:43","","",0,0);
         VigilanteParqueaderoSalida vigilanteParqueaderoSalida=new VigilanteParqueaderoSalida(vehiculoHistorial,0,
-                1000,8000 );
-        vigilanteParqueaderoSalida.setFechaActual("2020/02/07");
-        vigilanteParqueaderoSalida.setHoraActual("09:50");
+                1000,8000,dateTimeParking,"2020/02/07","09:50" );
         assertTrue(vigilanteParqueaderoSalida.validarSalida());
         vehiculoHistorial=vigilanteParqueaderoSalida.getVehiculoIngresado();
 

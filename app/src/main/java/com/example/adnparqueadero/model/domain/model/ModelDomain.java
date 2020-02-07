@@ -2,6 +2,7 @@ package com.example.adnparqueadero.model.domain.model;
 
 import android.content.Context;
 
+import com.example.adnparqueadero.model.datos.database.ParqueaderoDatabase;
 import com.example.adnparqueadero.model.domain.controler_domain.ControlerDomainDatos;
 
 
@@ -15,12 +16,8 @@ public class ModelDomain implements InterfaceDomain {
         {
             instance= new ModelDomain();
         }
-        instance.setControlerDomain(ControlerDomainDatos.getInstance(context));
+        instance.controlerDomain=ControlerDomainDatos.getInstance(ParqueaderoDatabase.getInstance(context));
         return  instance;
-    }
-
-    public void setControlerDomain( ControlerDomainDatos controlerDomain){
-        instance.controlerDomain=controlerDomain;
     }
 
     @Override

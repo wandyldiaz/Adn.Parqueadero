@@ -33,11 +33,11 @@ Vapp/src/main/java/com/example/adnparqueadero/model/datos/tables/VehiculoHistori
 Yapp/src/main/java/com/example/adnparqueadero/model/datos/tables/VehiculoHistorialDao.java,6\5\65b647a97d26f79d3b76c8d87bca842bec545978
 o
 ?app/src/androidTest/java/com/example/adnparqueadero/BdTest.java,1\8\182ff09ff9c125c27a78113deda22e3ccc2dc8c1
-î
-dapp/src/main/java/com/example/adnparqueadero/model/domain/controler_domain/VigilanteParqueadero.java,9\b\9b13bafe73c1f3dfc1a552c225627c812767ddd6
 ö
 japp/src/main/java/com/example/adnparqueadero/model/domain/controler_domain/VigilanteParqueaderoSalida.java,9\c\9cc30a07c370e7b9d260b23296daab443e549c5e
 É
 Sapp/src/test/java/com/example/adnparqueadero/VigilanteParqueaderoSalidaUniTest.java,b\7\b76189e1b32a6fba689ef2f3b6cdd6111ea18aeb
 õ
 kapp/src/main/java/com/example/adnparqueadero/model/domain/controler_domain/VigilanteParqueaderoIngreso.java,3\e\3e8bd9a1ae47d204819a5274957260453163070d
+è
+_app/src/main/java/com/example/adnparqueadero/model/domain/controler_domain/DateTimeParking.java,6\5\65e47c7119f500b1a21fb2b3bcbf3f7dd182df0b

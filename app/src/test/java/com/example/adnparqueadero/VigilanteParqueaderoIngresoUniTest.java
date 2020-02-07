@@ -1,19 +1,10 @@
 package com.example.adnparqueadero;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.example.adnparqueadero.model.datos.tables.LimiteVehiculos;
-import com.example.adnparqueadero.model.datos.tables.VehiculoHistorial;
+import com.example.adnparqueadero.model.domain.controler_domain.DateTimeParking;
 import com.example.adnparqueadero.model.domain.controler_domain.VigilanteParqueaderoIngreso;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 import static org.junit.Assert.*;
 
@@ -27,8 +18,9 @@ public class VigilanteParqueaderoIngresoUniTest {
     public void validacionDias()
     {
         //Arrangue
+        DateTimeParking dateTimeParking=new DateTimeParking();
         String [] diasBloqueados=new String[]{"Martes","Domingo","Jueves","Viernes"};
-        VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333");
+        VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333",dateTimeParking);
         //Ack y assert
         assertTrue(vigilanteIngreso.validarDiaIngreso("2020/02/01"));
         assertFalse(vigilanteIngreso.validarDiaIngreso("2020/03/01"));
@@ -45,7 +37,8 @@ public class VigilanteParqueaderoIngresoUniTest {
     {
         //Arrangue
         String [] diasBloqueados=new String[]{""};
-        VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333");
+        DateTimeParking dateTimeParking=new DateTimeParking();
+        VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333",dateTimeParking);
         ///Ack
         boolean validacion=vigilanteIngreso.validarIngreso(0,0);
         // assert
@@ -58,7 +51,8 @@ public class VigilanteParqueaderoIngresoUniTest {
     {
         //Arrangue
         String [] diasBloqueados=new String[]{"Domingo"};
-        VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333");
+        DateTimeParking dateTimeParking=new DateTimeParking();
+        VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333",dateTimeParking);
         //Ack
         boolean validacion=vigilanteIngreso.validarIngreso(6,
                 6);
@@ -78,7 +72,8 @@ public class VigilanteParqueaderoIngresoUniTest {
     {
         //Arrangue
         String [] diasBloqueados=new String[]{"Domingo"};
-        VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333");
+        DateTimeParking dateTimeParking=new DateTimeParking();
+        VigilanteParqueaderoIngreso vigilanteIngreso= new VigilanteParqueaderoIngreso(diasBloqueados,"HGH333",dateTimeParking);
         //Ack
         boolean validacion=vigilanteIngreso.validarIngreso(5,
                 6);

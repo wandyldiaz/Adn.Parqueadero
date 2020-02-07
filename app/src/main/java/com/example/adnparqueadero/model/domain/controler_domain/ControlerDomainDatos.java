@@ -28,16 +28,13 @@ public class ControlerDomainDatos implements InterfaceDomain {
     private List<Precios> precios;
     private List<PreciosCcMayor> preciosCcMayor;
 
-    public static ControlerDomainDatos getInstance(Context context){
+    public static ControlerDomainDatos getInstance(ParqueaderoDatabase parqueadero){
        if(instance==null)
         {
             instance= new ControlerDomainDatos();
         }
-        instance.setParqueadero(ParqueaderoDatabase.getInstance(context));
+        instance.parqueadero =parqueadero;
         return  instance;
-    }
-    public void setParqueadero (ParqueaderoDatabase parqueadero){
-        this.parqueadero =parqueadero;
     }
 
     @Override

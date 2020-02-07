@@ -1,49 +1,23 @@
 package com.example.adnparqueadero.model.domain.controler_domain;
 
 import com.example.adnparqueadero.model.datos.tables.VehiculoHistorial;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
 
-public class VigilanteParqueaderoIngreso extends VigilanteParqueadero {
+public class VigilanteParqueaderoIngreso  {
     private String[] diasBloqueados;
+    private DateTimeParking dateTimeParking;
+    private String placa;
+    private String fechaActual;
+    private String horaActual;
 
-    public VigilanteParqueaderoIngreso(String[] diasBloqueados, String placa) {
+    public VigilanteParqueaderoIngreso(String[] diasBloqueados, String placa, DateTimeParking dateTimeParking) {
         this.diasBloqueados = diasBloqueados;
         this.placa = placa;
+        this.dateTimeParking = dateTimeParking;
     }
 
-    private static String diaSemana (String fecha)
-    {
-        int dia= Integer.parseInt(fecha.split("/")[2]);
-        int mes= Integer.parseInt(fecha.split("/")[1]);
-        int ano= Integer.parseInt(fecha.split("/")[0]);
-        TimeZone timeZone = TimeZone.getTimeZone(GMT);
-        String letraDia;
-        Calendar calendar = new GregorianCalendar(timeZone);
-        calendar.set(ano, mes-1, dia);
-        int nD=calendar.get(Calendar.DAY_OF_WEEK);
-        if (nD == 2) {
-            letraDia = "Lunes";
-        } else if (nD == 3) {
-            letraDia = "Martes";
-        } else if (nD == 4) {
-            letraDia = "Miercoles";
-        } else if (nD == 5) {
-            letraDia = "Jueves";
-        } else if (nD == 6) {
-            letraDia = "Viernes";
-        } else if (nD == 7) {
-            letraDia = "Sabado";
-        } else if (nD == 1) {
-            letraDia = "Domingo";
-        } else{
-            letraDia="";
-        }
-            return letraDia;
-    }
+
     public boolean validarDiaIngreso(String fechaActual){
-        String diaActual = diaSemana(fechaActual);
+        String diaActual = dateTimeParking.getDiaSemana(fechaActual);
         for (String diasBloqueado : diasBloqueados) {
             if (diasBloqueado.equals(diaActual)) {
                 return false;
@@ -54,8 +28,8 @@ public class VigilanteParqueaderoIngreso extends VigilanteParqueadero {
 
     public boolean validarIngreso(int vehiculosIngresadosXTipo,
                                   int limiteVehiculosXTipo){
-        fechaActual=getDate();
-        horaActual=getTime();
+        fechaActual= dateTimeParking.getDate();
+        horaActual= dateTimeParking.getTime();
         if(!validarDiaIngreso(fechaActual) && limiteVehiculosXTipo>0){
             return false;
         }

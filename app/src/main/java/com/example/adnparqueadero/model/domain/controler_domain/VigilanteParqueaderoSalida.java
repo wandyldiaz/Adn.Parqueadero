@@ -7,25 +7,29 @@ import com.example.adnparqueadero.model.datos.tables.VehiculoHistorial;
 import java.text.ParseException;
 import java.util.Date;
 
-public class VigilanteParqueaderoSalida extends VigilanteParqueadero {
+public class VigilanteParqueaderoSalida{
 
+    private DateTimeParking dateTimeParking;
     private VehiculoHistorial vehiculoIngresado;
     private int valorAdicionalTotal;
     private int valorHora;
     private int valorDia;
+    private String fechaActual;
+    private String horaActual;
 
     public VehiculoHistorial getVehiculoIngresado() {
         return vehiculoIngresado;
     }
 
     public VigilanteParqueaderoSalida(VehiculoHistorial vehiculoIngresado, int valorAdicionalTotal,
-                                      int valorHora, int valorDia) {
+                                      int valorHora, int valorDia, DateTimeParking dateTimeParking, String fechaActual, String horaActual) {
         this.vehiculoIngresado = vehiculoIngresado;
         this.valorAdicionalTotal = valorAdicionalTotal;
         this.valorHora = valorHora;
         this.valorDia = valorDia;
-        fechaActual= getDate();
-        horaActual=getTime();
+        this.dateTimeParking = dateTimeParking;
+        this.fechaActual= fechaActual;
+        this.horaActual= horaActual;
     }
 
     public boolean validarSalida(){
@@ -38,7 +42,7 @@ public class VigilanteParqueaderoSalida extends VigilanteParqueadero {
             return false;
 
         try {
-            horasEstacionado=getDifferenceBetwenDatesMinutes(fechaIngreso+" "+horaIngreso,
+            horasEstacionado=dateTimeParking.getDifferenceBetwenDatesMinutes(fechaIngreso+" "+horaIngreso,
                     fechaActual+" "+ horaActual);
         } catch (ParseException e) {
             Log.e("ErrorValidarSalida",e.toString());
@@ -65,15 +69,4 @@ public class VigilanteParqueaderoSalida extends VigilanteParqueadero {
         return true;
     }
 
-
-    public int getDifferenceBetwenDatesMinutes(String FechaInicio, String FechaFinal) throws ParseException {
-        Date dateInicio= dtFormat.parse(FechaInicio);
-        Date dateFinal= dtFormat.parse(FechaFinal);
-        long milliseconds = dateFinal.getTime() - dateInicio.getTime();
-        //long seconds =  (milliseconds / 1000) % 60;
-        //long minutes =  ((milliseconds / (1000 * 60)) % 60);
-        //int hours = (int) (milliseconds / (1000 * 60 * 60));
-        //return (minutes+(hours*60));
-        return ((int) (milliseconds / (1000 * 60 * 60)));
-    }
 }
