@@ -5,7 +5,6 @@ import android.util.Log;
 import com.example.adnparqueadero.model.datos.tables.VehiculoHistorial;
 
 import java.text.ParseException;
-import java.util.Date;
 
 public class VigilanteParqueaderoSalida{
 
@@ -33,7 +32,7 @@ public class VigilanteParqueaderoSalida{
     }
 
     public boolean validarSalida(){
-        int horasEstacionado=0;
+        double horasEstacionado=0;
         int diasEstacionado=0;
         int valorCobrado;
         String fechaIngreso=vehiculoIngresado.getFechaEntrada();
@@ -52,19 +51,19 @@ public class VigilanteParqueaderoSalida{
             valorCobrado=valorDia+valorAdicionalTotal;
         }
         else if(horasEstacionado<9){
-            valorCobrado=(valorHora*horasEstacionado)+valorAdicionalTotal;
+            valorCobrado=(int)((valorHora*horasEstacionado)+valorAdicionalTotal);
         }
         else{
-            diasEstacionado=(horasEstacionado/24);
-            int horasEstacionadoDespuesDias=horasEstacionado % 24;
+            diasEstacionado=(int)((horasEstacionado/24));
+            double horasEstacionadoDespuesDias=horasEstacionado % 24;
             if(horasEstacionadoDespuesDias>9){
                 horasEstacionadoDespuesDias=horasEstacionadoDespuesDias-9;
                 diasEstacionado++;
             }
-            valorCobrado=(horasEstacionadoDespuesDias*valorHora)+(diasEstacionado*valorDia)+valorAdicionalTotal;
+            valorCobrado=(int)(horasEstacionadoDespuesDias*valorHora)+(diasEstacionado*valorDia)+valorAdicionalTotal;
         }
 
-        vehiculoIngresado.salida(fechaActual,horaActual,horasEstacionado,valorCobrado);
+        vehiculoIngresado.salida(fechaActual,horaActual,(int)horasEstacionado,valorCobrado);
 
         return true;
     }

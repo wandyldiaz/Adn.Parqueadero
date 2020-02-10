@@ -10,8 +10,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.example.adnparqueadero.model.datos.database.ParqueaderoDatabase;
-import com.example.adnparqueadero.model.domain.controler_domain.ControlerDomainDatos;
-import com.example.adnparqueadero.model.domain.model.InterfaceDomain;
+import com.example.adnparqueadero.model.domain.controler_domain.ControlerDomainDatosGet;
+import com.example.adnparqueadero.model.domain.model.InterfaceDomainGet;
+import com.example.adnparqueadero.model.domain.model.InterfaceRespuestas;
 
 import static org.junit.Assert.*;
 
@@ -25,12 +26,12 @@ public class BdTest {
     String[] datos;
     String[][] datosMatriz;
     Context appContext;
-    InterfaceDomain controler;
+    InterfaceDomainGet controler;
 
     @Before
     public void iniciarDatos(){
         appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        controler = ControlerDomainDatos.getInstance(ParqueaderoDatabase.getInstance(appContext));
+        controler = ControlerDomainDatosGet.getInstance(ParqueaderoDatabase.getInstance(appContext));
     }
 
     @Test
@@ -45,7 +46,7 @@ public class BdTest {
     }
     @Test
     public void SeleccionDatos() throws InterruptedException {
-        controler.getSelectAllDiaSemana(new InterfaceDomain.CallbackHandlerRspArray() {
+        controler.getSelectAllDiaSemana(new InterfaceRespuestas.CallbackHandlerRspArray() {
             @Override
             public void respuestaArray(String[] Respuesta) {
                 datos=Respuesta;
@@ -54,7 +55,7 @@ public class BdTest {
         Thread.sleep(200);
         assertEquals(7, datos.length);
 
-        controler.getSelectAllTipoVehiculo(new InterfaceDomain.CallbackHandlerRspArray() {
+        controler.getSelectAllTipoVehiculo(new InterfaceRespuestas.CallbackHandlerRspArray() {
             @Override
             public void respuestaArray(String[] Respuesta) {
                 datos=Respuesta;
@@ -63,7 +64,7 @@ public class BdTest {
         Thread.sleep(200);
         assertEquals(2, datos.length);
 
-        controler.getSelectAllLimiteVehiculos(new InterfaceDomain.CallbackHandlerRspMatriz() {
+        controler.getSelectAllLimiteVehiculos(new InterfaceRespuestas.CallbackHandlerRspMatriz() {
             @Override
             public void respuestaMatriz(String[][] respuesta) {
                 datosMatriz=respuesta;
@@ -72,7 +73,7 @@ public class BdTest {
         Thread.sleep(200);
         assertEquals(2, datosMatriz.length);
 
-        controler.getSelectAllTipoCondicion(new InterfaceDomain.CallbackHandlerRspArray() {
+        controler.getSelectAllTipoCondicion(new InterfaceRespuestas.CallbackHandlerRspArray() {
             @Override
             public void respuestaArray(String[] Respuesta) {
                 datos=Respuesta;
@@ -82,7 +83,7 @@ public class BdTest {
         assertEquals(1, datos.length);
 
 
-        controler.getSelectAllLetraCondicion(new InterfaceDomain.CallbackHandlerRspMatriz() {
+        controler.getSelectAllLetraCondicion(new InterfaceRespuestas.CallbackHandlerRspMatriz() {
             @Override
             public void respuestaMatriz(String[][] respuesta) {
                 datosMatriz=respuesta;
@@ -92,7 +93,7 @@ public class BdTest {
         assertEquals(1, datosMatriz.length);
 
 
-        controler.getSelectAllTipoPrecios(new InterfaceDomain.CallbackHandlerRspArray() {
+        controler.getSelectAllTipoPrecios(new InterfaceRespuestas.CallbackHandlerRspArray() {
             @Override
             public void respuestaArray(String[] Respuesta) {
                 datos=Respuesta;
@@ -101,7 +102,7 @@ public class BdTest {
         Thread.sleep(200);
         assertEquals(2, datos.length);
 
-        controler.getSelectAllPrecios(new InterfaceDomain.CallbackHandlerRspMatriz() {
+        controler.getSelectAllPrecios(new InterfaceRespuestas.CallbackHandlerRspMatriz() {
             @Override
             public void respuestaMatriz(String[][] respuesta) {
                 datosMatriz=respuesta;
@@ -110,7 +111,7 @@ public class BdTest {
         Thread.sleep(200);
         assertEquals(4, datosMatriz.length);
 
-        controler.getSelectAllPreciosCcMayor(new InterfaceDomain.CallbackHandlerRspMatriz() {
+        controler.getSelectAllPreciosCcMayor(new InterfaceRespuestas.CallbackHandlerRspMatriz() {
             @Override
             public void respuestaMatriz(String[][] respuesta) {
                 datosMatriz=respuesta;

@@ -105,7 +105,7 @@ public class DateTimeParking {
     }
 
 
-    public int getDifferenceBetwenDatesMinutes(String fechaInicio, String fechaFinal) throws ParseException {
+    public double getDifferenceBetwenDatesMinutes(String fechaInicio, String fechaFinal) throws ParseException {
         Date dateInicio= getSimpleDateFormat().parse(fechaInicio);
         Date dateFinal=  getSimpleDateFormat().parse(fechaFinal);
         long milliseconds = dateFinal.getTime() - dateInicio.getTime();
@@ -114,7 +114,7 @@ public class DateTimeParking {
         //int hours = (int) (milliseconds / (1000 * 60 * 60));
         //return (minutes+(hours*60));
         // return ((int) (milliseconds / (1000 * 60 * 60))+(minutes>0?1:0));
-        return ((int) (milliseconds / (1000 * 60 * 60)));
+        return (milliseconds / (1000 * 60 * 60));
     }
 
 }

@@ -1,6 +1,5 @@
 package com.example.adnparqueadero.model.domain.controler_domain;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.example.adnparqueadero.model.datos.database.ParqueaderoDatabase;
@@ -12,12 +11,13 @@ import com.example.adnparqueadero.model.datos.tables.PreciosCcMayor;
 import com.example.adnparqueadero.model.datos.tables.TipoCondicion;
 import com.example.adnparqueadero.model.datos.tables.TipoPrecios;
 import com.example.adnparqueadero.model.datos.tables.TipoVehiculo;
-import com.example.adnparqueadero.model.domain.model.InterfaceDomain;
+import com.example.adnparqueadero.model.domain.model.InterfaceDomainGet;
+import com.example.adnparqueadero.model.domain.model.InterfaceRespuestas;
 
 import java.util.List;
 
-public class ControlerDomainDatos implements InterfaceDomain {
-    private static ControlerDomainDatos instance;
+public class ControlerDomainDatosGet implements InterfaceDomainGet {
+    private static ControlerDomainDatosGet instance;
     private ParqueaderoDatabase parqueadero;
     private List<DiaSemana> dias;
     private List<TipoVehiculo> tipoVehiculos;
@@ -28,35 +28,23 @@ public class ControlerDomainDatos implements InterfaceDomain {
     private List<Precios> precios;
     private List<PreciosCcMayor> preciosCcMayor;
 
-    public static ControlerDomainDatos getInstance(ParqueaderoDatabase parqueadero){
+    public static ControlerDomainDatosGet getInstance(ParqueaderoDatabase parqueadero){
        if(instance==null)
         {
-            instance= new ControlerDomainDatos();
+            instance= new ControlerDomainDatosGet();
         }
         instance.parqueadero =parqueadero;
         return  instance;
     }
 
     @Override
-    public void getSelectAllDiaSemana(final CallbackHandlerRspArray callback) {
+    public void getSelectAllDiaSemana(final InterfaceRespuestas.CallbackHandlerRspArray callback) {
         dias=null;
         try {
             new Thread(new Runnable() {
                 public void run() {
                     String [] diasSemana;
                     dias = parqueadero.diaSemanaDao().getSelectAll();
-                    if (dias.isEmpty()) {
-                        DiaSemana[] dia=new DiaSemana[7];
-                        dia[0] = new DiaSemana("Domingo");
-                        dia[1] = new DiaSemana("Lunes");
-                        dia[2] = new DiaSemana("Martes");
-                        dia[3] = new DiaSemana("Miercoles");
-                        dia[4] = new DiaSemana("Jueves");
-                        dia[5] = new DiaSemana("Viernes");
-                        dia[6] = new DiaSemana("Sabado");
-                        parqueadero.diaSemanaDao().insertAll(dia);
-                        dias = parqueadero.diaSemanaDao().getSelectAll();
-                    }
                     diasSemana = new String[dias.size()];
                     for (int i = 0; i < dias.size(); i++) {
                         diasSemana[i] = dias.get(i).getDianame();
@@ -71,25 +59,18 @@ public class ControlerDomainDatos implements InterfaceDomain {
     }
 
     @Override
-    public void getSelectAllTipoVehiculo(final CallbackHandlerRspArray callback) {
+    public void getSelectAllTipoVehiculo(final InterfaceRespuestas.CallbackHandlerRspArray callback) {
         tipoVehiculos =null;
         try {
             new Thread(new Runnable() {
                 public void run() {
-                    String [] tipoVehiculo;
+                    String [] tipoVehiculoArray;
                     tipoVehiculos = parqueadero.tipoVehiculoDao().getSelectAll();
-                    if (tipoVehiculos.isEmpty()) {
-                        TipoVehiculo[] tipVehiculo=new TipoVehiculo[2];
-                        tipVehiculo[0] = new TipoVehiculo("Carro");
-                        tipVehiculo[1] = new TipoVehiculo("Moto");
-                        parqueadero.tipoVehiculoDao().insertAll(tipVehiculo);
-                        tipoVehiculos = parqueadero.tipoVehiculoDao().getSelectAll();
-                    }
-                    tipoVehiculo = new String[tipoVehiculos.size()];
+                    tipoVehiculoArray = new String[tipoVehiculos.size()];
                     for (int i = 0; i < tipoVehiculos.size(); i++) {
-                        tipoVehiculo[i] = tipoVehiculos.get(i).getVehiculo();
+                        tipoVehiculoArray[i] = tipoVehiculos.get(i).getVehiculo();
                     }
-                    callback.respuestaArray(tipoVehiculo);
+                    callback.respuestaArray(tipoVehiculoArray);
                 }
             }).start();
         }catch(Exception e){
@@ -99,19 +80,13 @@ public class ControlerDomainDatos implements InterfaceDomain {
     }
 
     @Override
-    public void getSelectAllTipoCondicion(final CallbackHandlerRspArray callback) {
+    public void getSelectAllTipoCondicion(final InterfaceRespuestas.CallbackHandlerRspArray callback) {
         tipoCondicion=null;
         try {
             new Thread(new Runnable() {
                 public void run() {
                     String [] tipoCondicionArray;
                     tipoCondicion = parqueadero.tipoCondicionDao().getSelectAll();
-                    if (tipoCondicion.isEmpty()) {
-                        TipoCondicion[] tipoCondicions=new TipoCondicion[1];
-                        tipoCondicions[0] = new TipoCondicion("Inicio");
-                        parqueadero.tipoCondicionDao().insertAll(tipoCondicions);
-                        tipoCondicion = parqueadero.tipoCondicionDao().getSelectAll();
-                    }
                     tipoCondicionArray = new String[tipoCondicion.size()];
                     for (int i = 0; i < tipoCondicion.size(); i++) {
                         tipoCondicionArray[i] = tipoCondicion.get(i).getTipCondicion();
@@ -126,20 +101,13 @@ public class ControlerDomainDatos implements InterfaceDomain {
     }
 
     @Override
-    public void getSelectAllTipoPrecios(final CallbackHandlerRspArray callback) {
+    public void getSelectAllTipoPrecios(final InterfaceRespuestas.CallbackHandlerRspArray callback) {
         tipoPrecios=null;
         try {
             new Thread(new Runnable() {
                 public void run() {
                     String [] tipoPreciosArray;
                     tipoPrecios = parqueadero.tipoPreciosDao().getSelectAll();
-                    if (tipoPrecios.isEmpty()) {
-                        TipoPrecios[] tipoPrecios =new TipoPrecios[2];
-                        tipoPrecios[0] = new TipoPrecios("Hora");
-                        tipoPrecios[1] = new TipoPrecios("Dia");
-                        parqueadero.tipoPreciosDao().insertAll(tipoPrecios);
-                        ControlerDomainDatos.this.tipoPrecios = parqueadero.tipoPreciosDao().getSelectAll();
-                    }
                     tipoPreciosArray = new String[tipoPrecios.size()];
                     for (int i = 0; i < tipoPrecios.size(); i++) {
                         tipoPreciosArray[i] = tipoPrecios.get(i).getTipoPrecio();
@@ -154,10 +122,10 @@ public class ControlerDomainDatos implements InterfaceDomain {
     }
 
     @Override
-    public void getSelectAllLimiteVehiculos(final CallbackHandlerRspMatriz callback) {
+    public void getSelectAllLimiteVehiculos(final InterfaceRespuestas.CallbackHandlerRspMatriz callback) {
         limiteVehiculos=null;
         try {
-            getSelectAllTipoVehiculo(new InterfaceDomain.CallbackHandlerRspArray() {
+            getSelectAllTipoVehiculo(new InterfaceRespuestas.CallbackHandlerRspArray() {
                 @Override
                 public void respuestaArray(final String[] respuesta) {
                     new Thread(new Runnable() {
@@ -171,7 +139,10 @@ public class ControlerDomainDatos implements InterfaceDomain {
                             if (limiteVehiculos.isEmpty()) {
                                 LimiteVehiculos[] limitVehiculosInsertar = new LimiteVehiculos[respuesta.length];
                                 for (int i = 0; i < respuesta.length; i++) {
-                                    limitVehiculosInsertar[i] = new LimiteVehiculos(0, respuesta[i]);
+                                    if("Carro".equals(respuesta[i]))
+                                        limitVehiculosInsertar[i] = new LimiteVehiculos(20, respuesta[i]);
+                                    else if("Moto".equals(respuesta[i]))
+                                        limitVehiculosInsertar[i] = new LimiteVehiculos(10, respuesta[i]);
                                 }
                                 parqueadero.limiteVehiculosDao().insertAll(limitVehiculosInsertar);
                                 limiteVehiculos = parqueadero.limiteVehiculosDao().getSelectAll();
@@ -193,13 +164,13 @@ public class ControlerDomainDatos implements InterfaceDomain {
     }
 
     @Override
-    public void getSelectAllLetraCondicion(final CallbackHandlerRspMatriz callback) {
+    public void getSelectAllLetraCondicion(final InterfaceRespuestas.CallbackHandlerRspMatriz callback) {
         letraCondicion=null;
         try {
-            getSelectAllTipoCondicion(new InterfaceDomain.CallbackHandlerRspArray() {
+            getSelectAllTipoCondicion(new InterfaceRespuestas.CallbackHandlerRspArray() {
                 @Override
                 public void respuestaArray(final String[] respuesta) {
-                    getSelectAllDiaSemana(new InterfaceDomain.CallbackHandlerRspArray() {
+                    getSelectAllDiaSemana(new InterfaceRespuestas.CallbackHandlerRspArray() {
                         @Override
                         public void respuestaArray(final String[] respuesta2) {
                             new Thread(new Runnable() {
@@ -247,13 +218,13 @@ public class ControlerDomainDatos implements InterfaceDomain {
     }
 
     @Override
-    public void getSelectAllPrecios(final CallbackHandlerRspMatriz callback) {
+    public void getSelectAllPrecios(final InterfaceRespuestas.CallbackHandlerRspMatriz callback) {
         precios=null;
         try {
-            getSelectAllTipoPrecios(new InterfaceDomain.CallbackHandlerRspArray() {
+            getSelectAllTipoPrecios(new InterfaceRespuestas.CallbackHandlerRspArray() {
                 @Override
                 public void respuestaArray(final String[] respuestaTipoPrecios) {
-                    getSelectAllTipoVehiculo(new InterfaceDomain.CallbackHandlerRspArray() {
+                    getSelectAllTipoVehiculo(new InterfaceRespuestas.CallbackHandlerRspArray() {
                         @Override
                         public void respuestaArray(final String[] respuestaTipoVehiculo) {
                             new Thread(new Runnable() {
@@ -326,9 +297,9 @@ public class ControlerDomainDatos implements InterfaceDomain {
     }
 
     @Override
-    public void getSelectAllPreciosCcMayor(final CallbackHandlerRspMatriz callback) {
+    public void getSelectAllPreciosCcMayor(final InterfaceRespuestas.CallbackHandlerRspMatriz callback) {
         preciosCcMayor=null;
-        getSelectAllTipoVehiculo(new InterfaceDomain.CallbackHandlerRspArray() {
+        getSelectAllTipoVehiculo(new InterfaceRespuestas.CallbackHandlerRspArray() {
             @Override
             public void respuestaArray(final String[] respuesta) {
                 new Thread(new Runnable() {
