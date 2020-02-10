@@ -1,4 +1,4 @@
 package com.example.adnparqueadero.model.domain.model;
 
-public interface InterfaceDomainInsert {
+public class ParkingEntryModel {
 }

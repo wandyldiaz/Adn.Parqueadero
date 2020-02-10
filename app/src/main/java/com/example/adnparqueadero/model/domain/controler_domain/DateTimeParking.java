@@ -55,42 +55,42 @@ public class DateTimeParking {
         return (year + "/" + month + "/" + day);
     }
 
-    private String diaSemana (String fecha)
+    private String dayOfWeek(String fecha)
     {
-        int dia= Integer.parseInt(fecha.split("/")[2]);
-        int mes= Integer.parseInt(fecha.split("/")[1]);
-        int ano= Integer.parseInt(fecha.split("/")[0]);
+        int day= Integer.parseInt(fecha.split("/")[2]);
+        int month= Integer.parseInt(fecha.split("/")[1]);
+        int year= Integer.parseInt(fecha.split("/")[0]);
         TimeZone timeZone = TimeZone.getTimeZone(DateTimeParking.getGMT());
-        String letraDia;
+        String dayString;
         Calendar calendar = new GregorianCalendar(timeZone);
-        calendar.set(ano, mes-1, dia);
+        calendar.set(year, month-1, day);
         int nD=calendar.get(Calendar.DAY_OF_WEEK);
         if (nD == 2) {
-            letraDia = "Lunes";
+            dayString = "Lunes";
         } else if (nD == 3) {
-            letraDia = "Martes";
+            dayString = "Martes";
         } else if (nD == 4) {
-            letraDia = "Miercoles";
+            dayString = "Miercoles";
         } else if (nD == 5) {
-            letraDia = "Jueves";
+            dayString = "Jueves";
         } else if (nD == 6) {
-            letraDia = "Viernes";
+            dayString = "Viernes";
         } else if (nD == 7) {
-            letraDia = "Sabado";
+            dayString = "Sabado";
         } else if (nD == 1) {
-            letraDia = "Domingo";
+            dayString = "Domingo";
         } else{
-            letraDia="";
+            dayString="";
         }
-        return letraDia;
+        return dayString;
     }
 
     public static String getGMT() {
         return GMT;
     }
 
-    public String getDiaSemana(String fecha) {
-        return diaSemana(fecha);
+    public String getDayWeek(String fecha) {
+        return dayOfWeek(fecha);
     }
 
     public String getTime() {
@@ -105,16 +105,21 @@ public class DateTimeParking {
     }
 
 
-    public double getDifferenceBetwenDatesMinutes(String fechaInicio, String fechaFinal) throws ParseException {
-        Date dateInicio= getSimpleDateFormat().parse(fechaInicio);
-        Date dateFinal=  getSimpleDateFormat().parse(fechaFinal);
-        long milliseconds = dateFinal.getTime() - dateInicio.getTime();
+    private int getDifferenceBetwenDatesHours(String dayStart, String dayEnd) throws ParseException {
+        Date dateDayStart= getSimpleDateFormat().parse(dayStart);
+        Date dateDayEnd=  getSimpleDateFormat().parse(dayEnd);
+        long milliseconds = dateDayEnd.getTime() - dateDayStart.getTime();
         //long seconds =  (milliseconds / 1000) % 60;
         // long minutes =  ((milliseconds / (1000 * 60)) % 60);
         //int hours = (int) (milliseconds / (1000 * 60 * 60));
         //return (minutes+(hours*60));
         // return ((int) (milliseconds / (1000 * 60 * 60))+(minutes>0?1:0));
-        return (milliseconds / (1000 * 60 * 60));
+        return ((int) (milliseconds / (1000 * 60 * 60)));
     }
+
+    public int getDifferenceDates(String dayStart, String dayEnd) throws ParseException{
+        return getDifferenceBetwenDatesHours(dayStart,dayEnd);
+    }
+
 
 }
