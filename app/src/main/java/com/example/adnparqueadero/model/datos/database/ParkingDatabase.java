@@ -8,6 +8,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.adnparqueadero.model.datos.dao.QuerysDao;
 import com.example.adnparqueadero.model.datos.dao.VehicleHistoryDao;
 import com.example.adnparqueadero.model.datos.dao.VehicleRegisteredDao;
 import com.example.adnparqueadero.model.datos.tables.VehicleHistory;
@@ -33,6 +34,7 @@ public abstract class ParkingDatabase extends RoomDatabase {
     }
 
    public abstract VehicleHistoryDao vehicleHistoryDao();
-   public abstract VehicleRegisteredDao vehicleRegisteredDao();
+    public abstract VehicleRegisteredDao vehicleRegisteredDao();
+    public abstract QuerysDao querysDao();
 
 }

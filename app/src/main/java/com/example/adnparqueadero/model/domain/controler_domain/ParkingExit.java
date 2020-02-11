@@ -3,8 +3,9 @@ package com.example.adnparqueadero.model.domain.controler_domain;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
-import com.example.adnparqueadero.model.datos.dao.VehicleHistoryDao.VehicleHistoryData;
 import com.example.adnparqueadero.model.datos.database.ParkingDatabase;
+import com.example.adnparqueadero.model.datos.dto.VehicleHistoryData;
+import com.example.adnparqueadero.model.datos.dto.VehicleRegisteredData;
 import com.example.adnparqueadero.model.datos.tables.VehicleHistory;
 import com.example.adnparqueadero.model.domain.ClassAbstracts.BusinessModel;
 import com.example.adnparqueadero.model.domain.ClassAbstracts.Messages;
@@ -13,7 +14,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static com.example.adnparqueadero.model.datos.dao.VehicleRegisteredDao.*;
 
 public class ParkingExit {
 
@@ -41,17 +41,17 @@ public class ParkingExit {
         int dayValue;
         int additionalValue=0;
         int hourValue;
-        String dateEntry= vehicleHistoryEntered.dateEntry;
-        String timeEntry= vehicleHistoryEntered.timeEntry;
+        String dateEntry= vehicleHistoryEntered.getDateEntry();
+        String timeEntry= vehicleHistoryEntered.getTimeEntry();
         replyMessage = Messages.ErrorVehicleData;
-        if(vehicleRegistered.typeVehicle.equals(BusinessModel.typeVehicleCar)){
+        if(vehicleRegistered.getTypeVehicle().equals(BusinessModel.typeVehicleCar)){
             dayValue=BusinessModel.priceDayCar;
             hourValue=BusinessModel.priceHourCar;
         }
         else{
             dayValue=BusinessModel.priceDayCar;
             hourValue=BusinessModel.priceHourCar;
-            if(vehicleRegistered.cylinder>500)
+            if(vehicleRegistered.getCylinder()>500)
                 additionalValue=BusinessModel.cylinderMotorcycleSurcharge;
         }
         hoursParked=getDifferenceBetweenDatesHours(dateEntry+" "+timeEntry,
@@ -73,10 +73,10 @@ public class ParkingExit {
             priceCharged=(hoursParkedAfterDays*hourValue)+(daysParket*dayValue)+additionalValue;
         }
         vehicleExit=new VehicleHistory();
-        vehicleExit.setIdVehicleHistory(vehicleHistoryEntered.idVehicleHistory);
-        vehicleExit.setDateEntry(vehicleHistoryEntered.dateEntry);
-        vehicleExit.setTimeEntry(vehicleHistoryEntered.timeEntry);
-        vehicleExit.setLicencePlate(vehicleHistoryEntered.licencePlate);
+        vehicleExit.setIdVehicleHistory(vehicleHistoryEntered.getIdVehicleHistory());
+        vehicleExit.setDateEntry(vehicleHistoryEntered.getDateEntry());
+        vehicleExit.setTimeEntry(vehicleHistoryEntered.getTimeEntry());
+        vehicleExit.setLicencePlate(vehicleHistoryEntered.getLicencePlate());
         vehicleExit.setDateExit(currentDate);
         vehicleExit.setTimeExit(currentTime);
         vehicleExit.setHoursParked(hoursParked);
@@ -90,7 +90,7 @@ public class ParkingExit {
             if(database.vehicleHistoryDao().update(vehicleExit)==-1){
                 return replyMessage;
             }
-            replyMessage = Messages.ErrorVehicleExit;
+            replyMessage = Messages.SuccesVehicleExit;
             return replyMessage;
         }catch (Exception e){
             Log.e("ErrorSalida",e.toString());

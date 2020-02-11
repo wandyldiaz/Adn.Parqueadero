@@ -1,10 +1,11 @@
 package com.example.adnparqueadero.model.datos.dao;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+
+import com.example.adnparqueadero.model.datos.dto.VehicleRegisteredData;
 import com.example.adnparqueadero.model.datos.tables.VehicleRegistered;
 import java.util.List;
 
@@ -22,13 +23,5 @@ public interface VehicleRegisteredDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Long insert(VehicleRegistered vehicleRegistered);
 
-    class VehicleRegisteredData {
-        @ColumnInfo(name = "licencePlate")
-        public String licencePlate;
-        @ColumnInfo(name = "typeVehicle")
-        public String typeVehicle;
-        @ColumnInfo(name = "cylinder")
-        public int cylinder;
-    }
 
 }

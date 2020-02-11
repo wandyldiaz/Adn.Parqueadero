@@ -1,11 +1,11 @@
 package com.example.adnparqueadero.model.datos.dao;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.adnparqueadero.model.datos.dto.VehicleHistoryData;
 import com.example.adnparqueadero.model.datos.tables.VehicleHistory;
 
 import java.util.List;
@@ -28,23 +28,6 @@ public interface VehicleHistoryDao {
     @Update
     int update(VehicleHistory vehicleHistory);
 
-    class VehicleHistoryData {
-        @ColumnInfo(name = "idVehicleHistory")
-        public int idVehicleHistory;
-        @ColumnInfo(name = "licencePlate")
-        public String licencePlate;
-        @ColumnInfo(name = "dateEntry")
-        public String dateEntry;
-        @ColumnInfo(name = "timeEntry")
-        public String timeEntry;
-        @ColumnInfo(name = "dateExit")
-        public String dateExit;
-        @ColumnInfo(name = "timeExit")
-        public String timeExit;
-        @ColumnInfo(name = "hoursParked")
-        public int hoursParked;
-        @ColumnInfo(name = "amountCharged")
-        public int amountCharged;
-    }
+
 
 }
