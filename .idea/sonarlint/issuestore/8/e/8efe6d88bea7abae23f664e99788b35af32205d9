@@ -1,0 +1,17 @@
+
+Xsquid:S1118":Add a private constructor to hide the implicit public one.(°Ÿ–8Ïê”‡ƒ.
+~squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(æøÃ³úÿÿÿÿ8õ†ƒ.
+ysquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ıÜ¤8ºöÔ¤ƒ.
+~squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ä¡´íøÿÿÿÿ8ßæï¡ƒ.
+~squid:S00115
+"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ş€şÿÿÿÿ8·­Œ¤ƒ.
+ysquid:S00115	"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¥ÖÉ·8ıÑõ¡ƒ.
+~squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Îçîâşÿÿÿÿ8ºöÔ¤ƒ.
+}squid:S00118"^Rename this abstract class name to match the regular expression '^Abstract[A-Z][a-zA-Z0-9]*$'.(°Ÿ–8™œ†ƒ.
+~squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(øÆ•ùÿÿÿÿ8àÚ¡†ƒ.
+~squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(œ’ó˜üÿÿÿÿ8åç¤ƒ.
+:squid:S2386"Make this member "protected".(É›'8¥Š–‡ƒ.
+~squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(µÏ±şúÿÿÿÿ8àÚ¡†ƒ.
+ysquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ş®ÓË8İŞ›†ƒ.
+osquid:S1694"QConvert this "BusinessModel" class to a concrete class with a private constructor(°Ÿ–8™œ†ƒ.
+~squid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(åÈÊıüÿÿÿÿ8ÃÔş¨ƒ.

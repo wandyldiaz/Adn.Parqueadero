@@ -8,9 +8,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 
-import com.example.adnparqueadero.model.datos.database.AbstractParkingDatabase;
+import com.example.adnparqueadero.model.datos.database.ParkingDatabase;
 import com.example.adnparqueadero.model.domain.controler_domain.GetData;
-import com.example.adnparqueadero.model.domain.model.GetDataInterface;
+import com.example.adnparqueadero.model.service.GetServiceData;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -22,12 +22,12 @@ public class BdTest {
     String[] datos;
     String[][] datosMatriz;
     Context appContext;
-    GetDataInterface controler;
+    GetServiceData controler;
 
     @Before
     public void iniciarDatos(){
         appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        controler = GetData.getInstance(AbstractParkingDatabase.getInstance(appContext));
+        controler = GetData.getInstance(ParkingDatabase.getInstance(appContext));
     }
 
 }

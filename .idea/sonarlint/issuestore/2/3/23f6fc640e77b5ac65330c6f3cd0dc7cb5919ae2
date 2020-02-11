@@ -1,0 +1,15 @@
+
+wsquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(áöìÔùÿÿÿÿ
+ysquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ì‘’á8šÂù¨ƒ.
+ysquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(õì‘8¤ß…©ƒ.
+hsquid:S1694"LConvert this "Messages" class to a concrete class with a private constructor(êŠˆıÿÿÿÿ
+~squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(÷š·Áúÿÿÿÿ8É„¢©ƒ.
+ysquid:S00115	"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÇæÑ•8—£‡©ƒ.
+{squid:S00118"^Rename this abstract class name to match the regular expression '^Abstract[A-Z][a-zA-Z0-9]*$'.(êŠˆıÿÿÿÿ
+~squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÙÄ†‘øÿÿÿÿ8œÕ©ƒ.
+ysquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(şÚÑã8ÂÍ©ƒ.
+ysquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(çÃ“ã8Ë†©ƒ.
+~squid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(åÈÊıüÿÿÿÿ8çÕş¨ƒ.
+Vsquid:S1118":Add a private constructor to hide the implicit public one.(êŠˆıÿÿÿÿ
+~squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÿî«Æÿÿÿÿÿ8îŸ²©ƒ.
+ysquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¢úÍÑ8«Ø¶¬ƒ.

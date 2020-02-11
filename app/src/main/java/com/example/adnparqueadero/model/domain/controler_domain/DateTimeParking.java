@@ -1,11 +1,6 @@
 package com.example.adnparqueadero.model.domain.controler_domain;
 
-import android.annotation.SuppressLint;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 import static java.util.Calendar.DAY_OF_MONTH;
@@ -14,15 +9,8 @@ import static java.util.Calendar.YEAR;
 
 public class DateTimeParking {
     private static final String GMT="GMT-5";
-    private static final String FORMAT_DATE =("yyyy/MM/dd HH:mm");
-    private SimpleDateFormat simpleDateFormat;
 
-    @SuppressLint("SimpleDateFormat")
-    public DateTimeParking() {
-        this.simpleDateFormat = new SimpleDateFormat(FORMAT_DATE);
-    }
-
-    private String time(){
+    private String currentTime(){
 
         String time;
         String hour;
@@ -39,7 +27,7 @@ public class DateTimeParking {
         return time;
     }
 
-    private String date(){
+    private String currentDate(){
         String day;
         String month;
         String year;
@@ -55,12 +43,12 @@ public class DateTimeParking {
         return (year + "/" + month + "/" + day);
     }
 
-    private String dayOfWeek(String fecha)
+    private String dayOfWeek(String date)
     {
-        int day= Integer.parseInt(fecha.split("/")[2]);
-        int month= Integer.parseInt(fecha.split("/")[1]);
-        int year= Integer.parseInt(fecha.split("/")[0]);
-        TimeZone timeZone = TimeZone.getTimeZone(DateTimeParking.getGMT());
+        int day= Integer.parseInt(date.split("/")[2]);
+        int month= Integer.parseInt(date.split("/")[1]);
+        int year= Integer.parseInt(date.split("/")[0]);
+        TimeZone timeZone = TimeZone.getTimeZone(GMT);
         String dayString;
         Calendar calendar = new GregorianCalendar(timeZone);
         calendar.set(year, month-1, day);
@@ -85,41 +73,20 @@ public class DateTimeParking {
         return dayString;
     }
 
-    public static String getGMT() {
-        return GMT;
+
+    public String getDayWeek(String date) {
+        return dayOfWeek(date);
     }
 
-    public String getDayWeek(String fecha) {
-        return dayOfWeek(fecha);
+    public String getCurrentTime() {
+        return currentTime();
     }
 
-    public String getTime() {
-        return time();
-    }
-
-    public String getDate() {
-        return date();
-    }
-    public SimpleDateFormat getSimpleDateFormat() {
-        return simpleDateFormat;
+    public String getCurrentDate() {
+        return currentDate();
     }
 
 
-    private int getDifferenceBetwenDatesHours(String dayStart, String dayEnd) throws ParseException {
-        Date dateDayStart= getSimpleDateFormat().parse(dayStart);
-        Date dateDayEnd=  getSimpleDateFormat().parse(dayEnd);
-        long milliseconds = dateDayEnd.getTime() - dateDayStart.getTime();
-        //long seconds =  (milliseconds / 1000) % 60;
-        // long minutes =  ((milliseconds / (1000 * 60)) % 60);
-        //int hours = (int) (milliseconds / (1000 * 60 * 60));
-        //return (minutes+(hours*60));
-        // return ((int) (milliseconds / (1000 * 60 * 60))+(minutes>0?1:0));
-        return ((int) (milliseconds / (1000 * 60 * 60)));
-    }
-
-    public int getDifferenceDates(String dayStart, String dayEnd) throws ParseException{
-        return getDifferenceBetwenDatesHours(dayStart,dayEnd);
-    }
 
 
 }

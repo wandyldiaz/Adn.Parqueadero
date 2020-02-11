@@ -1,15 +1,14 @@
 package com.example.adnparqueadero.model.domain.controler_domain;
 
-import com.example.adnparqueadero.model.datos.database.AbstractParkingDatabase;
-import com.example.adnparqueadero.model.domain.model.GetDataInterface;
-import com.example.adnparqueadero.model.domain.model.ReplyInterface;
+import com.example.adnparqueadero.model.datos.database.ParkingDatabase;
+import com.example.adnparqueadero.model.service.GetServiceData;
 
 
-public class GetData implements GetDataInterface {
+public class GetData implements GetServiceData {
     private static GetData instance;
-    private AbstractParkingDatabase parkingDatabase;
+    private ParkingDatabase parkingDatabase;
 
-    public static GetData getInstance(AbstractParkingDatabase parkingDatabase){
+    public static GetData getInstance(ParkingDatabase parkingDatabase){
        if(instance==null)
         {
             instance= new GetData();
@@ -18,7 +17,7 @@ public class GetData implements GetDataInterface {
         return  instance;
     }
 
-    public void getSelectVehiculoHistorial(final ReplyInterface.CallbackHandlerReplyArray callback) {
+    public void getSelectVehiculoHistorial() {
 /*
         try {
             new Thread(new Runnable() {

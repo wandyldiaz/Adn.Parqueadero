@@ -16,7 +16,7 @@ public class VehicleRegistered {
     private String typeVehicle;
 
     @ColumnInfo(name = "cylinder")
-    private String cylinder;
+    private int cylinder;
 
     public void setLicencePlate(@NonNull String licencePlate) {
         this.licencePlate = licencePlate;
@@ -26,7 +26,7 @@ public class VehicleRegistered {
         this.typeVehicle = typeVehicle;
     }
 
-    public void setCylinder(String cylinder) {
+    public void setCylinder(int cylinder) {
         this.cylinder = cylinder;
     }
 
@@ -38,7 +38,7 @@ public class VehicleRegistered {
         return typeVehicle;
     }
 
-    public String getCylinder() {
+    public int getCylinder() {
         return cylinder;
     }
 }

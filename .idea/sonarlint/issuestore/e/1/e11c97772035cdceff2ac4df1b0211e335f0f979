@@ -1,21 +1,0 @@
-
-…
-squid:S138ú"gThis method has 76 lines, which is greater than the 75 lines authorized. Split it into smaller methods.(±íÂÂ8©³˜‹‚.
-isquid:HiddenFieldCheck‰"?Rename "tipoPrecios" which hides the field declared at line 27.(ëÔ’“8©³˜‹‚.
-q
-squid:S134˜"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ÿÒ¶’şÿÿÿÿ8©³˜‹‚.
-@squid:S1643Ú"Use a StringBuilder instead.(ß‰–„ıÿÿÿÿ8©³˜‹‚.
-q
-squid:S134Ş"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(·ô÷İøÿÿÿÿ8©³˜‹‚.
-isquid:S1192S"FDefine a constant instead of duplicating this literal "Carro" 4 times.(èòÔ§ÿÿÿÿÿ8©³˜‹‚.
-vsquid:S3776Ä"RRefactor this method to reduce its Cognitive Complexity from 37 to the 15 allowed.(µÀµ™øÿÿÿÿ8©³˜‹‚.
-q
-squid:S134’"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(µ¢Ÿ‹ıÿÿÿÿ8©³˜‹‚.
-qsquid:S3776ú"RRefactor this method to reduce its Cognitive Complexity from 72 to the 15 allowed.(±íÂÂ8©³˜‹‚.
-vsquid:S3776É"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(Œ”ƒšùÿÿÿÿ8©³˜‹‚.
-q
-squid:S134”"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(ìÌ²ãşÿÿÿÿ8©³˜‹‚.
-_squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8Ê¨š‹‚.
- squid:MethodCyclomaticComplexity„"YThe Cyclomatic Complexity of this method "run" is 19 which is greater than 10 authorized.(“–ış8©³˜‹‚.
-l
-squid:S134š"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(¦öä•8©³˜‹‚.

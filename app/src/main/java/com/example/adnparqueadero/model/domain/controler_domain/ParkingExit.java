@@ -1,71 +1,114 @@
 package com.example.adnparqueadero.model.domain.controler_domain;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
+import com.example.adnparqueadero.model.datos.dao.VehicleHistoryDao.VehicleHistoryData;
+import com.example.adnparqueadero.model.datos.database.ParkingDatabase;
 import com.example.adnparqueadero.model.datos.tables.VehicleHistory;
+import com.example.adnparqueadero.model.domain.ClassAbstracts.BusinessModel;
+import com.example.adnparqueadero.model.domain.ClassAbstracts.Messages;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static com.example.adnparqueadero.model.datos.dao.VehicleRegisteredDao.*;
 
 public class ParkingExit {
 
-    private DateTimeParking dateTimeParking;
-    private VehicleHistory vehiculoIngresado;
-    private int valorAdicionalTotal;
-    private int valorHora;
-    private int valorDia;
-    private String fechaActual;
-    private String horaActual;
+    private VehicleHistoryData vehicleHistoryEntered;
+    private VehicleHistory vehicleExit;
+    private VehicleRegisteredData vehicleRegistered;
+    private String currentDate;
+    private String currentTime;
+    private String replyMessage;
+    private ParkingDatabase database;
 
-    public ParkingExit(VehicleHistory vehiculoIngresado, int valorAdicionalTotal,
-                       int valorHora, int valorDia, DateTimeParking dateTimeParking, String fechaActual, String horaActual) {
-        this.vehiculoIngresado = vehiculoIngresado;
-        this.valorAdicionalTotal = valorAdicionalTotal;
-        this.valorHora = valorHora;
-        this.valorDia = valorDia;
-        this.dateTimeParking = dateTimeParking;
-        this.fechaActual= fechaActual;
-        this.horaActual= horaActual;
+    public ParkingExit(VehicleHistoryData vehicleHistoryEntered, VehicleRegisteredData vehicleRegistered,
+                       String currentDate, String currentTime, ParkingDatabase database) {
+        this.vehicleHistoryEntered = vehicleHistoryEntered;
+        this.vehicleRegistered = vehicleRegistered;
+        this.currentDate = currentDate;
+        this.currentTime = currentTime;
+        this.database = database;
     }
 
-    public boolean validarSalida(){
-        int horasEstacionado=0;
-        int diasEstacionado=0;
-        int valorCobrado;
-        String fechaIngreso=vehiculoIngresado.getFechaEntrada();
-        String horaIngreso=vehiculoIngresado.getHoraEntrada();
-        if(horaIngreso.length()!=5 && fechaIngreso.length()!=10)
-            return false;
-        try {
-            horasEstacionado=dateTimeParking.getDifferenceDates(fechaIngreso+" "+horaIngreso,
-                    fechaActual+" "+ horaActual);
-        } catch (ParseException e) {
-            Log.e("ErrorValidarSalida",e.toString());
-            return false;
-        }
-        if(horasEstacionado>=9 && horasEstacionado<=24){
-            valorCobrado=valorDia+valorAdicionalTotal;
-        }
-        else if(horasEstacionado<9){
-            valorCobrado=(valorHora*horasEstacionado)+valorAdicionalTotal;
+    private void calculateExit() throws ParseException {
+        int hoursParked;
+        int daysParket;
+        int priceCharged;
+        int dayValue;
+        int additionalValue=0;
+        int hourValue;
+        String dateEntry= vehicleHistoryEntered.dateEntry;
+        String timeEntry= vehicleHistoryEntered.timeEntry;
+        replyMessage = Messages.ErrorVehicleData;
+        if(vehicleRegistered.typeVehicle.equals(BusinessModel.typeVehicleCar)){
+            dayValue=BusinessModel.priceDayCar;
+            hourValue=BusinessModel.priceHourCar;
         }
         else{
-            diasEstacionado=(horasEstacionado/24);
-            int horasEstacionadoDespuesDias=horasEstacionado % 24;
-            if(horasEstacionadoDespuesDias>=9){
-                horasEstacionadoDespuesDias=horasEstacionadoDespuesDias-9;
-                diasEstacionado++;
-            }
-            valorCobrado=(horasEstacionadoDespuesDias*valorHora)+(diasEstacionado*valorDia)+valorAdicionalTotal;
+            dayValue=BusinessModel.priceDayCar;
+            hourValue=BusinessModel.priceHourCar;
+            if(vehicleRegistered.cylinder>500)
+                additionalValue=BusinessModel.cylinderMotorcycleSurcharge;
         }
-        vehiculoIngresado.setDateExit(fechaActual);
-        vehiculoIngresado.setTimeExit(horaActual);
-        vehiculoIngresado.setHoursParked(horasEstacionado);
-        vehiculoIngresado.setAmountCharged(valorCobrado);
-        return true;
+        hoursParked=getDifferenceBetweenDatesHours(dateEntry+" "+timeEntry,
+                currentDate +" "+ currentTime);
+        replyMessage = Messages.ErrorVehicleCalculate;
+        if(hoursParked>=9 && hoursParked<=24){
+            priceCharged=dayValue+additionalValue;
+        }
+        else if(hoursParked<9){
+            priceCharged=(hourValue*hoursParked)+additionalValue;
+        }
+        else{
+            daysParket=(hoursParked/24);
+            int hoursParkedAfterDays=hoursParked % 24;
+            if(hoursParkedAfterDays>=9){
+                hoursParkedAfterDays=hoursParkedAfterDays-9;
+                daysParket++;
+            }
+            priceCharged=(hoursParkedAfterDays*hourValue)+(daysParket*dayValue)+additionalValue;
+        }
+        vehicleExit=new VehicleHistory();
+        vehicleExit.setIdVehicleHistory(vehicleHistoryEntered.idVehicleHistory);
+        vehicleExit.setDateEntry(vehicleHistoryEntered.dateEntry);
+        vehicleExit.setTimeEntry(vehicleHistoryEntered.timeEntry);
+        vehicleExit.setLicencePlate(vehicleHistoryEntered.licencePlate);
+        vehicleExit.setDateExit(currentDate);
+        vehicleExit.setTimeExit(currentTime);
+        vehicleExit.setHoursParked(hoursParked);
+        vehicleExit.setAmountCharged(priceCharged);
     }
 
-    public VehicleHistory getVehiculoIngresado() {
-        return vehiculoIngresado;
+    private String makeExit(){
+        try{
+            calculateExit();
+            replyMessage = Messages.ErrorVehicleExit;
+            if(database.vehicleHistoryDao().update(vehicleExit)==-1){
+                return replyMessage;
+            }
+            replyMessage = Messages.ErrorVehicleExit;
+            return replyMessage;
+        }catch (Exception e){
+            Log.e("ErrorSalida",e.toString());
+            return replyMessage;
+        }
+    }
+
+    private int getDifferenceBetweenDatesHours(String dayStart, String dayEnd) throws ParseException {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        Date dateDayStart= simpleDateFormat.parse(dayStart);
+        Date dateDayEnd=  simpleDateFormat.parse(dayEnd);
+        long milliseconds = dateDayEnd.getTime() - dateDayStart.getTime();
+        return ((int) (milliseconds / (1000 * 60 * 60)));
+    }
+
+    public String isMakeExit(){
+        return makeExit();
     }
 
 }

@@ -1,11 +1,2 @@
 
-;squid:S2925w"$Remove this use of "Thread.sleep()".(òÆÇï
-;squid:S2925Q"$Remove this use of "Thread.sleep()".(òÆÇï
-;squid:S2925e"$Remove this use of "Thread.sleep()".(òÆÇï
-;squid:S29256"$Remove this use of "Thread.sleep()".(òÆÇï
-nsquid:S3578%"RRename this method name to match the regular expression: '^test[A-Z][a-zA-Z0-9]*$'(Å¼©ûüÿÿÿÿ
-;squid:S2925?"$Remove this use of "Thread.sleep()".(òÆÇï
-;squid:S2925["$Remove this use of "Thread.sleep()".(òÆÇï
-;squid:S2925n"$Remove this use of "Thread.sleep()".(òÆÇï
-;squid:S2925H"$Remove this use of "Thread.sleep()".(òÆÇï
-nsquid:S3578/"RRename this method name to match the regular expression: '^test[A-Z][a-zA-Z0-9]*$'(Á£Æÿÿÿÿÿ
+;squid:S2187"Add some tests to this class.(•ŠšÎ8ú•û„ƒ.

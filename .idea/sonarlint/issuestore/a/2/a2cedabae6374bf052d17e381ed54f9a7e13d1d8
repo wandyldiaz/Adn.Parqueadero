@@ -1,0 +1,12 @@
+
+}squid:S1450
+"ZRemove the "currentTime" field and declare it as a local variable in the relevant methods.(ºëµ³ıÿÿÿÿ8ÂÆ¨ƒ.
+xsquid:S1450	"ZRemove the "currentDate" field and declare it as a local variable in the relevant methods.(—ìáƒ8ğÒ¨ƒ.
+Ysquid:S1449"6Define the locale to be used in this String operation.(¤µ¨–ùÿÿÿÿ8¹çÒ¨ƒ.
+Osquid:S1068",Remove this unused "cylinder" private field.(®÷…¾úÿÿÿÿ8ğ­³¨ƒ.
+asquid:UnusedPrivateMethod"5Remove this unused private "validateDayEntry" method.( å†ª8¨µó¬ƒ.
+\squid:S3400-"9Remove this method and declare a constant for this value.(Ö§”Óşÿÿÿÿ8»¨è¨ƒ.
+hsquid:UnusedPrivateMethod%"7Remove this unused private "validateLimitEntry" method.(¨‹ë‰şÿÿÿÿ8¹çÒ¨ƒ.
+Rsquid:S1068
+"/Remove this unused "currentTime" private field.(ºëµ³ıÿÿÿÿ8ÂÆ¨ƒ.
+]squid:UnusedPrivateMethod*"1Remove this unused private "vehicleEntry" method.(‘Ì—8¹çÒ¨ƒ.

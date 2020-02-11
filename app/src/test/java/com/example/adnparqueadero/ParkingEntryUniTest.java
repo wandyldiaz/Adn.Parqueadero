@@ -1,7 +1,7 @@
 package com.example.adnparqueadero;
 
 import com.example.adnparqueadero.model.domain.controler_domain.DateTimeParking;
-import com.example.adnparqueadero.model.domain.controler_domain.ParkingEntry;
+import com.example.adnparqueadero.model.service.ServiceParkingEntry;
 
 import org.junit.Test;
 
@@ -14,6 +14,11 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ParkingEntryUniTest {
+    @Test
+    public void test()
+    {
+        assertEquals(3,2+1);
+    }
     /*
     @Test
     public void validacionDias()
@@ -21,7 +26,7 @@ public class ParkingEntryUniTest {
         //Arrangue
         DateTimeParking dateTimeParking=new DateTimeParking();
         String [] daysAllowed=new String[]{"Martes","Domingo","Jueves","Viernes"};
-        ParkingEntry vigilanteIngreso= new ParkingEntry(daysAllowed,"HGH333",dateTimeParking);
+        ServiceParkingEntry vigilanteIngreso= new ServiceParkingEntry(daysAllowed,"HGH333",dateTimeParking);
         //Ack y assert
         assertTrue(vigilanteIngreso.validarDiaIngreso("2020/02/01"));
         assertFalse(vigilanteIngreso.validarDiaIngreso("2020/03/01"));
@@ -39,7 +44,7 @@ public class ParkingEntryUniTest {
         //Arrangue
         String [] daysAllowed=new String[]{""};
         DateTimeParking dateTimeParking=new DateTimeParking();
-        ParkingEntry vigilanteIngreso= new ParkingEntry(daysAllowed,"HGH333",dateTimeParking);
+        ServiceParkingEntry vigilanteIngreso= new ServiceParkingEntry(daysAllowed,"HGH333",dateTimeParking);
         ///Ack
         boolean validacion=vigilanteIngreso.validarIngreso(0,0);
         // assert
@@ -53,7 +58,7 @@ public class ParkingEntryUniTest {
         //Arrangue
         String [] daysAllowed=new String[]{"Domingo"};
         DateTimeParking dateTimeParking=new DateTimeParking();
-        ParkingEntry vigilanteIngreso= new ParkingEntry(daysAllowed,"HGH333",dateTimeParking);
+        ServiceParkingEntry vigilanteIngreso= new ServiceParkingEntry(daysAllowed,"HGH333",dateTimeParking);
         //Ack
         boolean validacion=vigilanteIngreso.validarIngreso(6,
                 6);
@@ -74,7 +79,7 @@ public class ParkingEntryUniTest {
         //Arrangue
         String [] daysAllowed=new String[]{"Domingo"};
         DateTimeParking dateTimeParking=new DateTimeParking();
-        ParkingEntry vigilanteIngreso= new ParkingEntry(daysAllowed,"HGH333",dateTimeParking);
+        ServiceParkingEntry vigilanteIngreso= new ServiceParkingEntry(daysAllowed,"HGH333",dateTimeParking);
         //Ack
         boolean validacion=vigilanteIngreso.validarIngreso(5,
                 6);
