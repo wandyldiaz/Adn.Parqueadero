@@ -90,7 +90,7 @@ public class ParkingEntry {
         return replyMessage;
     }
 
-    public String getVehicleEntry(){
+    public String StartVehicleEntry(){
         return vehicleEntry();
     }
 

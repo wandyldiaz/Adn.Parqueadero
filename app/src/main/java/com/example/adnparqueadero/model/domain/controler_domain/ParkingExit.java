@@ -107,7 +107,7 @@ public class ParkingExit {
         return ((int) (milliseconds / (1000 * 60 * 60)));
     }
 
-    public String isMakeExit(){
+    public String StartMakeExit(){
         return makeExit();
     }
 
