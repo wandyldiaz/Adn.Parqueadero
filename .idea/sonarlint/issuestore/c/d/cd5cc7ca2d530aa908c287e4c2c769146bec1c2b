@@ -1,0 +1,6 @@
+
+Xsquid:S1118":Add a private constructor to hide the implicit public one.(°Ÿ–8Ïê”‡ƒ.
+~squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Îçîâşÿÿÿÿ8ºöÔ¤ƒ.
+ysquid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ıÜ¤8ºöÔ¤ƒ.
+osquid:S1694"QConvert this "BusinessModel" class to a concrete class with a private constructor(°Ÿ–8™œ†ƒ.
+}squid:S00118"^Rename this abstract class name to match the regular expression '^Abstract[A-Z][a-zA-Z0-9]*$'.(°Ÿ–8™œ†ƒ.
