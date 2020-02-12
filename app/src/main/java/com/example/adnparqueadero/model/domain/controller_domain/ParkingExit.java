@@ -3,10 +3,9 @@ package com.example.adnparqueadero.model.domain.controller_domain;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
-import com.example.adnparqueadero.model.datos.database.ParkingDatabase;
+import com.example.adnparqueadero.model.datos.database_manager.ManagerQuerys;
 import com.example.adnparqueadero.model.datos.dto.VehicleHistoryData;
 import com.example.adnparqueadero.model.datos.dto.VehicleRegisteredData;
-import com.example.adnparqueadero.model.datos.tables.VehicleHistory;
 import com.example.adnparqueadero.model.domain.class_abstracts.BusinessModel;
 import com.example.adnparqueadero.model.domain.class_abstracts.Messages;
 
@@ -18,20 +17,19 @@ import java.util.Date;
 public class ParkingExit {
 
     private VehicleHistoryData vehicleHistoryEntered;
-    private VehicleHistory vehicleExit;
     private VehicleRegisteredData vehicleRegistered;
     private String currentDate;
     private String currentTime;
     private String replyMessage;
-    private ParkingDatabase parkingDatabase;
+    private ManagerQuerys managerQuerys;
 
     public ParkingExit(VehicleHistoryData vehicleHistoryEntered, VehicleRegisteredData vehicleRegistered,
-                       String currentDate, String currentTime, ParkingDatabase parkingDatabase) {
+                       String currentDate, String currentTime, ManagerQuerys managerQuerys) {
         this.vehicleHistoryEntered = vehicleHistoryEntered;
         this.vehicleRegistered = vehicleRegistered;
         this.currentDate = currentDate;
         this.currentTime = currentTime;
-        this.parkingDatabase = parkingDatabase;
+        this.managerQuerys = managerQuerys;
     }
 
     private void calculateExit() throws ParseException {
@@ -72,22 +70,17 @@ public class ParkingExit {
             }
             priceCharged=(hoursParkedAfterDays*hourValue)+(daysParket*dayValue)+additionalValue;
         }
-        vehicleExit=new VehicleHistory();
-        vehicleExit.setIdVehicleHistory(vehicleHistoryEntered.getIdVehicleHistory());
-        vehicleExit.setDateEntry(vehicleHistoryEntered.getDateEntry());
-        vehicleExit.setTimeEntry(vehicleHistoryEntered.getTimeEntry());
-        vehicleExit.setLicencePlate(vehicleHistoryEntered.getLicencePlate());
-        vehicleExit.setDateExit(currentDate);
-        vehicleExit.setTimeExit(currentTime);
-        vehicleExit.setHoursParked(hoursParked);
-        vehicleExit.setAmountCharged(priceCharged);
+        vehicleHistoryEntered.setDateExit(currentDate);
+        vehicleHistoryEntered.setTimeExit(currentTime);
+        vehicleHistoryEntered.setHoursParked(hoursParked);
+        vehicleHistoryEntered.setAmountCharged(priceCharged);
     }
 
     private String makeExit(){
         try{
             calculateExit();
             replyMessage = Messages.ErrorVehicleExit;
-            if(parkingDatabase.vehicleHistoryDao().update(vehicleExit)==-1){
+            if(managerQuerys.update(vehicleHistoryEntered)==-1){
                 return replyMessage;
             }
             replyMessage = Messages.SuccesVehicleExit;
@@ -107,7 +100,7 @@ public class ParkingExit {
         return ((int) (milliseconds / (1000 * 60 * 60)));
     }
 
-    public String StartMakeExit(){
+    public String startMakeExit(){
         return makeExit();
     }
 

@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.adnparqueadero.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MenuPrincipal extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
