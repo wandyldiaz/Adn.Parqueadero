@@ -1,14 +1,12 @@
-package com.example.adnparqueadero.model.datos.database_manager;
+package com.example.adnparqueadero.model.data.database_manager;
 
-import com.example.adnparqueadero.model.datos.dto.VehicleHistoryData;
-import com.example.adnparqueadero.model.datos.dto.VehicleRegisteredData;
+import com.example.adnparqueadero.model.data.dto.VehicleHistoryData;
+import com.example.adnparqueadero.model.data.dto.VehicleRegisteredData;
 
 import java.util.List;
 
-public interface ManagerQuerys {
+public interface ManagerQuery {
     Long getCountVehicleEnteredType(String typeVehicle);
-
-    List<VehicleRegisteredData> getSelect();
 
     VehicleRegisteredData getSelect(String licencePlate);
 

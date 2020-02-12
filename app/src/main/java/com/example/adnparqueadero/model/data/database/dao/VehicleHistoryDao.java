@@ -1,11 +1,11 @@
-package com.example.adnparqueadero.model.datos.dao;
+package com.example.adnparqueadero.model.data.database.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
-import com.example.adnparqueadero.model.datos.dto.VehicleHistoryData;
-import com.example.adnparqueadero.model.datos.tables.VehicleHistory;
+import com.example.adnparqueadero.model.data.dto.VehicleHistoryData;
+import com.example.adnparqueadero.model.data.database.tables.VehicleHistory;
 import java.util.List;
 
 @Dao

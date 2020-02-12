@@ -1,33 +1,22 @@
-package com.example.adnparqueadero.model.datos.tables;
+package com.example.adnparqueadero.model.data.dto;
 
 import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity(tableName = "VehicleHistory")
-public class VehicleHistory {
-    @PrimaryKey(autoGenerate = true)
+public class VehicleHistoryData {
     @ColumnInfo(name = "idVehicleHistory")
     private int idVehicleHistory;
-
     @ColumnInfo(name = "licencePlate")
     private String licencePlate;
-
     @ColumnInfo(name = "dateEntry")
     private String dateEntry;
-
     @ColumnInfo(name = "timeEntry")
     private String timeEntry;
-
     @ColumnInfo(name = "dateExit")
     private String dateExit;
-
     @ColumnInfo(name = "timeExit")
     private String timeExit;
-
     @ColumnInfo(name = "hoursParked")
     private int hoursParked;
-
     @ColumnInfo(name = "amountCharged")
     private int amountCharged;
 

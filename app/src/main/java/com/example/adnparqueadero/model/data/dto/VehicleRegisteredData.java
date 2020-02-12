@@ -1,4 +1,4 @@
-package com.example.adnparqueadero.model.datos.dto;
+package com.example.adnparqueadero.model.data.dto;
 
 import androidx.room.ColumnInfo;
 

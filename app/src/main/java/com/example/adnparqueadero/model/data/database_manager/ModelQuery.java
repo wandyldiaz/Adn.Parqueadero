@@ -1,29 +1,29 @@
-package com.example.adnparqueadero.model.datos.database_manager;
+package com.example.adnparqueadero.model.data.database_manager;
 
-import com.example.adnparqueadero.model.datos.database.ParkingDatabase;
-import com.example.adnparqueadero.model.datos.dto.VehicleHistoryData;
-import com.example.adnparqueadero.model.datos.dto.VehicleRegisteredData;
-import com.example.adnparqueadero.model.datos.tables.VehicleHistory;
-import com.example.adnparqueadero.model.datos.tables.VehicleRegistered;
+import com.example.adnparqueadero.model.data.database.ParkingDatabase;
+import com.example.adnparqueadero.model.data.dto.VehicleHistoryData;
+import com.example.adnparqueadero.model.data.dto.VehicleRegisteredData;
+import com.example.adnparqueadero.model.data.database.tables.VehicleHistory;
+import com.example.adnparqueadero.model.data.database.tables.VehicleRegistered;
 
 import java.util.List;
 
-public class ModelQuerys implements  ManagerQuerys {
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
+public class ModelQuery implements ManagerQuery {
     private ParkingDatabase parkingDatabase;
     VehicleHistory vehicleHistory;
 
-    public ModelQuerys(ParkingDatabase parkingDatabase) {
+    @Inject
+    public ModelQuery(ParkingDatabase parkingDatabase) {
         this.parkingDatabase = parkingDatabase;
     }
 
     @Override
     public Long getCountVehicleEnteredType(String typeVehicle) {
         return parkingDatabase.querysDao().getCountVehicleEnteredType(typeVehicle);
-    }
-
-    @Override
-    public List<VehicleRegisteredData> getSelect() {
-        return parkingDatabase.vehicleRegisteredDao().getSelect();
     }
 
     @Override

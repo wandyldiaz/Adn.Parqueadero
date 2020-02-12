@@ -2,28 +2,29 @@ package com.example.adnparqueadero.model.domain.model;
 
 import android.util.Log;
 
-import com.example.adnparqueadero.model.datos.database.ParkingDatabase;
-import com.example.adnparqueadero.model.datos.dto.VehicleHistoryData;
-import com.example.adnparqueadero.model.datos.dto.VehicleRegisteredData;
-import com.example.adnparqueadero.model.domain.class_abstracts.Messages;
+import com.example.adnparqueadero.model.data.database_manager.ManagerQuery;
+import com.example.adnparqueadero.model.data.dto.VehicleHistoryData;
+import com.example.adnparqueadero.model.data.dto.VehicleRegisteredData;
+import com.example.adnparqueadero.model.domain.controller_domain.DateTimeParking;
 import com.example.adnparqueadero.model.domain.controller_domain.ParkingExit;
 import com.example.adnparqueadero.model.service.ServiceParkingExit;
 
 public class ParkingExitModel implements ServiceParkingExit {
-    private ParkingDatabase parkingDatabase;
+    public static final String errorVehicleNotEntered = "Error el vehiculo no esta en el parqueadero";
+    private ManagerQuery managerQuery;
     private String replyMessage;
     private VehicleHistoryData vehicleHistoryData;
     private VehicleRegisteredData vehicleRegisteredData;
 
-    public ParkingExitModel(ParkingDatabase parkingDatabase) {
-        this.parkingDatabase = parkingDatabase;
+    public ParkingExitModel(ManagerQuery managerQuery) {
+        this.managerQuery = managerQuery;
     }
 
     private  boolean validateEntered(String licencePlate){
-        replyMessage= Messages.ErrorVehicleNotEntered;
+        replyMessage= errorVehicleNotEntered;
         try{
-            vehicleRegisteredData= parkingDatabase.vehicleRegisteredDao().getSelect(licencePlate);
-            vehicleHistoryData=parkingDatabase.vehicleHistoryDao().getSelectVehicleEntered(licencePlate);
+            vehicleRegisteredData= managerQuery.getSelect(licencePlate);
+            vehicleHistoryData= managerQuery.getSelectVehicleEntered(licencePlate);
             if(vehicleHistoryData== null || vehicleRegisteredData ==null){
                 return false;
             }
@@ -36,11 +37,13 @@ public class ParkingExitModel implements ServiceParkingExit {
     }
     @Override
     public String makeExit(String licencePlate) {
+        DateTimeParking dateTimeParking =new DateTimeParking();
         ParkingExit parkingExit;
-        if(validateEntered(licencePlate))
+        if(!validateEntered(licencePlate))
             return replyMessage;
-
-
-        return replyMessage;
+        parkingExit = new ParkingExit(vehicleHistoryData, vehicleRegisteredData,
+                dateTimeParking.getCurrentDate(), dateTimeParking.getCurrentTime(),
+                managerQuery);
+        return parkingExit.startMakeExit();
     }
 }

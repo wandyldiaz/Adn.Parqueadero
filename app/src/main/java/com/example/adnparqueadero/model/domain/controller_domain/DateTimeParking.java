@@ -11,20 +11,21 @@ public class DateTimeParking {
     private static final String GMT="GMT-5";
 
     private String currentTime(){
-
         String time;
         String hour;
         String minute;
         TimeZone timeZone = TimeZone.getTimeZone(GMT);
         Calendar actualDateTime = Calendar.getInstance(timeZone);
-        hour= String.valueOf(actualDateTime.get(Calendar.HOUR_OF_DAY));
-        minute= String.valueOf(actualDateTime.get(Calendar.MINUTE));
-        if(Integer.parseInt(hour) < 10)
-            hour= "0" + hour ;
-        if(Integer.parseInt(minute) < 10)
-            minute= "0" + minute ;
+        hour= formatZero(actualDateTime.get(Calendar.HOUR_OF_DAY));
+        minute= formatZero(actualDateTime.get(Calendar.MINUTE));
         time = hour + ":" + minute;
         return time;
+    }
+
+    private String formatZero(int num){
+        if(num< 10)
+            return "0" + num ;
+        return ""+num;
     }
 
     private String currentDate(){
@@ -34,12 +35,8 @@ public class DateTimeParking {
         TimeZone timeZone = TimeZone.getTimeZone(GMT);
         Calendar actualDateTime = Calendar.getInstance(timeZone);
         year= String.valueOf(actualDateTime.get(YEAR));
-        month= String.valueOf(actualDateTime.get(MONTH) + 1);
-        day= String.valueOf(actualDateTime.get(DAY_OF_MONTH));
-        if(Integer.parseInt(month)< 10)
-            month= "0" + month ;
-        if(Integer.parseInt(day) < 10)
-            day= "0" + day ;
+        month= formatZero(actualDateTime.get(MONTH) + 1);
+        day= formatZero(actualDateTime.get(DAY_OF_MONTH));
         return (year + "/" + month + "/" + day);
     }
 
@@ -49,7 +46,7 @@ public class DateTimeParking {
         int month= Integer.parseInt(date.split("/")[1]);
         int year= Integer.parseInt(date.split("/")[0]);
         TimeZone timeZone = TimeZone.getTimeZone(GMT);
-        String dayString;
+        String dayString="";
         Calendar calendar = new GregorianCalendar(timeZone);
         calendar.set(year, month-1, day);
         int nD=calendar.get(Calendar.DAY_OF_WEEK);
@@ -67,8 +64,6 @@ public class DateTimeParking {
             dayString = "Sabado";
         } else if (nD == 1) {
             dayString = "Domingo";
-        } else{
-            dayString="";
         }
         return dayString;
     }
@@ -85,8 +80,4 @@ public class DateTimeParking {
     public String getCurrentDate() {
         return currentDate();
     }
-
-
-
-
 }
