@@ -1,8 +1,5 @@
 package com.example.adnparqueadero;
 
-import com.example.adnparqueadero.model.domain.controler_domain.DateTimeParking;
-import com.example.adnparqueadero.model.service.ServiceParkingEntry;
-
 import org.junit.Test;
 
 

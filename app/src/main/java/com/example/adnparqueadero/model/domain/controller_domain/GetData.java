@@ -1,10 +1,10 @@
-package com.example.adnparqueadero.model.domain.controler_domain;
+package com.example.adnparqueadero.model.domain.controller_domain;
 
 import com.example.adnparqueadero.model.datos.database.ParkingDatabase;
-import com.example.adnparqueadero.model.service.GetServiceData;
+import com.example.adnparqueadero.model.service.RepositoryVehicle;
 
 
-public class GetData implements GetServiceData {
+public class GetData implements RepositoryVehicle {
     private static GetData instance;
     private ParkingDatabase parkingDatabase;
 

@@ -1,9 +1,5 @@
 package com.example.adnparqueadero;
 
-import com.example.adnparqueadero.model.datos.tables.VehicleHistory;
-import com.example.adnparqueadero.model.domain.controler_domain.DateTimeParking;
-import com.example.adnparqueadero.model.domain.controler_domain.ParkingExit;
-
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -16,6 +12,11 @@ import static org.junit.Assert.assertTrue;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ParkingExitUniTest {
+    @Test
+    public void test()
+    {
+        assertEquals(3,2+1);
+    }
     /*
     @Test
     public void validacionIngresoMoto()

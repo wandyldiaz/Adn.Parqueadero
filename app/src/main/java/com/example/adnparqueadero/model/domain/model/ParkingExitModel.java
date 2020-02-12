@@ -5,8 +5,8 @@ import android.util.Log;
 import com.example.adnparqueadero.model.datos.database.ParkingDatabase;
 import com.example.adnparqueadero.model.datos.dto.VehicleHistoryData;
 import com.example.adnparqueadero.model.datos.dto.VehicleRegisteredData;
-import com.example.adnparqueadero.model.domain.ClassAbstracts.Messages;
-import com.example.adnparqueadero.model.domain.controler_domain.ParkingExit;
+import com.example.adnparqueadero.model.domain.class_abstracts.Messages;
+import com.example.adnparqueadero.model.domain.controller_domain.ParkingExit;
 import com.example.adnparqueadero.model.service.ServiceParkingExit;
 
 public class ParkingExitModel implements ServiceParkingExit {

@@ -1,4 +1,4 @@
-package com.example.adnparqueadero.model.domain.ClassAbstracts;
+package com.example.adnparqueadero.model.domain.class_abstracts;
 
 public abstract class Messages {
     //Ingreso parqueadero

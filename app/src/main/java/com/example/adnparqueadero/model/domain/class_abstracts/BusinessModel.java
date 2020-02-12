@@ -1,4 +1,4 @@
-package com.example.adnparqueadero.model.domain.ClassAbstracts;
+package com.example.adnparqueadero.model.domain.class_abstracts;
 
 public abstract class BusinessModel {
     public static final int priceHourCar =1000;

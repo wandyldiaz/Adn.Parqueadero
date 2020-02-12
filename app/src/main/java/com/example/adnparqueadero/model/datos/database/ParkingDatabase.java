@@ -3,11 +3,9 @@ package com.example.adnparqueadero.model.datos.database;
 
 import android.content.Context;
 import android.util.Log;
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-
 import com.example.adnparqueadero.model.datos.dao.QuerysDao;
 import com.example.adnparqueadero.model.datos.dao.VehicleHistoryDao;
 import com.example.adnparqueadero.model.datos.dao.VehicleRegisteredDao;

@@ -1,14 +1,14 @@
-package com.example.adnparqueadero.model.domain.controler_domain;
+package com.example.adnparqueadero.model.domain.controller_domain;
 
 import android.util.Log;
 
 import com.example.adnparqueadero.model.datos.database.ParkingDatabase;
 import com.example.adnparqueadero.model.datos.tables.VehicleHistory;
 import com.example.adnparqueadero.model.datos.tables.VehicleRegistered;
-import com.example.adnparqueadero.model.domain.ClassAbstracts.BusinessModel;
-import com.example.adnparqueadero.model.domain.ClassAbstracts.Messages;
+import com.example.adnparqueadero.model.domain.class_abstracts.BusinessModel;
+import com.example.adnparqueadero.model.domain.class_abstracts.Messages;
 
-import static com.example.adnparqueadero.model.domain.ClassAbstracts.BusinessModel.daysAllowed;
+import static com.example.adnparqueadero.model.domain.class_abstracts.BusinessModel.daysAllowed;
 
 public class ParkingEntry {
     private String licencePlate;
@@ -18,15 +18,15 @@ public class ParkingEntry {
     private String typeVehicle;
     private String replyMessage;
     private DateTimeParking dateTimeParking;
-    private ParkingDatabase database;
+    private ParkingDatabase parkingDatabase;
 
     public ParkingEntry(String licencePlate, int cylinder, String typeVehicle,
-                        DateTimeParking dateTimeParking, ParkingDatabase database) {
+                        DateTimeParking dateTimeParking, ParkingDatabase parkingDatabase) {
         this.licencePlate = licencePlate.toUpperCase();
         this.cylinder = cylinder;
         this.typeVehicle = typeVehicle;
         this.dateTimeParking = dateTimeParking;
-        this.database = database;
+        this.parkingDatabase = parkingDatabase;
     }
 
     private boolean validateDayEntry(){
@@ -54,7 +54,7 @@ public class ParkingEntry {
                 limitVehicle= (long) BusinessModel.limitMotorcycle;
             else
                 limitVehicle=(long) 0;
-            return (database.querysDao().getCountVehicleEnteredType(typeVehicle) > limitVehicle);
+            return (parkingDatabase.querysDao().getCountVehicleEnteredType(typeVehicle) > limitVehicle);
         }catch (Exception e){
             Log.e("ErrorSalida",e.toString());
             return false;
@@ -71,7 +71,7 @@ public class ParkingEntry {
             vehicleRegistered.setLicencePlate(licencePlate);
             vehicleRegistered.setTypeVehicle(typeVehicle);
             replyMessage=Messages.ErrorRegisteredVehicle;
-            if(database.vehicleRegisteredDao().insert(vehicleRegistered)==0)
+            if(parkingDatabase.vehicleRegisteredDao().insert(vehicleRegistered)==0)
                 return replyMessage;
             replyMessage=Messages.ErrorVehicleEntered;
             vehicleHistory.setLicencePlate(licencePlate);
@@ -81,7 +81,7 @@ public class ParkingEntry {
             vehicleHistory.setDateExit("");
             vehicleHistory.setHoursParked(0);
             vehicleHistory.setTimeExit("");
-            if(database.vehicleHistoryDao().insert(vehicleHistory)!=0)
+            if(parkingDatabase.vehicleHistoryDao().insert(vehicleHistory)!=0)
             replyMessage=Messages.SuccesVehicleEntry;
 
         }catch(Exception e){

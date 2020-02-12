@@ -1,4 +1,4 @@
-package com.example.adnparqueadero.model.domain.controler_domain;
+package com.example.adnparqueadero.model.domain.controller_domain;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

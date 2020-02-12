@@ -1,4 +1,4 @@
-package com.example.adnparqueadero.model.domain.controler_domain;
+package com.example.adnparqueadero.model.domain.controller_domain;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
@@ -7,8 +7,8 @@ import com.example.adnparqueadero.model.datos.database.ParkingDatabase;
 import com.example.adnparqueadero.model.datos.dto.VehicleHistoryData;
 import com.example.adnparqueadero.model.datos.dto.VehicleRegisteredData;
 import com.example.adnparqueadero.model.datos.tables.VehicleHistory;
-import com.example.adnparqueadero.model.domain.ClassAbstracts.BusinessModel;
-import com.example.adnparqueadero.model.domain.ClassAbstracts.Messages;
+import com.example.adnparqueadero.model.domain.class_abstracts.BusinessModel;
+import com.example.adnparqueadero.model.domain.class_abstracts.Messages;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,15 +23,15 @@ public class ParkingExit {
     private String currentDate;
     private String currentTime;
     private String replyMessage;
-    private ParkingDatabase database;
+    private ParkingDatabase parkingDatabase;
 
     public ParkingExit(VehicleHistoryData vehicleHistoryEntered, VehicleRegisteredData vehicleRegistered,
-                       String currentDate, String currentTime, ParkingDatabase database) {
+                       String currentDate, String currentTime, ParkingDatabase parkingDatabase) {
         this.vehicleHistoryEntered = vehicleHistoryEntered;
         this.vehicleRegistered = vehicleRegistered;
         this.currentDate = currentDate;
         this.currentTime = currentTime;
-        this.database = database;
+        this.parkingDatabase = parkingDatabase;
     }
 
     private void calculateExit() throws ParseException {
@@ -87,7 +87,7 @@ public class ParkingExit {
         try{
             calculateExit();
             replyMessage = Messages.ErrorVehicleExit;
-            if(database.vehicleHistoryDao().update(vehicleExit)==-1){
+            if(parkingDatabase.vehicleHistoryDao().update(vehicleExit)==-1){
                 return replyMessage;
             }
             replyMessage = Messages.SuccesVehicleExit;
