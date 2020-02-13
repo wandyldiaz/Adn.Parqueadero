@@ -23,7 +23,7 @@ public class ParkingEntryUniTest {
         //Arrangue
         DateTimeParking dateTimeParking=new DateTimeParking();
         String [] daysAllowed=new String[]{"Martes","Domingo","Jueves","Viernes"};
-        ParkingEntry vigilanteIngreso= new ParkingEntry(daysAllowed,"HGH333",dateTimeParking);
+        ParkingEntryAdapterInterface vigilanteIngreso= new ParkingEntryAdapterInterface(daysAllowed,"HGH333",dateTimeParking);
         //Ack y assert
         assertTrue(vigilanteIngreso.validarDiaIngreso("2020/02/01"));
         assertFalse(vigilanteIngreso.validarDiaIngreso("2020/03/01"));
@@ -41,7 +41,7 @@ public class ParkingEntryUniTest {
         //Arrangue
         String [] daysAllowed=new String[]{""};
         DateTimeParking dateTimeParking=new DateTimeParking();
-        ParkingEntry vigilanteIngreso= new ParkingEntry(daysAllowed,"HGH333",dateTimeParking);
+        ParkingEntryAdapterInterface vigilanteIngreso= new ParkingEntryAdapterInterface(daysAllowed,"HGH333",dateTimeParking);
         ///Ack
         boolean validacion=vigilanteIngreso.validarIngreso(0,0);
         // assert
@@ -55,7 +55,7 @@ public class ParkingEntryUniTest {
         //Arrangue
         String [] daysAllowed=new String[]{"Domingo"};
         DateTimeParking dateTimeParking=new DateTimeParking();
-        ParkingEntry vigilanteIngreso= new ParkingEntry(daysAllowed,"HGH333",dateTimeParking);
+        ParkingEntryAdapterInterface vigilanteIngreso= new ParkingEntryAdapterInterface(daysAllowed,"HGH333",dateTimeParking);
         //Ack
         boolean validacion=vigilanteIngreso.validarIngreso(6,
                 6);
@@ -76,7 +76,7 @@ public class ParkingEntryUniTest {
         //Arrangue
         String [] daysAllowed=new String[]{"Domingo"};
         DateTimeParking dateTimeParking=new DateTimeParking();
-        ParkingEntry vigilanteIngreso= new ParkingEntry(daysAllowed,"HGH333",dateTimeParking);
+        ParkingEntryAdapterInterface vigilanteIngreso= new ParkingEntryAdapterInterface(daysAllowed,"HGH333",dateTimeParking);
         //Ack
         boolean validacion=vigilanteIngreso.validarIngreso(5,
                 6);

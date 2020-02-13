@@ -9,19 +9,15 @@ import com.example.adnparqueadero.model.infrastructure.factory.VehicleRegistered
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
-@Singleton
 public class ParkingRepositoryImp implements ParkingRepository {
     private ParkingDatabase parkingDatabase;
-    private VehicleHistoryFactory vehicleHistoryFactory;
-    private VehicleRegisteredFactory vehicleRegisteredFactory;
+    private VehicleHistoryFactory vehicleHistoryFactory = new VehicleHistoryFactory();
+    private VehicleRegisteredFactory vehicleRegisteredFactory= new VehicleRegisteredFactory();
+
     @Inject
-    public ParkingRepositoryImp(ParkingDatabase parkingDatabase, VehicleHistoryFactory vehicleHistoryFactory,
-                                VehicleRegisteredFactory vehicleRegisteredFactory) {
+    public ParkingRepositoryImp(ParkingDatabase parkingDatabase) {
         this.parkingDatabase = parkingDatabase;
-        this.vehicleHistoryFactory = vehicleHistoryFactory;
-        this.vehicleRegisteredFactory = vehicleRegisteredFactory;
     }
 
     @Override

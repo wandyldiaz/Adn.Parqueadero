@@ -2,14 +2,13 @@ package com.example.adnparqueadero;
 
 import android.content.Context;
 
-import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.example.adnparqueadero.model.infrastructure.database.ParkingDatabase;
-import com.example.adnparqueadero.model.adapter.RepositoryVehicle;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -18,15 +17,12 @@ import com.example.adnparqueadero.model.adapter.RepositoryVehicle;
  */
 @RunWith(AndroidJUnit4.class)
 public class BdTest {
-    String[] datos;
-    String[][] datosMatriz;
-    Context appContext;
-    RepositoryVehicle controler;
+    @Test
+    private void tests(){
+        Context appContext = InstrumentationRegistry.getTargetContext();
 
-    @Before
-    public void iniciarDatos(){
-        appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        controler = com.example.adnparqueadero.model.domain.service.RepositoryVehicle.getInstance(ParkingDatabase.getInstance(appContext));
+        assertEquals("com.example.adnparqueadero", appContext.getPackageName());
     }
+
 
 }

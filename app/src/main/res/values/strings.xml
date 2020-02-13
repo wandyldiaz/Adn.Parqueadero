@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Adn.Parqueadero</string>
+    <string name="typeVehicleMotorcycle">Moto</string>
+    <string name="typeVehicleCar">Carro</string>
 </resources>

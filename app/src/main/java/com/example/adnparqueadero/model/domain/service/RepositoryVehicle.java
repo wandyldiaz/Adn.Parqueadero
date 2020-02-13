@@ -13,7 +13,7 @@ public class RepositoryVehicle{
         this.parkingRepository = parkingRepository;
     }
 
-    private String[][] vehicleEntegered(){
+    private String[][] vehicleEntered(){
         String[][] reply = new String[0][0];
         List<VehicleHistoryData> vehicleEntered = parkingRepository.getSelectVehicleEntered();
         if(!vehicleEntered.isEmpty()){
@@ -31,7 +31,7 @@ public class RepositoryVehicle{
         }
         return reply;
     }
-    public String[][] getVehicleEntegered(){
-        return vehicleEntegered();
+    public String[][] getVehicleEntered(){
+        return vehicleEntered();
     }
 }

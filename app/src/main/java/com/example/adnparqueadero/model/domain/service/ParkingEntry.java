@@ -5,19 +5,20 @@ import android.util.Log;
 import com.example.adnparqueadero.model.infrastructure.repository.ParkingRepository;
 import com.example.adnparqueadero.model.domain.models.dto.VehicleHistoryData;
 import com.example.adnparqueadero.model.domain.models.dto.VehicleRegisteredData;
-import com.example.adnparqueadero.model.domain.business_model.BusinessModel;
 
 
 public class ParkingEntry {
-    private static final String errorVehicleEntered      = "Error el vehiculo ya se encuentra en el parqueadero";
-    private static final String errorVehicleLimit        = "Error no hay cupo en el parqueadero";
-    private static final String errorVehicleDay          = "Error el vehiculo no puede ingresar el dia de hoy";
-    private static final String errorVehicleEntry        = "Error no se pudo ingresar el vehiculo";
-    private static final String errorRegisteredVehicle   = "Error no se pudo registrar el vehiculo";
-    private static final String successVehicleEntry      = "Vehiculo ingresado exitosamente";
-    private static final int limitCar = 20;
-    private static final int limitMotorcycle = 10;
-    private static final String[] daysAllowed =new String[]{"Domingo","Lunes"};
+    private static final String ERROR_VEHICLE_ENTERED = "Error el vehiculo ya se encuentra en el parqueadero";
+    private static final String ERROR_VEHICLE_LIMIT = "Error no hay cupo en el parqueadero";
+    private static final String ERROR_VEHICLE_DAY = "Error el vehiculo no puede ingresar el dia de hoy";
+    private static final String ERROR_VEHICLE_ENTRY = "Error no se pudo ingresar el vehiculo";
+    private static final String ERROR_REGISTERED_VEHICLE = "Error no se pudo registrar el vehiculo";
+    private static final String SUCCESS_VEHICLE_ENTRY = "Vehiculo ingresado exitosamente";
+    private static final String TYPE_VEHICLE_MOTORCYCLE = "Moto";
+    private static final String TYPE_VEHICLE_CAR = "Carro";
+    private static final int LIMIT_CAR = 20;
+    private static final int LIMIT_MOTORCYCLE = 10;
+    private static final String[] DAYS_ALLOWED =new String[]{"Domingo","Lunes"};
     private String currentDate;
     private String currentTime;
     private DateTimeParking dateTimeParking;
@@ -33,14 +34,14 @@ public class ParkingEntry {
     }
 
     private boolean validateDayEntry(){
-        replyMessage=errorVehicleDay;
+        replyMessage= ERROR_VEHICLE_DAY;
         currentDate = dateTimeParking.getCurrentDate();
         currentTime = dateTimeParking.getCurrentTime();
-        if(vehicleRegistered.getTypeVehicle().equals(BusinessModel.typeVehicleCar))
+        if(vehicleRegistered.getTypeVehicle().equals(TYPE_VEHICLE_CAR))
             return true;
         String currentDay = dateTimeParking.getDayWeek(currentDate);
         String lyricsLicencePlate=(""+ vehicleRegistered.getLicencePlate().charAt(0)).toUpperCase();
-        for (String day : daysAllowed) {
+        for (String day : DAYS_ALLOWED) {
             if ((!day.equals(currentDay)) && "A".equals(lyricsLicencePlate)) {
                 return false;
             }
@@ -50,15 +51,16 @@ public class ParkingEntry {
     private boolean validateLimitEntry(){
         try{
             Long limitVehicle;
-            replyMessage = errorVehicleLimit;
-            if(vehicleRegistered.getTypeVehicle().equals(BusinessModel.typeVehicleCar))
-                limitVehicle= (long) limitCar;
-            else if(vehicleRegistered.getTypeVehicle().equals(BusinessModel.typeVehicleMotorcycle))
-                limitVehicle= (long) limitMotorcycle;
+            replyMessage = ERROR_VEHICLE_LIMIT;
+            if(vehicleRegistered.getTypeVehicle().equals(TYPE_VEHICLE_CAR))
+                limitVehicle= (long) LIMIT_CAR;
+            else if(vehicleRegistered.getTypeVehicle().equals(TYPE_VEHICLE_MOTORCYCLE))
+                limitVehicle= (long) LIMIT_MOTORCYCLE;
             else
                 limitVehicle=(long) 0;
+            Log.d("LimiteVehiculo",""+limitVehicle);
             return (parkingRepository
-                    .getCountVehicleEnteredType(vehicleRegistered.getTypeVehicle()) > limitVehicle);
+                    .getCountVehicleEnteredType(vehicleRegistered.getTypeVehicle()) < limitVehicle);
         }catch (Exception e){
             Log.e("ErrorSalida",e.toString());
             return false;
@@ -70,13 +72,13 @@ public class ParkingEntry {
         try {
             if (!validateLimitEntry() || !validateDayEntry())
                 return replyMessage;
-            replyMessage=errorRegisteredVehicle;
+            replyMessage= ERROR_REGISTERED_VEHICLE;
             if(parkingRepository.insert(vehicleRegistered)==0)
                 return replyMessage;
-            replyMessage=errorVehicleEntered;
-            if(parkingRepository.getSelectVehicleEntered(vehicleRegistered.getLicencePlate())==null)
+            replyMessage= ERROR_VEHICLE_ENTERED;
+            if(parkingRepository.getSelectVehicleEntered(vehicleRegistered.getLicencePlate())!=null)
                 return replyMessage;
-            replyMessage=errorVehicleEntry;
+            replyMessage= ERROR_VEHICLE_ENTRY;
             vehicleHistory.setIdVehicleHistory(0);
             vehicleHistory.setLicencePlate(vehicleRegistered.getLicencePlate());
             vehicleHistory.setDateEntry(currentDate);
@@ -86,7 +88,7 @@ public class ParkingEntry {
             vehicleHistory.setHoursParked(0);
             vehicleHistory.setTimeExit("");
             if(parkingRepository.insert(vehicleHistory)!=0)
-                replyMessage= successVehicleEntry;
+                replyMessage= SUCCESS_VEHICLE_ENTRY;
 
         }catch(Exception e){
             Log.e("ErrorVehiculoEntrando",e.toString());
@@ -94,7 +96,7 @@ public class ParkingEntry {
         return replyMessage;
     }
 
-    public String StartVehicleEntry(){
+    public String startVehicleEntry(){
         return vehicleEntry();
     }
 

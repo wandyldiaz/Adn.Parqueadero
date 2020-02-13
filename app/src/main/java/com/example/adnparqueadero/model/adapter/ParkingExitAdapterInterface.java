@@ -1,9 +1,6 @@
 package com.example.adnparqueadero.model.adapter;
 
 
-import dagger.Component;
-
-@Component
-public interface ParkingExit {
+public interface ParkingExitAdapterInterface {
     String makeExit(String licencePlate);
 }

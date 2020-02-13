@@ -26,7 +26,7 @@ public class ParkingExitUniTest {
         vehicleHistory.setLicencePlate("HG323");
         vehicleHistory.setDateEntry("2020/02/06");
         vehicleHistory.setTimeEntry("06:43");
-        ParkingExit vigilanteParqueaderoSalida=new ParkingExit(vehicleHistory,2000,
+        ParkingExitAdapterInterface vigilanteParqueaderoSalida=new ParkingExitAdapterInterface(vehicleHistory,2000,
                 500,4000,dateTimeParking, "2020/02/06","17:15");
         assertTrue(vigilanteParqueaderoSalida.validarSalida());
         vehicleHistory =vigilanteParqueaderoSalida.getVehicleExit();
@@ -42,7 +42,7 @@ public class ParkingExitUniTest {
         vehicleHistory.setLicencePlate("HG323");
         vehicleHistory.setDateEntry("2020/02/06");
         vehicleHistory.setTimeEntry("06:43");
-        ParkingExit parkingExit=new ParkingExit(vehicleHistory,0,
+        ParkingExitAdapterInterface parkingExit=new ParkingExitAdapterInterface(vehicleHistory,0,
                 1000,8000,dateTimeParking,"2020/02/07","09:50" );
         assertTrue(parkingExit.validarSalida());
         vehicleHistory =parkingExit.getVehicleExit();

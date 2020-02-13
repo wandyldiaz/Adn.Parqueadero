@@ -1,12 +1,17 @@
 package com.example.adnparqueadero.model.adapter;
 
+import com.example.adnparqueadero.model.domain.service.ParkingEntry;
 import com.example.adnparqueadero.model.infrastructure.repository.ParkingRepository;
 import com.example.adnparqueadero.model.domain.models.dto.VehicleRegisteredData;
 import com.example.adnparqueadero.model.domain.service.DateTimeParking;
 
-public class ParkingEntryAdapter implements ParkingEntry {
+import javax.inject.Inject;
+
+public class ParkingEntryAdapter implements ParkingEntryAdapterInterface {
+
     private ParkingRepository parkingRepository;
 
+    @Inject
     public ParkingEntryAdapter(ParkingRepository parkingRepository) {
         this.parkingRepository = parkingRepository;
     }
@@ -18,7 +23,7 @@ public class ParkingEntryAdapter implements ParkingEntry {
         vehicleRegisteredData.setLicencePlate(licencePlate);
         vehicleRegisteredData.setCylinder(cylinder);
         vehicleRegisteredData.setTypeVehicle(typeVehicle);
-        com.example.adnparqueadero.model.domain.service.ParkingEntry parkingEntry = new com.example.adnparqueadero.model.domain.service.ParkingEntry(vehicleRegisteredData,dateTimeParking, parkingRepository);
-        return parkingEntry.StartVehicleEntry();
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData,dateTimeParking, parkingRepository);
+        return parkingEntry.startVehicleEntry();
     }
 }

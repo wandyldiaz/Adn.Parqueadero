@@ -1,0 +1,7 @@
+
+‚squid:S00118"^Rename this abstract class name to match the regular expression '^Abstract[A-Z][a-zA-Z0-9]*$'.(ýí’¸üÿÿÿÿ8ÏÚÜ÷ƒ.
+\squid:UselessImportCheck",Remove this unused import 'dagger.Provides'.(»¶Ž•øÿÿÿÿ8ÏçÜùƒ.
+\squid:S3340"?Reorder annotation arguments to match the order of declaration.(Â«º'8²®Çöƒ.
+_squid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Ê‰è8žè§úƒ.
+_squid:UselessImportCheck"/Remove this unused import 'androidx.room.Room'.(ý½‘‹ÿÿÿÿÿ8žè§úƒ.
+]squid:UselessImportCheck"-Remove this unused import 'android.util.Log'.(Ô¦Ø²øÿÿÿÿ8žè§úƒ.
