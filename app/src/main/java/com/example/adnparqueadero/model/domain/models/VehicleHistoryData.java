@@ -1,23 +1,14 @@
-package com.example.adnparqueadero.model.domain.models.dto;
-
-import androidx.room.ColumnInfo;
+package com.example.adnparqueadero.model.domain.models;
 
 public class VehicleHistoryData {
-    @ColumnInfo(name = "idVehicleHistory")
+
     private int idVehicleHistory;
-    @ColumnInfo(name = "licencePlate")
     private String licencePlate;
-    @ColumnInfo(name = "dateEntry")
     private String dateEntry;
-    @ColumnInfo(name = "timeEntry")
     private String timeEntry;
-    @ColumnInfo(name = "dateExit")
     private String dateExit;
-    @ColumnInfo(name = "timeExit")
     private String timeExit;
-    @ColumnInfo(name = "hoursParked")
     private int hoursParked;
-    @ColumnInfo(name = "amountCharged")
     private int amountCharged;
 
     public void setIdVehicleHistory(int idVehicleHistory) {

@@ -9,8 +9,8 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.adnparqueadero.R;
-import com.example.adnparqueadero.view_model.CallbackString;
-import com.example.adnparqueadero.view_model.ParkingEntryViewModel;
+import com.example.adnparqueadero.viewmodel.CallbackString;
+import com.example.adnparqueadero.viewmodel.ParkingEntryViewModel;
 
 public class ParkingEntryActivity extends AppCompatActivity {
 

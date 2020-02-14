@@ -1,55 +1,56 @@
-package com.example.adnparqueadero.model.domain.service;
+package com.example.adnparqueadero.model.domain;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
+
 import static java.util.Calendar.DAY_OF_MONTH;
 import static java.util.Calendar.MONTH;
 import static java.util.Calendar.YEAR;
 
 public class DateTimeParking {
-    private static final String GMT="GMT-5";
 
-    private String currentTime(){
+    private static final String GMT = "GMT-5";
+
+    private String currentTime() {
         String time;
         String hour;
         String minute;
         TimeZone timeZone = TimeZone.getTimeZone(GMT);
         Calendar actualDateTime = Calendar.getInstance(timeZone);
-        hour= formatZero(actualDateTime.get(Calendar.HOUR_OF_DAY));
-        minute= formatZero(actualDateTime.get(Calendar.MINUTE));
+        hour = formatZero(actualDateTime.get(Calendar.HOUR_OF_DAY));
+        minute = formatZero(actualDateTime.get(Calendar.MINUTE));
         time = hour + ":" + minute;
         return time;
     }
 
-    private String formatZero(int num){
-        if(num< 10)
-            return "0" + num ;
-        return ""+num;
+    private String formatZero(int num) {
+        if (num < 10)
+            return "0" + num;
+        return "" + num;
     }
 
-    private String currentDate(){
+    private String currentDate() {
         String day;
         String month;
         String year;
         TimeZone timeZone = TimeZone.getTimeZone(GMT);
         Calendar actualDateTime = Calendar.getInstance(timeZone);
-        year= String.valueOf(actualDateTime.get(YEAR));
-        month= formatZero(actualDateTime.get(MONTH) + 1);
-        day= formatZero(actualDateTime.get(DAY_OF_MONTH));
+        year = String.valueOf(actualDateTime.get(YEAR));
+        month = formatZero(actualDateTime.get(MONTH) + 1);
+        day = formatZero(actualDateTime.get(DAY_OF_MONTH));
         return (year + "/" + month + "/" + day);
     }
 
-    private String dayOfWeek(String date)
-    {
-        int day= Integer.parseInt(date.split("/")[2]);
-        int month= Integer.parseInt(date.split("/")[1]);
-        int year= Integer.parseInt(date.split("/")[0]);
+    private String dayOfWeek(String date) {
+        int day = Integer.parseInt(date.split("/")[2]);
+        int month = Integer.parseInt(date.split("/")[1]);
+        int year = Integer.parseInt(date.split("/")[0]);
         TimeZone timeZone = TimeZone.getTimeZone(GMT);
-        String dayString="";
+        String dayString = "";
         Calendar calendar = new GregorianCalendar(timeZone);
-        calendar.set(year, month-1, day);
-        int nD=calendar.get(Calendar.DAY_OF_WEEK);
+        calendar.set(year, month - 1, day);
+        int nD = calendar.get(Calendar.DAY_OF_WEEK);
         if (nD == 2) {
             dayString = "Lunes";
         } else if (nD == 3) {

@@ -1,13 +1,9 @@
-package com.example.adnparqueadero.model.domain.models.dto;
-
-import androidx.room.ColumnInfo;
+package com.example.adnparqueadero.model.domain.models;
 
 public class VehicleRegisteredData {
-    @ColumnInfo(name = "licencePlate")
+
     private String licencePlate;
-    @ColumnInfo(name = "typeVehicle")
     private String typeVehicle;
-    @ColumnInfo(name = "cylinder")
     private int cylinder;
 
     public String getLicencePlate() {

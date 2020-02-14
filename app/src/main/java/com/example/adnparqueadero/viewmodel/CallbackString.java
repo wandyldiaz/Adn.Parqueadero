@@ -1,4 +1,4 @@
-package com.example.adnparqueadero.view_model;
+package com.example.adnparqueadero.viewmodel;
 
 public interface CallbackString {
     void response(String reply);

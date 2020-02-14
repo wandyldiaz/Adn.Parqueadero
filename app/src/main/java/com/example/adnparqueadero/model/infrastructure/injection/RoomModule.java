@@ -11,7 +11,7 @@ import com.example.adnparqueadero.model.adapter.ParkingExitAdapterInterface;
 import com.example.adnparqueadero.model.adapter.RepositoryVehicleAdapter;
 import com.example.adnparqueadero.model.adapter.RepositoryVehicleAdapterInterface;
 import com.example.adnparqueadero.model.infrastructure.database.ParkingDatabase;
-import com.example.adnparqueadero.model.infrastructure.repository.ParkingRepository;
+import com.example.adnparqueadero.model.domain.repository.ParkingRepository;
 import com.example.adnparqueadero.model.infrastructure.repository.ParkingRepositoryImp;
 
 import javax.inject.Singleton;
@@ -21,7 +21,7 @@ import dagger.Provides;
 
 @Module
 public class RoomModule {
-    private  static final String DB_NAME="parking_db";
+    private static final String DB_NAME = "parking_db";
     private ParkingDatabase parkingDatabase;
 
     public RoomModule(Application myApplication) {
@@ -40,7 +40,6 @@ public class RoomModule {
     ParkingRepository parkingRepository(ParkingDatabase parkingDatabase) {
         return new ParkingRepositoryImp(parkingDatabase);
     }
-
 
     @Singleton
     @Provides

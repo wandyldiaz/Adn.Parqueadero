@@ -2,7 +2,7 @@ package com.example.adnparqueadero.model.adapter;
 
 
 import com.example.adnparqueadero.model.domain.service.RepositoryVehicle;
-import com.example.adnparqueadero.model.infrastructure.repository.ParkingRepository;
+import com.example.adnparqueadero.model.domain.repository.ParkingRepository;
 
 import javax.inject.Inject;
 

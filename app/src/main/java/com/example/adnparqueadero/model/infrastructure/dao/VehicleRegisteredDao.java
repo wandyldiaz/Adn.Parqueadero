@@ -1,12 +1,12 @@
-package com.example.adnparqueadero.model.domain.dao;
+package com.example.adnparqueadero.model.infrastructure.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.adnparqueadero.model.domain.models.dto.VehicleRegisteredData;
-import com.example.adnparqueadero.model.domain.models.entity.VehicleRegistered;
+import com.example.adnparqueadero.model.domain.models.VehicleRegisteredData;
+import com.example.adnparqueadero.model.infrastructure.entity.VehicleRegistered;
 
 @Dao
 public interface VehicleRegisteredDao {

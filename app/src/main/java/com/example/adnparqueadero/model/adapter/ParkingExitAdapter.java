@@ -2,8 +2,8 @@ package com.example.adnparqueadero.model.adapter;
 
 
 import com.example.adnparqueadero.model.domain.service.ParkingExit;
-import com.example.adnparqueadero.model.infrastructure.repository.ParkingRepository;
-import com.example.adnparqueadero.model.domain.service.DateTimeParking;
+import com.example.adnparqueadero.model.domain.repository.ParkingRepository;
+import com.example.adnparqueadero.model.domain.DateTimeParking;
 
 import javax.inject.Inject;
 

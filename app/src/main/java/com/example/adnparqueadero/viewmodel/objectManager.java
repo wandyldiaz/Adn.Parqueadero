@@ -1,4 +1,4 @@
-package com.example.adnparqueadero.view_model;
+package com.example.adnparqueadero.viewmodel;
 
 import com.example.adnparqueadero.model.adapter.ParkingEntryAdapterInterface;
 import com.example.adnparqueadero.model.adapter.ParkingExitAdapterInterface;
@@ -6,7 +6,6 @@ import com.example.adnparqueadero.model.adapter.RepositoryVehicleAdapterInterfac
 
 
 public class objectManager {
-
     public static ParkingEntryAdapterInterface parkingEntryAdapterInterface;
     public static ParkingExitAdapterInterface parkingExitAdapterInterface;
     public static RepositoryVehicleAdapterInterface repositoryVehicleAdapterInterface;

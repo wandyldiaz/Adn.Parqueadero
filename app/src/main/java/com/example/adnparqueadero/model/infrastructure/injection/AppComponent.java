@@ -7,8 +7,8 @@ import com.example.adnparqueadero.model.adapter.ParkingEntryAdapterInterface;
 import com.example.adnparqueadero.model.adapter.ParkingExitAdapterInterface;
 import com.example.adnparqueadero.model.adapter.RepositoryVehicleAdapterInterface;
 import com.example.adnparqueadero.model.infrastructure.database.ParkingDatabase;
-import com.example.adnparqueadero.model.infrastructure.repository.ParkingRepository;
-import com.example.adnparqueadero.view.MainMenu;
+import com.example.adnparqueadero.model.domain.repository.ParkingRepository;
+import com.example.adnparqueadero.view.MainMenuActivity;
 
 import javax.inject.Singleton;
 
@@ -18,7 +18,7 @@ import dagger.Component;
 @Component(dependencies = {}, modules = {AppModule.class, RoomModule.class})
 public interface AppComponent {
 
-    void inject(MainMenu mainActivity);
+    void inject(MainMenuActivity mainActivity);
 
     ParkingDatabase parkingDatabase();
 

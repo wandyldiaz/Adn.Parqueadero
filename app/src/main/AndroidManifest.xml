@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".view.ParkingExitActivity"></activity>
         <activity android:name=".view.ParkingEntryActivity" />
-        <activity android:name=".view.MainMenu">
+        <activity android:name=".view.MainMenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

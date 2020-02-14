@@ -1,38 +1,44 @@
-package com.example.adnparqueadero.view_model;
+package com.example.adnparqueadero.viewmodel;
+
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import androidx.lifecycle.ViewModel;
-
 import com.example.adnparqueadero.R;
-import com.example.adnparqueadero.model.adapter.RepositoryVehicleAdapterInterface;
+import com.example.adnparqueadero.model.adapter.ParkingEntryAdapterInterface;
 
-import javax.inject.Inject;
 
-public class RepositoryVehicleViewModel  extends AsyncTask<String, String, String> {
+/**
+ * Created by Wandyl Diaz 07/08/2015
+ */
+public class ParkingEntryViewModel extends AsyncTask<String, String, String> {
 
 
     private Context context;
     private CallbackString callback;
     private ProgressDialog pd;
     private String licencePlate;
-    RepositoryVehicleAdapterInterface repositoryVehicleAdapterInterface;
+    private String typeVehicle;
+    private int cylinder;
+    ParkingEntryAdapterInterface parkingEntryAdapterInterface;
 
     /**
      * @param ctx
-     * @param callback
      * @param licencePlate
+     * @param typeVehicle
+     * @param cylinder
+     * @param callback
      */
-    public RepositoryVehicleViewModel(Context ctx,  String licencePlate, CallbackString callback) {
+    public ParkingEntryViewModel(Context ctx, String licencePlate, String typeVehicle, int cylinder,
+                                 CallbackString callback) {
         this.callback = callback;
         this.context = ctx;
         this.licencePlate = licencePlate;
+        this.typeVehicle = typeVehicle;
+        this.cylinder = cylinder;
     }
-
-
 
     @Override
     protected void onPreExecute() {
@@ -46,19 +52,12 @@ public class RepositoryVehicleViewModel  extends AsyncTask<String, String, Strin
     }
     @Override
     protected String doInBackground(String... strings) {
-
-
-
-
-        return "";
-
-
+        return objectManager.parkingEntryAdapterInterface.VehicleEntry(licencePlate,cylinder,typeVehicle);
     }
     @Override
     protected void onPostExecute(String Response) {
         super.onPostExecute(Response);
         try {
-
             if (pd != null && pd.isShowing())
                 pd.dismiss();
 
@@ -69,3 +68,5 @@ public class RepositoryVehicleViewModel  extends AsyncTask<String, String, Strin
         }
     }
 }
+
+

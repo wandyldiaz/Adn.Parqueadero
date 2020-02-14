@@ -1,4 +1,4 @@
-package com.example.adnparqueadero.model.domain.dao;
+package com.example.adnparqueadero.model.infrastructure.dao;
 
 import androidx.room.Dao;
 import androidx.room.Query;

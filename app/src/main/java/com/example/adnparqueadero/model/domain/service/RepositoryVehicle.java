@@ -1,8 +1,8 @@
 package com.example.adnparqueadero.model.domain.service;
 
 
-import com.example.adnparqueadero.model.infrastructure.repository.ParkingRepository;
-import com.example.adnparqueadero.model.domain.models.dto.VehicleHistoryData;
+import com.example.adnparqueadero.model.domain.repository.ParkingRepository;
+import com.example.adnparqueadero.model.domain.models.VehicleHistoryData;
 
 import java.util.List;
 

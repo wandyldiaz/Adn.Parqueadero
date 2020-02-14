@@ -1,8 +1,8 @@
 package com.example.adnparqueadero.model.infrastructure.factory;
 
 
-import com.example.adnparqueadero.model.domain.models.dto.VehicleRegisteredData;
-import com.example.adnparqueadero.model.domain.models.entity.VehicleRegistered;
+import com.example.adnparqueadero.model.domain.models.VehicleRegisteredData;
+import com.example.adnparqueadero.model.infrastructure.entity.VehicleRegistered;
 
 public class VehicleRegisteredFactory {
     public VehicleRegistered create(VehicleRegisteredData vehicleRegisteredData){

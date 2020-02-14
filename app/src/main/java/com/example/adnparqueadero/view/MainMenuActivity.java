@@ -14,11 +14,12 @@ import com.example.adnparqueadero.model.adapter.RepositoryVehicleAdapterInterfac
 import com.example.adnparqueadero.model.infrastructure.injection.AppModule;
 import com.example.adnparqueadero.model.infrastructure.injection.DaggerAppComponent;
 import com.example.adnparqueadero.model.infrastructure.injection.RoomModule;
-import com.example.adnparqueadero.view_model.objectManager;
+import com.example.adnparqueadero.viewmodel.objectManager;
 
 import javax.inject.Inject;
 
-public class MainMenu extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity {
+
     @Inject
     ParkingEntryAdapterInterface parkingEntryAdapterInterface;
     @Inject
@@ -36,9 +37,10 @@ public class MainMenu extends AppCompatActivity {
                 .roomModule(new RoomModule(getApplication()))
                 .build()
                 .inject(this);
-        objectManager.parkingEntryAdapterInterface=parkingEntryAdapterInterface;
-        objectManager.parkingExitAdapterInterface=parkingExitAdapterInterface;
-        objectManager.repositoryVehicleAdapterInterface=repositoryVehicleAdapterInterface;
+
+        objectManager.parkingEntryAdapterInterface = parkingEntryAdapterInterface;
+        objectManager.parkingExitAdapterInterface = parkingExitAdapterInterface;
+        objectManager.repositoryVehicleAdapterInterface = repositoryVehicleAdapterInterface;
 
     }
 
@@ -53,7 +55,7 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void close(View view) {
-        ActivityCompat.finishAffinity(MainMenu.this);
+        ActivityCompat.finishAffinity(MainMenuActivity.this);
         finish();
         System.exit(0);
     }

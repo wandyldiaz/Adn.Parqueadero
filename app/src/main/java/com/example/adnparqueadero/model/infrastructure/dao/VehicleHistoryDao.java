@@ -1,11 +1,13 @@
-package com.example.adnparqueadero.model.domain.dao;
+package com.example.adnparqueadero.model.infrastructure.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
-import com.example.adnparqueadero.model.domain.models.dto.VehicleHistoryData;
-import com.example.adnparqueadero.model.domain.models.entity.VehicleHistory;
+
+import com.example.adnparqueadero.model.domain.models.VehicleHistoryData;
+import com.example.adnparqueadero.model.infrastructure.entity.VehicleHistory;
+
 import java.util.List;
 
 @Dao
@@ -18,7 +20,6 @@ public interface VehicleHistoryDao {
     @Query("SELECT idVehicleHistory, licencePlate, dateEntry, timeEntry, dateExit, timeExit, hoursParked, amountCharged " +
             "FROM vehicleHistory where dateExit == \"\"")
     List<VehicleHistoryData> getSelectVehicleEntered();
-
 
     @Insert
     Long insert(VehicleHistory vehicleHistory);

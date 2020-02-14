@@ -1,8 +1,9 @@
 package com.example.adnparqueadero.model.infrastructure.repository;
 
+import com.example.adnparqueadero.model.domain.repository.ParkingRepository;
 import com.example.adnparqueadero.model.infrastructure.database.ParkingDatabase;
-import com.example.adnparqueadero.model.domain.models.dto.VehicleHistoryData;
-import com.example.adnparqueadero.model.domain.models.dto.VehicleRegisteredData;
+import com.example.adnparqueadero.model.domain.models.VehicleHistoryData;
+import com.example.adnparqueadero.model.domain.models.VehicleRegisteredData;
 import com.example.adnparqueadero.model.infrastructure.factory.VehicleHistoryFactory;
 import com.example.adnparqueadero.model.infrastructure.factory.VehicleRegisteredFactory;
 
@@ -11,7 +12,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class ParkingRepositoryImp implements ParkingRepository {
+
     private ParkingDatabase parkingDatabase;
+    //Cambiar los factry que no es por un patron de diseño
     private VehicleHistoryFactory vehicleHistoryFactory = new VehicleHistoryFactory();
     private VehicleRegisteredFactory vehicleRegisteredFactory= new VehicleRegisteredFactory();
 

@@ -3,9 +3,9 @@ package com.example.adnparqueadero.model.domain.service;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
-import com.example.adnparqueadero.model.domain.models.dto.VehicleHistoryData;
-import com.example.adnparqueadero.model.infrastructure.repository.ParkingRepository;
-import com.example.adnparqueadero.model.domain.models.dto.VehicleRegisteredData;
+import com.example.adnparqueadero.model.domain.models.VehicleHistoryData;
+import com.example.adnparqueadero.model.domain.repository.ParkingRepository;
+import com.example.adnparqueadero.model.domain.models.VehicleRegisteredData;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

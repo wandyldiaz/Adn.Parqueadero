@@ -8,8 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.adnparqueadero.R;
-import com.example.adnparqueadero.view_model.CallbackString;
-import com.example.adnparqueadero.view_model.ParkingExitViewModel;
+import com.example.adnparqueadero.viewmodel.CallbackString;
+import com.example.adnparqueadero.viewmodel.ParkingExitViewModel;
 
 public class ParkingExitActivity extends AppCompatActivity {
 

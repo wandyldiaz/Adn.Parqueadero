@@ -1,7 +1,7 @@
 package com.example.adnparqueadero.model.infrastructure.factory;
 
-import com.example.adnparqueadero.model.domain.models.dto.VehicleHistoryData;
-import com.example.adnparqueadero.model.domain.models.entity.VehicleHistory;
+import com.example.adnparqueadero.model.domain.models.VehicleHistoryData;
+import com.example.adnparqueadero.model.infrastructure.entity.VehicleHistory;
 
 public class VehicleHistoryFactory {
 

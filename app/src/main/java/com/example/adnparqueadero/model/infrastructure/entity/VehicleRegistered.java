@@ -1,4 +1,4 @@
-package com.example.adnparqueadero.model.domain.models.entity;
+package com.example.adnparqueadero.model.infrastructure.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
