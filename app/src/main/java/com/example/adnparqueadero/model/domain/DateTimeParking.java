@@ -8,9 +8,11 @@ import static java.util.Calendar.DAY_OF_MONTH;
 import static java.util.Calendar.MONTH;
 import static java.util.Calendar.YEAR;
 
-public class DateTimeParking {
+public class DateTimeParking implements DateTimeInterface{
 
     private static final String GMT = "GMT-5";
+    private static final String [] dayString={"Domingo", "Lunes", "Martes", "Miercoles",
+            "Jueves","Viernes", "Sabado"};
 
     private String currentTime() {
         String time;
@@ -43,7 +45,6 @@ public class DateTimeParking {
     }
 
     private String dayOfWeek(String date) {
-        String [] dayString={"", "Domingo", "Lunes", "Martes", "Miercoles", "Jueves","Viernes", "Sabado"};
         int day = Integer.parseInt(date.split("/")[2]);
         int month = Integer.parseInt(date.split("/")[1]);
         int year = Integer.parseInt(date.split("/")[0]);
@@ -51,18 +52,20 @@ public class DateTimeParking {
         Calendar calendar = new GregorianCalendar(timeZone);
         calendar.set(year, month - 1, day);
         int numDay = calendar.get(Calendar.DAY_OF_WEEK);
-        return dayString[numDay];
+        return dayString[numDay-1];
     }
 
-
+    @Override
     public String getDayWeek(String date) {
         return dayOfWeek(date);
     }
 
+    @Override
     public String getCurrentTime() {
         return currentTime();
     }
 
+    @Override
     public String getCurrentDate() {
         return currentDate();
     }

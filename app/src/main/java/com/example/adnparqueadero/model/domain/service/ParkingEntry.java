@@ -2,7 +2,7 @@ package com.example.adnparqueadero.model.domain.service;
 
 import android.util.Log;
 
-import com.example.adnparqueadero.model.domain.DateTimeParking;
+import com.example.adnparqueadero.model.domain.DateTimeInterface;
 import com.example.adnparqueadero.model.domain.repository.ParkingRepository;
 import com.example.adnparqueadero.model.domain.models.VehicleHistoryData;
 import com.example.adnparqueadero.model.domain.models.VehicleRegisteredData;
@@ -25,14 +25,15 @@ public class ParkingEntry {
     private static final String[] DAYS_ALLOWED = new String[]{"Domingo", "Lunes"};
     private String currentDate;
     private String currentTime;
-    private DateTimeParking dateTimeParking;
+    private DateTimeInterface dateTimeParking;
     private VehicleRegisteredData vehicleRegistered;
     private String replyMessage;
     private ParkingRepository parkingRepository;
 
-    public ParkingEntry(VehicleRegisteredData vehicleRegistered, ParkingRepository parkingRepository) {
+    public ParkingEntry(VehicleRegisteredData vehicleRegistered, ParkingRepository parkingRepository,
+                        DateTimeInterface dateTimeParking) {
         this.vehicleRegistered = vehicleRegistered;
-        this.dateTimeParking = new DateTimeParking();
+        this.dateTimeParking = dateTimeParking;
         this.parkingRepository = parkingRepository;
     }
 

@@ -1,9 +1,9 @@
-package com.example.adnparqueadero.model.infrastructure.factory;
+package com.example.adnparqueadero.model.infrastructure.builder;
 
 import com.example.adnparqueadero.model.domain.models.VehicleHistoryData;
 import com.example.adnparqueadero.model.infrastructure.entity.VehicleHistory;
 
-public class VehicleHistoryFactory {
+public class VehicleHistoryBuilder {
 
     public VehicleHistory create(VehicleHistoryData vehicleHistoryData){
         VehicleHistory vehicleHistory = new VehicleHistory();

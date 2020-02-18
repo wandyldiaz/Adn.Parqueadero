@@ -10,8 +10,10 @@ import com.example.adnparqueadero.model.adapter.ParkingExitAdapter;
 import com.example.adnparqueadero.model.adapter.ParkingExitAdapterInterface;
 import com.example.adnparqueadero.model.adapter.RepositoryVehicleAdapter;
 import com.example.adnparqueadero.model.adapter.RepositoryVehicleAdapterInterface;
-import com.example.adnparqueadero.model.infrastructure.database.ParkingDatabase;
+import com.example.adnparqueadero.model.domain.DateTimeInterface;
+import com.example.adnparqueadero.model.domain.DateTimeParking;
 import com.example.adnparqueadero.model.domain.repository.ParkingRepository;
+import com.example.adnparqueadero.model.infrastructure.database.ParkingDatabase;
 import com.example.adnparqueadero.model.infrastructure.repository.ParkingRepositoryImp;
 import com.example.adnparqueadero.viewmodel.ViewModelParkingEntered;
 import com.example.adnparqueadero.viewmodel.ViewModelParkingEntry;
@@ -46,14 +48,20 @@ public class RoomModule {
 
     @Singleton
     @Provides
-    ParkingEntryAdapterInterface parkingEntryAdapter(ParkingRepository parkingRepository) {
-        return new ParkingEntryAdapter(parkingRepository);
+    DateTimeInterface dateTimeParking() {
+        return new DateTimeParking();
     }
 
     @Singleton
     @Provides
-    ParkingExitAdapterInterface parkingExitAdapter(ParkingRepository parkingRepository) {
-        return new ParkingExitAdapter(parkingRepository);
+    ParkingEntryAdapterInterface parkingEntryAdapter(ParkingRepository parkingRepository, DateTimeInterface dateTimeParking) {
+        return new ParkingEntryAdapter(parkingRepository, dateTimeParking);
+    }
+
+    @Singleton
+    @Provides
+    ParkingExitAdapterInterface parkingExitAdapter(ParkingRepository parkingRepository, DateTimeInterface dateTimeParking) {
+        return new ParkingExitAdapter(parkingRepository, dateTimeParking);
     }
 
     @Singleton
