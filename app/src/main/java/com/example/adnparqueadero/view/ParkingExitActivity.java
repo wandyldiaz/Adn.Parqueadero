@@ -26,8 +26,8 @@ public class ParkingExitActivity extends MainActivity {
             @Override
             public void onChanged(@Nullable final String result) {
                 // Update the UI, in this case, a TextView.
-                butMakeExit.setVisibility(View.VISIBLE);
                 Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                cleanViews();
             }
         };
         viewModelParkingExit.getLiveDataResult().observe(this, entryResultObserver);
@@ -52,6 +52,11 @@ public class ParkingExitActivity extends MainActivity {
     private void mapViews() {
         etLicencePlate = findViewById(R.id.etLicencePlate);
         butMakeExit = findViewById(R.id.btnMakeExit);
+    }
+
+    private void cleanViews(){
+        etLicencePlate.setText("");
+        butMakeExit.setVisibility(View.VISIBLE);
     }
 
 }

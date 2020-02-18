@@ -31,6 +31,7 @@ public class ParkingEnteredActivity extends MainActivity {
             }
         };
         viewModelParkingEntered.getLiveDataResult().observe(this,entryResultObserver );
+        fillRecycler();
     }
 
     private void mapsView(){
@@ -38,10 +39,17 @@ public class ParkingEnteredActivity extends MainActivity {
     }
 
     private void fillRecycler(){
+        RecyclerAdapter adapter;
         rvVehicleEntered.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvVehicleEntered.setLayoutManager(linearLayoutManager);
-        RecyclerAdapter adapter= new RecyclerAdapter(matrizVechicleEntered.clone(),R.layout.item);
+        if(matrizVechicleEntered.length>0)
+            adapter= new RecyclerAdapter(matrizVechicleEntered,R.layout.vehicle_item);
+        else
+        {
+            matrizVechicleEntered=new String[1][0];
+            adapter= new RecyclerAdapter(matrizVechicleEntered,R.layout.empty_view);
+        }
         rvVehicleEntered.setAdapter(adapter);
     }
 

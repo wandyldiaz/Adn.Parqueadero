@@ -18,7 +18,7 @@ public interface VehicleHistoryDao {
     VehicleHistoryData getSelectVehicleEntered(String licencePlate);
 
     @Query("SELECT idVehicleHistory, licencePlate, dateEntry, timeEntry, dateExit, timeExit, hoursParked, amountCharged " +
-            "FROM vehicleHistory where dateExit == \"\"")
+            "FROM vehicleHistory where dateExit == \"\" order by idVehicleHistory desc ")
     List<VehicleHistoryData> getSelectVehicleEntered();
 
     @Insert

@@ -2,4 +2,5 @@
     <string name="app_name">Adn.Parqueadero</string>
     <string name="typeVehicleMotorcycle">Moto</string>
     <string name="typeVehicleCar">Carro</string>
+    <string name="list_is_empty">List is empty</string>
 </resources>

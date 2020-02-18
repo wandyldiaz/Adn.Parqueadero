@@ -91,7 +91,7 @@ public class ParkingExit {
             priceCharged=dayValue+additionalValue;
         }
         else if(hoursParked<9){
-            priceCharged=(hourValue*hoursParked)+additionalValue;
+            priceCharged=(hourValue*(hoursParked>0?hoursParked:1))+additionalValue;
         }
         else{
             daysParked=(hoursParked/24);

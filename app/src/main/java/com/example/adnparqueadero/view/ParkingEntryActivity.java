@@ -33,8 +33,8 @@ public class ParkingEntryActivity extends MainActivity {
             @Override
             public void onChanged(@Nullable final String result) {
                 // Update the UI, in this case, a TextView.
-                butEntry.setVisibility(View.VISIBLE);
                 Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                cleanViews();
             }
         };
         viewModelParkingEntry.getLiveDataResult().observe(this, entryResultObserver);
@@ -87,5 +87,13 @@ public class ParkingEntryActivity extends MainActivity {
         rbMotorcycle = findViewById(R.id.rbMotorcycle);
         butEntry = findViewById(R.id.btnParkingEntry);
     }
+    private void cleanViews(){
+        etLicencePlate.setText("");
+        etCylinder.setText("");
+        rbCar.setChecked(false);
+        rbMotorcycle.setChecked(false);
+        butEntry.setVisibility(View.VISIBLE);
+    }
+
 
 }

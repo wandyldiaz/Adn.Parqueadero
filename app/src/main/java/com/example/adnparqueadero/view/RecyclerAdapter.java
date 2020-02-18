@@ -1,6 +1,7 @@
 package com.example.adnparqueadero.view;
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -28,9 +29,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<VehicleViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final VehicleViewHolder holder, final int position) {
-        holder.licencePlate.setText(vehicleEntered[position][1]);
-        holder.dateEntry.setText(vehicleEntered[position][2]);
-        holder.hourEntry.setText(vehicleEntered[position][3]);
+        try{
+            holder.licencePlate.setText(vehicleEntered[position][1]);
+            holder.dateEntry.setText(vehicleEntered[position][2]);
+            holder.hourEntry.setText(vehicleEntered[position][3]);
+        }catch (Exception e){
+            Log.e("Datos vacios",e.toString());
+        }
 
     }
 
