@@ -43,30 +43,15 @@ public class DateTimeParking {
     }
 
     private String dayOfWeek(String date) {
+        String [] dayString={"", "Domingo", "Lunes", "Martes", "Miercoles", "Jueves","Viernes", "Sabado"};
         int day = Integer.parseInt(date.split("/")[2]);
         int month = Integer.parseInt(date.split("/")[1]);
         int year = Integer.parseInt(date.split("/")[0]);
         TimeZone timeZone = TimeZone.getTimeZone(GMT);
-        String dayString = "";
         Calendar calendar = new GregorianCalendar(timeZone);
         calendar.set(year, month - 1, day);
-        int nD = calendar.get(Calendar.DAY_OF_WEEK);
-        if (nD == 2) {
-            dayString = "Lunes";
-        } else if (nD == 3) {
-            dayString = "Martes";
-        } else if (nD == 4) {
-            dayString = "Miercoles";
-        } else if (nD == 5) {
-            dayString = "Jueves";
-        } else if (nD == 6) {
-            dayString = "Viernes";
-        } else if (nD == 7) {
-            dayString = "Sabado";
-        } else if (nD == 1) {
-            dayString = "Domingo";
-        }
-        return dayString;
+        int numDay = calendar.get(Calendar.DAY_OF_WEEK);
+        return dayString[numDay];
     }
 
 
