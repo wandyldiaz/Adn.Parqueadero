@@ -13,6 +13,9 @@ import com.example.adnparqueadero.model.adapter.RepositoryVehicleAdapterInterfac
 import com.example.adnparqueadero.model.infrastructure.database.ParkingDatabase;
 import com.example.adnparqueadero.model.domain.repository.ParkingRepository;
 import com.example.adnparqueadero.model.infrastructure.repository.ParkingRepositoryImp;
+import com.example.adnparqueadero.viewmodel.ViewModelParkingEntered;
+import com.example.adnparqueadero.viewmodel.ViewModelParkingEntry;
+import com.example.adnparqueadero.viewmodel.ViewModelParkingExit;
 
 import javax.inject.Singleton;
 
@@ -59,4 +62,21 @@ public class RoomModule {
         return new RepositoryVehicleAdapter(parkingRepository);
     }
 
+    @Singleton
+    @Provides
+    ViewModelParkingEntry viewModelParkingEntry(ParkingEntryAdapterInterface parkingEntryAdapterInterface) {
+        return new ViewModelParkingEntry(parkingEntryAdapterInterface);
+    }
+
+    @Singleton
+    @Provides
+    ViewModelParkingExit viewModelParkingExit(ParkingExitAdapterInterface parkingExitAdapterInterface) {
+        return new ViewModelParkingExit(parkingExitAdapterInterface);
+    }
+
+    @Singleton
+    @Provides
+    ViewModelParkingEntered viewModelParkingEntered(RepositoryVehicleAdapterInterface repositoryVehicleAdapterInterface) {
+        return new ViewModelParkingEntered(repositoryVehicleAdapterInterface);
+    }
 }

@@ -35,5 +35,9 @@
         <item name="android:shadowDy">10</item>
         <item name="android:shadowDx">10</item>
     </style>
+    <style name="CardviewMenus">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
 
+    </style>
 </resources>

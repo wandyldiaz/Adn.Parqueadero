@@ -1,18 +1,19 @@
 package com.example.adnparqueadero.view;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.adnparqueadero.R;
-import com.example.adnparqueadero.viewmodel.CallbackString;
-import com.example.adnparqueadero.viewmodel.ParkingEntryViewModel;
 
-public class ParkingEntryActivity extends AppCompatActivity {
+public class ParkingEntryActivity extends MainActivity {
 
     private EditText etLicencePlate;
     private EditText etCylinder;
@@ -21,61 +22,59 @@ public class ParkingEntryActivity extends AppCompatActivity {
     private String licencePlate;
     private int cylinder;
     private String typeVehicle;
-
+    private Button butEntry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking_entry);
         mapViews();
+        final Observer<String> entryResultObserver = new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable final String result) {
+                // Update the UI, in this case, a TextView.
+                butEntry.setVisibility(View.VISIBLE);
+                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+            }
+        };
+        viewModelParkingEntry.getLiveDataResult().observe(this, entryResultObserver);
     }
 
     public void parkingEntry(View view) {
-        if(!validateEntry())
+        if (!validateEntry())
             return;
-        ParkingEntryViewModel parkingEntryViewModel= new ParkingEntryViewModel(this, licencePlate, typeVehicle
-                , cylinder, new CallbackString() {
-            @Override
-            public void response(String reply) {
-                Toast.makeText(getApplicationContext(),reply,Toast.LENGTH_LONG).show();
-                finish();
-            }
-        });
-
-        parkingEntryViewModel.execute();
+        butEntry.setVisibility(View.INVISIBLE);
+        viewModelParkingEntry.startVehicleEntry(licencePlate, cylinder, typeVehicle);
     }
 
-    private boolean validateEntry(){
-        licencePlate=etLicencePlate.getText().toString();
-        if(licencePlate.length()<5)
-        {
+    private boolean validateEntry() {
+        boolean validate = true;
+        licencePlate = etLicencePlate.getText().toString();
+        if (licencePlate.length() < 5) {
             etLicencePlate.setError("Placa incorrecta");
-            return false;
+            validate = false;
         }
-        String cylinder=etCylinder.getText().toString();
-        if(cylinder.length()<2)
-        {
+        String cylinderString = etCylinder.getText().toString();
+        if (cylinderString.length() < 2) {
             etCylinder.setError("Cilindraje incorrecto");
-            return false;
+            validate = false;
         }
-        this.cylinder=Integer.parseInt(cylinder);
-        typeVehicle=getTypeVehicle();
-        if(typeVehicle.length()==0)
-        {
+        this.cylinder = Integer.parseInt(cylinderString);
+        typeVehicle = getTypeVehicle();
+        if (typeVehicle.length() == 0) {
             rbCar.setError("Seleccione alguno");
             rbMotorcycle.setError("Seleccione alguno");
-            return false;
+            validate = false;
         }
 
-        return true;
+        return validate;
     }
 
     private String getTypeVehicle() {
 
-        if(rbCar.isChecked()){
+        if (rbCar.isChecked()) {
             return rbCar.getText().toString();
-        }
-        else if(rbMotorcycle.isChecked()){
+        } else if (rbMotorcycle.isChecked()) {
             return rbMotorcycle.getText().toString();
         }
         return "";
@@ -86,6 +85,7 @@ public class ParkingEntryActivity extends AppCompatActivity {
         etCylinder = findViewById(R.id.etCylinder);
         rbCar = findViewById(R.id.rbCar);
         rbMotorcycle = findViewById(R.id.rbMotorcycle);
+        butEntry = findViewById(R.id.btnParkingEntry);
     }
 
 }

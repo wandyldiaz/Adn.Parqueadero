@@ -16,7 +16,7 @@ public class ParkingEntryAdapter implements ParkingEntryAdapterInterface {
     }
 
     @Override
-    public String VehicleEntry(String licencePlate, int cylinder, String typeVehicle) {
+    public String vehicleEntry(String licencePlate, int cylinder, String typeVehicle) {
         VehicleRegisteredData vehicleRegisteredData=new VehicleRegisteredData();
         vehicleRegisteredData.setLicencePlate(licencePlate);
         vehicleRegisteredData.setCylinder(cylinder);

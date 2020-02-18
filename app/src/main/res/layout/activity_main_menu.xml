@@ -28,7 +28,7 @@
         android:layout_marginTop="10dp"/>
 
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -56,6 +56,15 @@
                 android:id="@+id/btnParkingExit"
                 android:text="SALIDA VEHICULO"
                 android:onClick="parkingExit"
+                android:padding="5dp"
+                style="@style/menuButton" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+            <Button
+                android:id="@+id/btnParkingEntered"
+                android:text="VEHICULOS INGRESADOS"
+                android:onClick="parkingEntered"
                 android:padding="5dp"
                 style="@style/menuButton" />
             <Space

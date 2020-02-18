@@ -55,3 +55,23 @@ aapp/src/main/java/com/example/adnparqueadero/model/adapter/RepositoryVehicleAda
 [app/src/main/java/com/example/adnparqueadero/model/infrastructure/injection/RoomModule.java,7\1\71430c1d019e8c02fc9167991bc7eb919657ea28
 ç
 ]app/src/main/java/com/example/adnparqueadero/model/infrastructure/injection/AppComponent.java,1\a\1ae9608ec00e81093b6a6f90a358d900d5c927b5
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+z
+Japp/src/main/java/com/example/adnparqueadero/viewmodel/CallbackString.java,d\9\d950346debe6d6ef8ad74db7df74f0d00f3ab2a3
+~
+Napp/src/main/java/com/example/adnparqueadero/model/domain/DateTimeParking.java,4\3\43657d85c062911b8ed05e6a74517ef2e30f0982
+{
+Kapp/src/main/java/com/example/adnparqueadero/view/ParkingEntryActivity.java,f\3\f313404b7d4c1ab86e24ae3ba3300e08fc1699ca
+Ä
+Papp/src/main/java/com/example/adnparqueadero/viewmodel/ParkingExitViewModel.java,2\8\286c275e9374aec08e3530f5dfc37ca2167519f2
+w
+Gapp/src/main/java/com/example/adnparqueadero/view/MainMenuActivity.java,d\d\dddc99a155f3f789970866d9dac081625e3ee63c
+ã
+[app/src/main/java/com/example/adnparqueadero/model/domain/repository/ParkingRepository.java,6\6\66f34bcdcbea40e7ac712d891190973bb8d6f28d
+Å
+Qapp/src/main/java/com/example/adnparqueadero/viewmodel/ParkingEntryViewModel.java,0\8\08745b09c4a8f0ce91c4f34045f0c70b1ec3dda0
+|
+Lapp/src/main/java/com/example/adnparqueadero/viewmodel/ViewModelExample.java,2\2\229153284d0393813d5d68c08884af7292d6afeb
+t
+Dapp/src/main/java/com/example/adnparqueadero/viewmodel/liveData.java,a\7\a7858154afb173b046120ef295432167241b0f8e
