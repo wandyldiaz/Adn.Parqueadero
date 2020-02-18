@@ -43,7 +43,7 @@ public class ParkingExitActivity extends MainActivity {
     private boolean validateExit() {
         licencePlate = etLicencePlate.getText().toString();
         if (licencePlate.length() < 5) {
-            etLicencePlate.setError("Placa incorrecta");
+            etLicencePlate.setError(getString(R.string.licence_plate_error));
             return false;
         }
         return true;

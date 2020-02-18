@@ -7,31 +7,26 @@
     tools:context=".view.ParkingEnteredActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vehiculos ingresados"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textView" />
+        android:id="@+id/textViewTitle"
+        style="@style/titles"
+        android:text="@string/vehicle_entered" />
+
     <View
+        android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@drawable/hrs"
-        android:layout_below="@id/textView"
-        android:id="@+id/line"
-        android:layout_marginTop="10dp"/>
+        android:layout_below="@id/textViewTitle"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/hrs" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:gravity="center"
-        android:layout_below="@+id/textView"
-        android:layout_marginEnd="24dp"
+        android:layout_below="@+id/textViewTitle"
         android:layout_marginStart="24dp"
         android:layout_marginTop="60dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
@@ -40,8 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_weight="1"
-            android:textAlignment="center"
             android:text="Placa"
+            android:textAlignment="center"
             android:textSize="15sp" />
 
         <TextView
@@ -49,36 +44,35 @@
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAlignment="center"
-            android:text="Fecha entrada" />
+            android:text="Fecha entrada"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/tvHourEntry"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAlignment="center"
-            android:text="Hora llegada" />
-
+            android:text="Hora llegada"
+            android:textAlignment="center" />
 
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardMenu"
-        android:layout_marginEnd="24dp"
+        style="@style/CardviewMenus"
+        android:layout_below="@+id/textView"
         android:layout_marginStart="24dp"
         android:layout_marginTop="100dp"
-        android:layout_below="@+id/textView"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        style="@style/CardviewMenus">
+        app:layout_constraintHorizontal_bias="0.0">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvVehicleEntered"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="196dp"
-            />
+            tools:layout_editor_absoluteY="196dp" />
 
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

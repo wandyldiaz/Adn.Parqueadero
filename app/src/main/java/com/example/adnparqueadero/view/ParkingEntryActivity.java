@@ -51,19 +51,19 @@ public class ParkingEntryActivity extends MainActivity {
         boolean validate = true;
         licencePlate = etLicencePlate.getText().toString();
         if (licencePlate.length() < 5) {
-            etLicencePlate.setError("Placa incorrecta");
+            etLicencePlate.setError(getString(R.string.licence_plate_error));
             validate = false;
         }
         String cylinderString = etCylinder.getText().toString();
         if (cylinderString.length() < 2) {
-            etCylinder.setError("Cilindraje incorrecto");
+            etCylinder.setError(getString(R.string.cylinder_error));
             validate = false;
         }
         this.cylinder = Integer.parseInt(cylinderString);
         typeVehicle = getTypeVehicle();
         if (typeVehicle.length() == 0) {
-            rbCar.setError("Seleccione alguno");
-            rbMotorcycle.setError("Seleccione alguno");
+            rbCar.setError(getString(R.string.select_vehicle_type));
+            rbMotorcycle.setError(getString(R.string.select_vehicle_type));
             validate = false;
         }
 

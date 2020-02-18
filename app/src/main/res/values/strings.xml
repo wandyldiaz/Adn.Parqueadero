@@ -3,4 +3,19 @@
     <string name="typeVehicleMotorcycle">Moto</string>
     <string name="typeVehicleCar">Carro</string>
     <string name="list_is_empty">List is empty</string>
+    <string name="licence_plate_error">Placa incorrecta</string>
+    <string name="cylinder_error">Cilindraje incorrecto</string>
+    <string name="select_vehicle_type">Seleccione el tipo de vehiculo</string>
+    <string name="title_main_menu">Menu Principal</string>
+    <string name="button_entered_vehicle">INGRESO VEHICULO</string>
+    <string name="button_exit_vehicle">SALIDA VEHICULO</string>
+    <string name="button_vehicle_entered">VEHICULOS INGRESADOS</string>
+    <string name="button_close">Salir</string>
+    <string name="vehicle_entered">Vehiculos ingresados</string>
+    <string name="vehicle_entry">Ingreso de vehículo</string>
+    <string name="parking_exit">Salida de vehículo</string>
+    <string name="hint_licence_plate">PLACA</string>
+    <string name="button_make_exit">REALIZAR SALIDA</string>
+    <string name="hint_cylinder">CILINDRAJE</string>
+    <string name="button_entry">ingresar</string>
 </resources>

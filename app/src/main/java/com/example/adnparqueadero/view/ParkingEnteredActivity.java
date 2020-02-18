@@ -12,7 +12,7 @@ import com.example.adnparqueadero.R;
 public class ParkingEnteredActivity extends MainActivity {
 
     private RecyclerView rvVehicleEntered;
-    private String[][] matrizVechicleEntered=new String[0][0];
+    private String[][] mzVehicleEntered = new String[0][0];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,32 +23,31 @@ public class ParkingEnteredActivity extends MainActivity {
             @Override
             public void onChanged(@Nullable final String[][] result) {
                 // Update the UI, in this case, a TextView.
-                if(result==null)
-                    matrizVechicleEntered=new String[0][0];
+                if (result == null)
+                    mzVehicleEntered = new String[0][0];
                 else
-                    matrizVechicleEntered=result.clone();
+                    mzVehicleEntered = result.clone();
                 fillRecycler();
             }
         };
-        viewModelParkingEntered.getLiveDataResult().observe(this,entryResultObserver );
+        viewModelParkingEntered.getLiveDataResult().observe(this, entryResultObserver);
         fillRecycler();
     }
 
-    private void mapsView(){
-        rvVehicleEntered=findViewById(R.id.rvVehicleEntered);
+    private void mapsView() {
+        rvVehicleEntered = findViewById(R.id.rvVehicleEntered);
     }
 
-    private void fillRecycler(){
+    private void fillRecycler() {
         RecyclerAdapter adapter;
         rvVehicleEntered.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvVehicleEntered.setLayoutManager(linearLayoutManager);
-        if(matrizVechicleEntered.length>0)
-            adapter= new RecyclerAdapter(matrizVechicleEntered,R.layout.vehicle_item);
-        else
-        {
-            matrizVechicleEntered=new String[1][0];
-            adapter= new RecyclerAdapter(matrizVechicleEntered,R.layout.empty_view);
+        if (mzVehicleEntered.length > 0)
+            adapter = new RecyclerAdapter(mzVehicleEntered, R.layout.vehicle_item);
+        else {
+            mzVehicleEntered = new String[1][0];
+            adapter = new RecyclerAdapter(mzVehicleEntered, R.layout.empty_view);
         }
         rvVehicleEntered.setAdapter(adapter);
     }
