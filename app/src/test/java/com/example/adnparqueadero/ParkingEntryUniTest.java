@@ -31,15 +31,17 @@ public class ParkingEntryUniTest {
     private static final String ERROR_VEHICLE_DAY = "Error el vehiculo no puede ingresar el dia de hoy";
     private static final String ERROR_VEHICLE_ENTRY = "Error no se pudo ingresar el vehiculo";
     private static final String ERROR_REGISTERED_VEHICLE = "Error no se pudo registrar el vehiculo";
-    private static final String ERROR_LICENCE_PLATE = "Error placa incorrecta";
+    private static final String ERROR_DATA = "Error datos nulos o incorrectos";
     private static final String SUCCESS_VEHICLE_ENTRY = "Vehiculo ingresado exitosamente";
 
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
     @Mock
-    ParkingRepository parkingRepositoryMockOk;
+    ParkingRepository parkingRepositoryMockOkInsert;
     @Mock
-    ParkingRepository parkingRepositoryMockFailed;
+    ParkingRepository parkingRepositoryMockFailedInsert;
+    @Mock
+    ParkingRepository parkingRepositoryMockFailedInsertEntry;
     @Mock
     DateTimeInterface dateTimeParkingMock;
 
@@ -47,12 +49,21 @@ public class ParkingEntryUniTest {
     public void declaracionVariables() {
         when(dateTimeParkingMock.getCurrentDate()).thenReturn("2020/02/01");
         when(dateTimeParkingMock.getCurrentTime()).thenReturn("13:00");
-        when(parkingRepositoryMockOk.insert(ArgumentMatchers.<VehicleRegisteredData>any())).thenReturn((long) 1);
-        when(parkingRepositoryMockOk.insert(ArgumentMatchers.<VehicleHistoryData>any())).thenReturn((long) 1);
-        when(parkingRepositoryMockFailed.insert(ArgumentMatchers.<VehicleRegisteredData>any())).thenReturn((long) 0);
-        when(parkingRepositoryMockFailed.insert(ArgumentMatchers.<VehicleHistoryData>any())).thenReturn((long) 0);
-        when(parkingRepositoryMockOk.getCountVehicleEnteredType("Carro")).thenReturn((long) 11);
-        when(parkingRepositoryMockOk.getCountVehicleEnteredType("Moto")).thenReturn((long) 9);
+
+        when(parkingRepositoryMockOkInsert.insert(ArgumentMatchers.<VehicleRegisteredData>any())).thenReturn((long) 1);
+        when(parkingRepositoryMockOkInsert.insert(ArgumentMatchers.<VehicleHistoryData>any())).thenReturn((long) 1);
+        when(parkingRepositoryMockOkInsert.getCountVehicleEnteredType("Carro")).thenReturn((long) 11);
+        when(parkingRepositoryMockOkInsert.getCountVehicleEnteredType("Moto")).thenReturn((long) 9);
+
+        when(parkingRepositoryMockFailedInsert.insert(ArgumentMatchers.<VehicleRegisteredData>any())).thenReturn((long) 0);
+        when(parkingRepositoryMockFailedInsert.insert(ArgumentMatchers.<VehicleHistoryData>any())).thenReturn((long) 0);
+        when(parkingRepositoryMockFailedInsert.getCountVehicleEnteredType("Carro")).thenReturn((long) 0);
+        when(parkingRepositoryMockFailedInsert.getCountVehicleEnteredType("Moto")).thenReturn((long) 0);
+
+        when(parkingRepositoryMockFailedInsertEntry.insert(ArgumentMatchers.<VehicleRegisteredData>any())).thenReturn((long) 1);
+        when(parkingRepositoryMockFailedInsertEntry.insert(ArgumentMatchers.<VehicleHistoryData>any())).thenReturn((long) 0);
+        when(parkingRepositoryMockFailedInsertEntry.getCountVehicleEnteredType("Carro")).thenReturn((long) 11);
+        when(parkingRepositoryMockFailedInsertEntry.getCountVehicleEnteredType("Moto")).thenReturn((long) 9);
 
     }
 
@@ -64,13 +75,13 @@ public class ParkingEntryUniTest {
         vehicleRegisteredData.setLicencePlate("AHG333");
         vehicleRegisteredData.setTypeVehicle("Carro");
         when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Lunes");
-        when(parkingRepositoryMockOk.getSelectVehicleEntered("AHG333")).thenReturn(null);
-        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOk,
+        when(parkingRepositoryMockOkInsert.getSelectVehicleEntered("AHG333")).thenReturn(null);
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOkInsert,
                 dateTimeParkingMock);
         //ACK
         String result = parkingEntry.startVehicleEntry();
         //assert
-        assertTrue(result.equals(SUCCESS_VEHICLE_ENTRY));
+        assertEquals(SUCCESS_VEHICLE_ENTRY,result);
 
     }
 
@@ -82,13 +93,13 @@ public class ParkingEntryUniTest {
         vehicleRegisteredData.setLicencePlate("AHG333");
         vehicleRegisteredData.setTypeVehicle("Carro");
         when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Martes");
-        when(parkingRepositoryMockOk.getSelectVehicleEntered("AHG333")).thenReturn(null);
-        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOk,
+        when(parkingRepositoryMockOkInsert.getSelectVehicleEntered("AHG333")).thenReturn(null);
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOkInsert,
                 dateTimeParkingMock);
         //ACK
         String result = parkingEntry.startVehicleEntry();
         //assert
-        assertTrue(result.equals(ERROR_VEHICLE_DAY));
+        assertEquals(ERROR_VEHICLE_DAY,result);
 
     }
 
@@ -100,13 +111,13 @@ public class ParkingEntryUniTest {
         vehicleRegisteredData.setLicencePlate("EHG333");
         vehicleRegisteredData.setTypeVehicle("Carro");
         when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Miercoles");
-        when(parkingRepositoryMockOk.getSelectVehicleEntered("EHG333")).thenReturn(null);
-        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOk,
+        when(parkingRepositoryMockOkInsert.getSelectVehicleEntered("EHG333")).thenReturn(null);
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOkInsert,
                 dateTimeParkingMock);
         //ACK
         String result = parkingEntry.startVehicleEntry();
         //assert
-        assertTrue(result.equals(SUCCESS_VEHICLE_ENTRY));
+        assertEquals(SUCCESS_VEHICLE_ENTRY,result);
 
     }
 
@@ -118,13 +129,13 @@ public class ParkingEntryUniTest {
         vehicleRegisteredData.setLicencePlate("AHG333");
         vehicleRegisteredData.setTypeVehicle("Carro");
         when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Jueves");
-        when(parkingRepositoryMockOk.getSelectVehicleEntered("AHG333")).thenReturn(null);
-        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOk,
+        when(parkingRepositoryMockOkInsert.getSelectVehicleEntered("AHG333")).thenReturn(null);
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOkInsert,
                 dateTimeParkingMock);
         //ACK
         String result = parkingEntry.startVehicleEntry();
         //assert
-        assertTrue(result.equals(ERROR_VEHICLE_DAY));
+        assertEquals(ERROR_VEHICLE_DAY,result);
 
     }
 
@@ -136,13 +147,13 @@ public class ParkingEntryUniTest {
         vehicleRegisteredData.setLicencePlate("EHG333");
         vehicleRegisteredData.setTypeVehicle("Carro");
         when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Viernes");
-        when(parkingRepositoryMockOk.getSelectVehicleEntered("EHG333")).thenReturn(null);
-        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOk,
+        when(parkingRepositoryMockOkInsert.getSelectVehicleEntered("EHG333")).thenReturn(null);
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOkInsert,
                 dateTimeParkingMock);
         //ACK
         String result = parkingEntry.startVehicleEntry();
         //assert
-        assertTrue(result.equals(SUCCESS_VEHICLE_ENTRY));
+        assertEquals(SUCCESS_VEHICLE_ENTRY,result);
 
     }
 
@@ -154,13 +165,13 @@ public class ParkingEntryUniTest {
         vehicleRegisteredData.setLicencePlate("AHG333");
         vehicleRegisteredData.setTypeVehicle("Carro");
         when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Sabado");
-        when(parkingRepositoryMockOk.getSelectVehicleEntered("AHG333")).thenReturn(null);
-        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOk,
+        when(parkingRepositoryMockOkInsert.getSelectVehicleEntered("AHG333")).thenReturn(null);
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOkInsert,
                 dateTimeParkingMock);
         //ACK
         String result = parkingEntry.startVehicleEntry();
         //assert
-        assertTrue(result.equals(ERROR_VEHICLE_DAY));
+        assertEquals(ERROR_VEHICLE_DAY,result);
 
     }
 
@@ -172,14 +183,139 @@ public class ParkingEntryUniTest {
         vehicleRegisteredData.setLicencePlate("AHG333");
         vehicleRegisteredData.setTypeVehicle("Carro");
         when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Domingo");
-        when(parkingRepositoryMockOk.getSelectVehicleEntered("AHG333")).thenReturn(null);
-        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOk,
+        when(parkingRepositoryMockOkInsert.getSelectVehicleEntered("AHG333")).thenReturn(null);
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOkInsert,
                 dateTimeParkingMock);
         //ACK
         String result = parkingEntry.startVehicleEntry();
         //assert
-        assertTrue(result.equals(SUCCESS_VEHICLE_ENTRY));
+        assertEquals(SUCCESS_VEHICLE_ENTRY,result);
 
+    }
+
+    @Test
+    public void validacionVehicleEntered() {
+        //Arrangue
+        VehicleRegisteredData vehicleRegisteredData = new VehicleRegisteredData();
+        vehicleRegisteredData.setCylinder(500);
+        vehicleRegisteredData.setLicencePlate("AHG333");
+        vehicleRegisteredData.setTypeVehicle("Carro");
+        when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Domingo");
+        when(parkingRepositoryMockOkInsert.getSelectVehicleEntered("AHG333")).thenReturn(new VehicleHistoryData());
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOkInsert,
+                dateTimeParkingMock);
+        //ACK
+        String result = parkingEntry.startVehicleEntry();
+        //assert
+        assertEquals(ERROR_VEHICLE_ENTERED,result);
+
+    }
+
+    @Test
+    public void validacionVehicleLimitCar() {
+        //Arrangue
+        VehicleRegisteredData vehicleRegisteredData = new VehicleRegisteredData();
+        vehicleRegisteredData.setCylinder(500);
+        vehicleRegisteredData.setLicencePlate("AHG333");
+        vehicleRegisteredData.setTypeVehicle("Carro");
+        when(parkingRepositoryMockOkInsert.getCountVehicleEnteredType("Carro")).thenReturn((long) 20);
+        when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Domingo");
+        when(parkingRepositoryMockOkInsert.getSelectVehicleEntered("AHG333")).thenReturn(null);
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOkInsert,
+                dateTimeParkingMock);
+        //ACK
+        String result = parkingEntry.startVehicleEntry();
+        //assert
+        assertEquals(ERROR_VEHICLE_LIMIT,result);
+
+    }
+
+    @Test
+    public void validacionVehicleLimitMoto() {
+        //Arrangue
+        VehicleRegisteredData vehicleRegisteredData = new VehicleRegisteredData();
+        vehicleRegisteredData.setCylinder(500);
+        vehicleRegisteredData.setLicencePlate("AHG333");
+        vehicleRegisteredData.setTypeVehicle("Moto");
+        when(parkingRepositoryMockOkInsert.getCountVehicleEnteredType("Moto")).thenReturn((long) 10);
+        when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Domingo");
+        when(parkingRepositoryMockOkInsert.getSelectVehicleEntered("AHG333")).thenReturn(null);
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockOkInsert,
+                dateTimeParkingMock);
+        //ACK
+        String result = parkingEntry.startVehicleEntry();
+        //assert
+        assertEquals(ERROR_VEHICLE_LIMIT,result);
+
+    }
+
+    @Test
+    public void validacionVehicleRegister() {
+        //Arrangue
+        VehicleRegisteredData vehicleRegisteredData = new VehicleRegisteredData();
+        vehicleRegisteredData.setCylinder(500);
+        vehicleRegisteredData.setLicencePlate("AHG333");
+        vehicleRegisteredData.setTypeVehicle("Moto");
+        when(parkingRepositoryMockFailedInsert.getCountVehicleEnteredType("Moto")).thenReturn((long) 9);
+        when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Domingo");
+        when(parkingRepositoryMockFailedInsert.getSelectVehicleEntered("AHG333")).thenReturn(null);
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockFailedInsert,
+                dateTimeParkingMock);
+        //ACK
+        String result = parkingEntry.startVehicleEntry();
+        //assert
+        assertEquals(ERROR_REGISTERED_VEHICLE,result);
+    }
+
+    @Test
+    public void validacionPlacaIncorrecta() {
+        //Arrangue
+        VehicleRegisteredData vehicleRegisteredData = new VehicleRegisteredData();
+        vehicleRegisteredData.setCylinder(500);
+        vehicleRegisteredData.setLicencePlate("AHG33");
+        vehicleRegisteredData.setTypeVehicle("Moto");
+        when(parkingRepositoryMockFailedInsert.getCountVehicleEnteredType("Moto")).thenReturn((long) 9);
+        when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Martes");
+        when(parkingRepositoryMockFailedInsert.getSelectVehicleEntered("AHG333")).thenReturn(null);
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockFailedInsert,
+                dateTimeParkingMock);
+        //ACK
+        String result = parkingEntry.startVehicleEntry();
+        //assert
+        assertEquals(ERROR_DATA,result);
+    }
+
+    @Test
+    public void validacionDatosVacios() {
+        //Arrangue
+        VehicleRegisteredData vehicleRegisteredData = new VehicleRegisteredData();
+        when(parkingRepositoryMockFailedInsert.getCountVehicleEnteredType("Moto")).thenReturn((long) 9);
+        when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Martes");
+        when(parkingRepositoryMockFailedInsert.getSelectVehicleEntered("AHG333")).thenReturn(null);
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockFailedInsert,
+                dateTimeParkingMock);
+        //ACK
+        String result = parkingEntry.startVehicleEntry();
+        //assert
+        assertEquals(ERROR_DATA,result);
+    }
+
+    @Test
+    public void validacionVehicleHistory() {
+        //Arrangue
+        VehicleRegisteredData vehicleRegisteredData = new VehicleRegisteredData();
+        vehicleRegisteredData.setCylinder(500);
+        vehicleRegisteredData.setLicencePlate("AHG333");
+        vehicleRegisteredData.setTypeVehicle("Moto");
+        when(parkingRepositoryMockFailedInsertEntry.getCountVehicleEnteredType("Moto")).thenReturn((long) 9);
+        when(dateTimeParkingMock.getDayWeek(anyString())).thenReturn("Domingo");
+        when(parkingRepositoryMockFailedInsertEntry.getSelectVehicleEntered("AHG333")).thenReturn(null);
+        ParkingEntry parkingEntry = new ParkingEntry(vehicleRegisteredData, parkingRepositoryMockFailedInsertEntry,
+                dateTimeParkingMock);
+        //ACK
+        String result = parkingEntry.startVehicleEntry();
+        //assert
+        assertEquals(ERROR_VEHICLE_ENTRY,result);
     }
 
 }

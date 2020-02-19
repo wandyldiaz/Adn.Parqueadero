@@ -7,7 +7,6 @@ import com.example.adnparqueadero.model.domain.repository.ParkingRepository;
 import com.example.adnparqueadero.model.domain.models.VehicleHistoryData;
 import com.example.adnparqueadero.model.domain.models.VehicleRegisteredData;
 
-
 public class ParkingEntry {
 
     private static final String ERROR_VEHICLE_ENTERED = "Error el vehiculo ya se encuentra en el parqueadero";
@@ -15,7 +14,7 @@ public class ParkingEntry {
     private static final String ERROR_VEHICLE_DAY = "Error el vehiculo no puede ingresar el dia de hoy";
     private static final String ERROR_VEHICLE_ENTRY = "Error no se pudo ingresar el vehiculo";
     private static final String ERROR_REGISTERED_VEHICLE = "Error no se pudo registrar el vehiculo";
-    private static final String ERROR_LICENCE_PLATE = "Error placa incorrecta";
+    private static final String ERROR_DATA = "Error datos nulos o incorrectos";
     private static final String SUCCESS_VEHICLE_ENTRY = "Vehiculo ingresado exitosamente";
     private static final String LYRIC_CONDITION = "A";
     private static final String TYPE_VEHICLE_MOTORCYCLE = "Moto";
@@ -37,9 +36,17 @@ public class ParkingEntry {
         this.parkingRepository = parkingRepository;
     }
 
-    private boolean validateLicencePlate() {
-        replyMessage = ERROR_LICENCE_PLATE;
-        return vehicleRegistered.getLicencePlate().length() == 6;
+    private boolean validateData() {
+        replyMessage = ERROR_DATA;
+        try {
+            if (vehicleRegistered.getCylinder() > 0 && vehicleRegistered.getLicencePlate().length() == 6
+                    && vehicleRegistered.getTypeVehicle().length()>0) {
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
     }
 
     private boolean validateDayEntry() {
@@ -81,7 +88,7 @@ public class ParkingEntry {
     private String vehicleEntry() {
         VehicleHistoryData vehicleHistory = new VehicleHistoryData();
         try {
-            if (!validateLicencePlate() || !validateLimitEntry() || !validateDayEntry())
+            if (!validateData() || !validateLimitEntry() || !validateDayEntry())
                 return replyMessage;
             replyMessage = ERROR_REGISTERED_VEHICLE;
             if (parkingRepository.insert(vehicleRegistered) == 0)
