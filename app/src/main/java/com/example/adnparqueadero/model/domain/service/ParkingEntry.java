@@ -43,19 +43,23 @@ public class ParkingEntry {
     }
 
     private boolean validateDayEntry() {
+        boolean validateDay = false;
         replyMessage = ERROR_VEHICLE_DAY;
         currentDate = dateTimeParking.getCurrentDate();
         currentTime = dateTimeParking.getCurrentTime();
-        if (vehicleRegistered.getTypeVehicle().equals(TYPE_VEHICLE_CAR))
-            return true;
         String currentDay = dateTimeParking.getDayWeek(currentDate);
         String lyricsLicencePlate = ("" + vehicleRegistered.getLicencePlate().charAt(0)).toUpperCase();
+        if (!LYRIC_CONDITION.equals(lyricsLicencePlate)) {
+            return true;
+        }
         for (String day : DAYS_ALLOWED) {
-            if ((!day.equals(currentDay)) && LYRIC_CONDITION.equals(lyricsLicencePlate)) {
-                return false;
+            if ((day.equals(currentDay))) {
+                validateDay = true;
+                break;
             }
         }
-        return true;
+
+        return validateDay;
     }
 
     private boolean validateLimitEntry() {
@@ -66,7 +70,6 @@ public class ParkingEntry {
                 limitVehicle = (long) LIMIT_CAR;
             else if (vehicleRegistered.getTypeVehicle().equals(TYPE_VEHICLE_MOTORCYCLE))
                 limitVehicle = (long) LIMIT_MOTORCYCLE;
-            Log.d("LimiteVehiculo", "" + limitVehicle);
             return (parkingRepository
                     .getCountVehicleEnteredType(vehicleRegistered.getTypeVehicle()) < limitVehicle);
         } catch (Exception e) {
