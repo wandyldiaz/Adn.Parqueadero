@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,6 +50,10 @@ public class ParkingEntryActivity extends MainActivity {
 
     private boolean validateEntry() {
         boolean validate = true;
+        etLicencePlate.setError(null);
+        etCylinder.setError(null);
+        rbCar.setError(null);
+        rbMotorcycle.setError(null);
         licencePlate = etLicencePlate.getText().toString();
         if (licencePlate.length() < 5) {
             etLicencePlate.setError(getString(R.string.licence_plate_error));
@@ -58,8 +63,9 @@ public class ParkingEntryActivity extends MainActivity {
         if (cylinderString.length() < 2) {
             etCylinder.setError(getString(R.string.cylinder_error));
             validate = false;
+        } else {
+            this.cylinder = Integer.parseInt(cylinderString);
         }
-        this.cylinder = Integer.parseInt(cylinderString);
         typeVehicle = getTypeVehicle();
         if (typeVehicle.length() == 0) {
             rbCar.setError(getString(R.string.select_vehicle_type));
@@ -87,11 +93,16 @@ public class ParkingEntryActivity extends MainActivity {
         rbMotorcycle = findViewById(R.id.rbMotorcycle);
         butEntry = findViewById(R.id.btnParkingEntry);
     }
-    private void cleanViews(){
+
+    private void cleanViews() {
         etLicencePlate.setText("");
+        etLicencePlate.setError(null);
         etCylinder.setText("");
+        etCylinder.setError(null);
         rbCar.setChecked(false);
+        rbCar.setError(null);
         rbMotorcycle.setChecked(false);
+        rbMotorcycle.setError(null);
         butEntry.setVisibility(View.VISIBLE);
     }
 

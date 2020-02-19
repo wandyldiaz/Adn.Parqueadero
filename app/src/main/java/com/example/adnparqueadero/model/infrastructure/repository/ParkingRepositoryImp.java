@@ -4,8 +4,8 @@ import com.example.adnparqueadero.model.domain.repository.ParkingRepository;
 import com.example.adnparqueadero.model.infrastructure.database.ParkingDatabase;
 import com.example.adnparqueadero.model.domain.models.VehicleHistoryData;
 import com.example.adnparqueadero.model.domain.models.VehicleRegisteredData;
-import com.example.adnparqueadero.model.infrastructure.builder.VehicleHistoryBuilder;
-import com.example.adnparqueadero.model.infrastructure.builder.VehicleRegisteredBuilder;
+import com.example.adnparqueadero.model.infrastructure.translator.VehicleHistoryTranslator;
+import com.example.adnparqueadero.model.infrastructure.translator.VehicleRegisteredTranslator;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import javax.inject.Inject;
 public class ParkingRepositoryImp implements ParkingRepository {
 
     private ParkingDatabase parkingDatabase;
-    //Cambiar los factry que no es por un patron de diseño
-    private VehicleHistoryBuilder vehicleHistoryBuilder = new VehicleHistoryBuilder();
-    private VehicleRegisteredBuilder vehicleRegisteredBuilder = new VehicleRegisteredBuilder();
+
+    private VehicleHistoryTranslator vehicleHistoryTranslator = new VehicleHistoryTranslator();
+    private VehicleRegisteredTranslator vehicleRegisteredTranslator = new VehicleRegisteredTranslator();
 
     @Inject
     public ParkingRepositoryImp(ParkingDatabase parkingDatabase) {
@@ -35,7 +35,7 @@ public class ParkingRepositoryImp implements ParkingRepository {
 
     @Override
     public Long insert(VehicleRegisteredData vehicleRegistered) {
-        return parkingDatabase.vehicleRegisteredDao().insert(vehicleRegisteredBuilder.create(vehicleRegistered));
+        return parkingDatabase.vehicleRegisteredDao().insert(vehicleRegisteredTranslator.translate(vehicleRegistered));
     }
 
     @Override
@@ -50,12 +50,12 @@ public class ParkingRepositoryImp implements ParkingRepository {
 
     @Override
     public Long insert(VehicleHistoryData vehicleHistory) {
-        return parkingDatabase.vehicleHistoryDao().insert(vehicleHistoryBuilder.create(vehicleHistory));
+        return parkingDatabase.vehicleHistoryDao().insert(vehicleHistoryTranslator.translate(vehicleHistory));
     }
 
     @Override
     public int update(VehicleHistoryData vehicleHistory) {
-        return parkingDatabase.vehicleHistoryDao().update(vehicleHistoryBuilder.create(vehicleHistory));
+        return parkingDatabase.vehicleHistoryDao().update(vehicleHistoryTranslator.translate(vehicleHistory));
     }
 
 }

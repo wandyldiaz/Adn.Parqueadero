@@ -1,11 +1,11 @@
-package com.example.adnparqueadero.model.infrastructure.builder;
+package com.example.adnparqueadero.model.infrastructure.translator;
 
 import com.example.adnparqueadero.model.domain.models.VehicleHistoryData;
 import com.example.adnparqueadero.model.infrastructure.entity.VehicleHistory;
 
-public class VehicleHistoryBuilder {
+public class VehicleHistoryTranslator {
 
-    public VehicleHistory create(VehicleHistoryData vehicleHistoryData){
+    public VehicleHistory translate(VehicleHistoryData vehicleHistoryData){
         VehicleHistory vehicleHistory = new VehicleHistory();
         vehicleHistory.setIdVehicleHistory(vehicleHistoryData.getIdVehicleHistory());
         vehicleHistory.setLicencePlate(vehicleHistoryData.getLicencePlate());
