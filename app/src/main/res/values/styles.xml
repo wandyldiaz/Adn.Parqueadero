@@ -28,7 +28,7 @@
     <style name="menuButtonExit">
         <item name="android:layout_width">200dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/Black</item>
+        <item name="android:textColor">@color/colorBlack</item>
         <item name="android:background">#D6D7D7</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">16dp</item>
@@ -53,6 +53,16 @@
         <item name="android:textSize">30dp</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="subTitles">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_marginTop">40dp</item>
         <item name="android:textColor">#000000</item>
     </style>

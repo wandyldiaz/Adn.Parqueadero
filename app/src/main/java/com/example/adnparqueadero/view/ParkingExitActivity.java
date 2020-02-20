@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adnparqueadero.R;
@@ -14,6 +15,7 @@ import com.example.adnparqueadero.R;
 public class ParkingExitActivity extends MainActivity {
 
     private EditText etLicencePlate;
+    private TextView tvTextViewSubTitle;
     private String licencePlate;
     private Button butMakeExit;
 
@@ -26,7 +28,7 @@ public class ParkingExitActivity extends MainActivity {
             @Override
             public void onChanged(@Nullable final String result) {
                 // Update the UI, in this case, a TextView.
-                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                tvTextViewSubTitle.setText(result);
                 cleanViews();
             }
         };
@@ -51,6 +53,7 @@ public class ParkingExitActivity extends MainActivity {
 
     private void mapViews() {
         etLicencePlate = findViewById(R.id.etLicencePlate);
+        tvTextViewSubTitle = findViewById(R.id.textViewSubTitle);
         butMakeExit = findViewById(R.id.btnMakeExit);
     }
 

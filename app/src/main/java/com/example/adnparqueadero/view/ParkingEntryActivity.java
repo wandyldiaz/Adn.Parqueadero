@@ -1,15 +1,14 @@
 package com.example.adnparqueadero.view;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adnparqueadero.R;
@@ -17,6 +16,7 @@ import com.example.adnparqueadero.R;
 public class ParkingEntryActivity extends MainActivity {
 
     private EditText etLicencePlate;
+    private TextView tvTextViewSubTitle;
     private EditText etCylinder;
     private RadioButton rbCar;
     private RadioButton rbMotorcycle;
@@ -34,7 +34,7 @@ public class ParkingEntryActivity extends MainActivity {
             @Override
             public void onChanged(@Nullable final String result) {
                 // Update the UI, in this case, a TextView.
-                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                tvTextViewSubTitle.setText(result);
                 cleanViews();
             }
         };
@@ -90,8 +90,9 @@ public class ParkingEntryActivity extends MainActivity {
         etLicencePlate = findViewById(R.id.etLicencePlate);
         etCylinder = findViewById(R.id.etCylinder);
         rbCar = findViewById(R.id.rbCar);
+        tvTextViewSubTitle = findViewById(R.id.textViewSubTitle);
         rbMotorcycle = findViewById(R.id.rbMotorcycle);
-        butEntry = findViewById(R.id.btnParkingEntry);
+        butEntry = findViewById(R.id.btnMakeEntry);
     }
 
     private void cleanViews() {

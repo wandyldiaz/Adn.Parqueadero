@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="90dp"
+        android:id="@+id/scrollContent"
         android:layout_marginBottom="70dp"
         android:fillViewport="true">
 
@@ -32,6 +33,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/line"
             android:layout_marginTop="20dp"
+            android:id="@+id/linearContent"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -61,6 +63,12 @@
                 style="@style/menuButton"
                 android:onClick="parkingExit"
                 android:text="@string/button_make_exit" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+            <TextView
+                android:id="@+id/textViewSubTitle"
+                style="@style/subTitles" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

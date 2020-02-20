@@ -16,8 +16,8 @@ public class ParkingExit {
     private static final String ERROR_VEHICLE_CALCULATE = "Error al calcular la salida del vehiculo";
     private static final String ERROR_VEHICLE_DATA = "Error al obtener los datos del vehiculo registrado";
     private static final String ERROR_VEHICLE_EXIT = "Error al realizar la salida del vehiculo";
-    private static final String SUCCESS_VEHICLE_EXIT = "Salida realizada exitosamente";
     private static final String ERROR_VEHICLE_NOT_ENTERED = "Error el vehiculo no esta en el parqueadero";
+    private static final String SUCCESS_VEHICLE_EXIT = "Salida realizada exitosamente";
     private static final String TYPE_VEHICLE_MOTORCYCLE = "Moto";
     private static final String TYPE_VEHICLE_CAR = "Carro";
     private static final int PRICE_HOUR_CAR = 1000;
@@ -122,11 +122,11 @@ public class ParkingExit {
                 return replyMessage;
             replyMessage = ERROR_VEHICLE_EXIT;
             if (parkingRepository.update(vehicleHistoryEntered) != -1)
-
-                replyMessage = SUCCESS_VEHICLE_EXIT + "\n" + "Dias parqueado:" + daysParked + "\n"
-                        + "Horas parqueado: " + hoursParked + "\n" + "Precio:" + priceCharged;
+                replyMessage = SUCCESS_VEHICLE_EXIT + "\n"
+                        + "Horas parqueado: " + hoursParked + "\n"
+                        + "Precio: " + priceCharged;
         } catch (Exception e) {
-            Log.e("ErrorSalida", e.toString());
+           // Log.e("ErrorSalida", e.toString());
         }
         return replyMessage;
     }
