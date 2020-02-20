@@ -67,6 +67,7 @@ pipeline {
         sh 'chmod u+x gradlew'
        // sh './gradlew clean'
         sh './gradlew --b ./app/build.gradle build -x test'
+        sh './gradlew --b ./app/build.gradle build -x androidTest'
 
       }
     }
